@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>装饰者模式 - God bless you - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=1qg5Fq1BfYYdMk5fTTfihV9URZlgHAvNBQ1HiTkqam41"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/BOOK/bundle-BOOK.css?v=DaIdaa-2GlCJY57BeysMEAHbKkfdzZNJbosbSdqmsv41"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/god_bless_you/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/god_bless_you/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/god_bless_you/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'god_bless_you', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=VMkXC8l5qxKu2l0FzsWE9b1uVVeruD06UGIVq31Bzhc1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<script type="text/javascript">
+	try {
+		if (screen.availWidth > 1200) {
+			document.getElementById("MainCss").href = '/Skins/BOOK/style2.css';
+		}
+	} catch (e) { }
+</script>
+
+<div id="header">
+<div id="HeaderTitle">
+<div id="Title">
+<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/god_bless_you/">God bless you</a>
+</div>
+<div id="subTitle"></div>
+</div>
+</div>
+
+<div id="main">
+	
+
+	<div class="post">
+		<h2>
+			<a id="cb_post_title_url" href="http://www.cnblogs.com/god_bless_you/archive/2010/06/10/1755212.html">装饰者模式</a>
+		</h2>
+		<div id="cnblogs_post_body"><p>装饰者模式 </p>
+<p>Decorator模式（别名Wrapper）：动态将职责附加到对象上，若要扩展功能，装饰者提供了比继承更具弹性的代替方案。 </p>
+<p>&nbsp; </p>
+<p>意图： </p>
+<p>动态地给一个对象添加一些额外的职责。就增加功能来说，Decorator模式相比生成子类更为灵活。 </p>
+<p>&nbsp; </p>
+<p>设计原则： </p>
+<p>1. 多用组合，少用继承。 </p>
+<p>利用继承设计子类的行为，是在编译时静态决定的，而且所有的子类都会继承到相同的行为。然而，如果能够利用组合的做法扩展对象的行为，就可以在运行时动态地进行扩展。 </p>
+<p>2. 类应设计的对扩展开放，对修改关闭。 </p>
+<p>&nbsp; </p>
+<p>要点： </p>
+<p>1． 装饰者和被装饰对象有相同的超类型。 </p>
+<p>2． 可以用一个或多个装饰者包装一个对象。 </p>
+<p>3． 装饰者可以在所委托被装饰者的行为之前或之后，加上自己的行为，以达到特定的目的。 </p>
+<p>4． 对象可以在任何时候被装饰，所以可以在运行时动态的，不限量的用你喜欢的装饰者来装饰对象。 </p>
+<p>5． 装饰模式中使用继承的关键是想达到装饰者和被装饰对象的类型匹配，而不是获得其行为。 </p>
+<p>6． 装饰者一般对组件的客户是透明的，除非客户程序依赖于组件的具体类型。在实际项目中可以根据需要为装饰者添加新的行为，做到&ldquo;半透明&rdquo;装饰者。 </p>
+<p>7． 适配器模式的用意是改变对象的接口而不一定改变对象的性能，而装饰模式的用意是保持接口并增加对象的职责。 </p>
+<p>&nbsp; </p>
+<p>实现： </p>
+<p><a href="http://images.cnblogs.com/cnblogs_com/god_bless_you/WindowsLiveWriter/07ea8a830f47_6DCD/clip_image002_2.jpg"><img twffan="done" height="330" width="596" src="http://images.cnblogs.com/cnblogs_com/god_bless_you/WindowsLiveWriter/07ea8a830f47_6DCD/clip_image002_thumb.jpg" alt="clip_image002" border="0" title="clip_image002" style="display: inline; border-width: 0px;" /></a> </p>
+<p>Component： </p>
+<p>定义一个对象接口，可以给这些对象动态地添加职责。 </p>
+<div twffan="done">
+<pre><span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">interface</span> Component
+{
+	<span twffan="done" style="color: #0000ff;">void</span> operation();
+}</pre>
+</div>
+<p>&nbsp;</p>
+<p>Concrete Component： </p>
+<p>定义一个对象，可以给这个对象添加一些职责。 </p>
+<div twffan="done">
+<pre><span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">class</span> ConcreteComponent <span twffan="done" style="color: #0000ff;">implements</span> Component
+{
+	<span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">void</span> operation()
+	{
+		<span twffan="done" style="color: #008000;">// Write your code here</span>
+	}
+}</pre>
+</div>
+<p>&nbsp;</p>
+<p>Decorator： </p>
+<p>维持一个指向Component对象的引用，并定义一个与 Component接口一致的接口。 </p>
+<div twffan="done">
+<pre><span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">class</span> Decorator <span twffan="done" style="color: #0000ff;">implements</span> Component
+{
+	<span twffan="done" style="color: #0000ff;">public</span> Decorator(Component component)
+	{
+		<span twffan="done" style="color: #0000ff;">this</span>.component = component;
+	}
+	
+	<span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">void</span> operation()
+	{
+		component.operation();
+	}
+	
+	<span twffan="done" style="color: #0000ff;">private</span> Component component;
+}</pre>
+</div>
+<p>&nbsp;</p>
+<p>Concrete Decorator： </p>
+<p>在Concrete Component的行为之前或之后，加上自己的行为，以&ldquo;贴上&rdquo;附加的职责。 </p>
+<div twffan="done">
+<pre><span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">class</span> ConcreteDecorator <span twffan="done" style="color: #0000ff;">extends</span> Decorator
+{
+	<span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">void</span> operation()
+	{
+		<span twffan="done" style="color: #008000;">//addBehavior也可以在前面</span>
+		
+		<span twffan="done" style="color: #0000ff;">super</span>.operation();
+		
+		addBehavior();
+	}
+	
+	<span twffan="done" style="color: #0000ff;">private</span> <span twffan="done" style="color: #0000ff;">void</span> addBehavior()
+	{
+		<span twffan="done" style="color: #008000;">//your code</span>
+	}
+}</pre>
+</div>
+<p>&nbsp;</p>
+<p>模式的简化： </p>
+<p>1. 如果只有一个Concrete Component类而没有抽象的Component接口时，可以让Decorator继承Concrete Component。 </p>
+<p><a href="http://images.cnblogs.com/cnblogs_com/god_bless_you/WindowsLiveWriter/07ea8a830f47_6DCD/clip_image004_2.jpg"><img twffan="done" height="315" width="433" src="http://images.cnblogs.com/cnblogs_com/god_bless_you/WindowsLiveWriter/07ea8a830f47_6DCD/clip_image004_thumb.jpg" alt="clip_image004" border="0" title="clip_image004" style="display: inline; border-width: 0px;" /></a> </p>
+<p>2. 如果只有一个Concrete Decorator类时，可以将Decorator和Concrete Decorator合并。 </p>
+<p><a href="http://images.cnblogs.com/cnblogs_com/god_bless_you/WindowsLiveWriter/07ea8a830f47_6DCD/clip_image006_2.jpg"><img twffan="done" height="221" width="569" src="http://images.cnblogs.com/cnblogs_com/god_bless_you/WindowsLiveWriter/07ea8a830f47_6DCD/clip_image006_thumb.jpg" alt="clip_image006" border="0" title="clip_image006" style="display: inline; border-width: 0px;" /></a> </p>
+<p>&nbsp; </p>
+<p>适用性： </p>
+<p>以下情况使用Decorator模式 </p>
+<p>1. 需要扩展一个类的功能，或给一个类添加附加职责。 </p>
+<p>2. 需要动态的给一个对象添加功能，这些功能可以再动态的撤销。 </p>
+<p>3. 需要增加由一些基本功能的排列组合而产生的非常大量的功能，从而使继承关系变的不现实。 </p>
+<p>4. 当不能采用生成子类的方法进行扩充时。一种情况是，可能有大量独立的扩展，为支持每一种组合将产生大量的子类，使得子类数目呈爆炸性增长。另一种情况可能是因为类定义被隐藏，或类定义不能用于生成子类。 </p>
+<p>&nbsp; </p>
+<p>优点： </p>
+<p>1. Decorator模式与继承关系的目的都是要扩展对象的功能，但是Decorator可以提供比继承更多的灵活性。 </p>
+<p>2. 通过使用不同的具体装饰类以及这些装饰类的排列组合，设计师可以创造出很多不同行为的组合。 </p>
+<p>缺点： </p>
+<p>1. 这种比继承更加灵活机动的特性，也同时意味着更加多的复杂性。 </p>
+<p>2. 装饰模式会导致设计中出现许多小类，如果过度使用，会使程序变得很复杂。 </p>
+<p>3. 装饰模式是针对抽象组件（Component）类型编程。但是，如果你要针对具体组件编程时，就应该重新思考你的应用架构，以及装饰者是否合适。当然也可以改变Component接口，增加新的公开的行为，实现&ldquo;半透明&rdquo;的装饰者模式。在实际项目中要做出最佳选择。 </p>
+<p>&nbsp; </p>
+<p>装饰模式在Java I/O库中的应用： </p>
+<p><a href="http://images.cnblogs.com/cnblogs_com/god_bless_you/WindowsLiveWriter/07ea8a830f47_6DCD/clip_image008_2.jpg"><img twffan="done" height="247" width="697" src="http://images.cnblogs.com/cnblogs_com/god_bless_you/WindowsLiveWriter/07ea8a830f47_6DCD/clip_image008_thumb.jpg" alt="clip_image008" border="0" title="clip_image008" style="display: inline; border-width: 0px;" /></a> </p>
+<p>编写一个装饰者把所有的输入流内的大写字符转化成小写字符： </p>
+<div twffan="done">
+<pre><span twffan="done" style="color: #0000ff;">import</span> java.io.FilterInputStream;
+<span twffan="done" style="color: #0000ff;">import</span> java.io.IOException;
+<span twffan="done" style="color: #0000ff;">import</span> java.io.InputStream;
+
+<span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">class</span> LowerCaseInputStream <span twffan="done" style="color: #0000ff;">extends</span> FilterInputStream
+{
+	<span twffan="done" style="color: #0000ff;">protected</span> LowerCaseInputStream(InputStream in)
+	{
+		<span twffan="done" style="color: #0000ff;">super</span>(in);
+	}
+	
+	@Override
+	<span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">int</span> read() <span twffan="done" style="color: #0000ff;">throws</span> IOException
+	{
+		<span twffan="done" style="color: #0000ff;">int</span> c = <span twffan="done" style="color: #0000ff;">super</span>.read();
+		<span twffan="done" style="color: #0000ff;">return</span> (c == -1 ? c : Character.toLowerCase((<span twffan="done" style="color: #0000ff;">char</span>) c));
+	}
+	
+	@Override
+	<span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">int</span> read(<span twffan="done" style="color: #0000ff;">byte</span>[] b, <span twffan="done" style="color: #0000ff;">int</span> offset, <span twffan="done" style="color: #0000ff;">int</span> len) <span twffan="done" style="color: #0000ff;">throws</span> IOException
+	{
+		<span twffan="done" style="color: #0000ff;">int</span> result = <span twffan="done" style="color: #0000ff;">super</span>.read(b, offset, len);
+		
+		<span twffan="done" style="color: #0000ff;">for</span> (<span twffan="done" style="color: #0000ff;">int</span> i = offset; i &lt; offset + result; i++)
+		{
+			b[i] = (<span twffan="done" style="color: #0000ff;">byte</span>) Character.toLowerCase((<span twffan="done" style="color: #0000ff;">char</span>) b[i]);
+		}
+		
+		<span twffan="done" style="color: #0000ff;">return</span> result;
+		
+	}
+}</pre>
+</div>
+<p>&nbsp;</p>
+<p>测试我们的装饰者类： </p>
+<div twffan="done">
+<pre><span twffan="done" style="color: #0000ff;">import</span> java.io.*;
+
+<span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">class</span> InputTest
+{
+	<span twffan="done" style="color: #0000ff;">public</span> <span twffan="done" style="color: #0000ff;">static</span> <span twffan="done" style="color: #0000ff;">void</span> main(String[] args) <span twffan="done" style="color: #0000ff;">throws</span> IOException
+	{
+		<span twffan="done" style="color: #0000ff;">int</span> c;
+		
+		<span twffan="done" style="color: #0000ff;">try</span>
+		{
+			InputStream in = <span twffan="done" style="color: #0000ff;">new</span> LowerCaseInputStream(<span twffan="done" style="color: #0000ff;">new</span> BufferedInputStream(
+					<span twffan="done" style="color: #0000ff;">new</span> FileInputStream("<span twffan="done" style="color: #8b0000;">D:\\test.txt</span>")));
+			
+			<span twffan="done" style="color: #0000ff;">while</span> ((c = in.read()) &gt;= 0)
+			{
+				System.out.print((<span twffan="done" style="color: #0000ff;">char</span>) c);
+			}
+			
+			in.close();
+		}
+		<span twffan="done" style="color: #0000ff;">catch</span> (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+}</pre>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		<p class="postfoot">
+			posted on <span id="post-date">2010-06-10 07:52</span> <a href='http://www.cnblogs.com/god_bless_you/'>God bless you</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=1755212" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(1755212);return false;">收藏</a>
+		</p>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=70244,cb_entryId=1755212,cb_blogApp=currentBlogApp,cb_blogUserGuid='67ab62f6-a058-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2010/6/10 7:52:00';loadViewCount(cb_entryId);</script>
+	
+	<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = true;var googletag = googletag || {};googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +'//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+<script type='text/javascript'>
+    try {
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1346480159711-0' style='width:300px; height:250px;'>
+    <script type='text/javascript'>
+    try{
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+</div>
+<div id="blog_news_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+});
+</script>
+</div>
+
+	
+<p id="footer">
+	Powered by: 
+	<br />
+	
+	<a id="Footer1_Hyperlink3" NAME="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br />
+	Copyright &copy; God bless you
+</p>
+</div>
+<div id="rightmenu">
+	
+		<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+		
+<h3>导航</h3>
+<ul>
+			<li><a id="MyLinks1_HomeLink" href="http://www.cnblogs.com/">博客园</a></li>
+			<li><a id="MyLinks1_MyHomeLink" href="http://www.cnblogs.com/god_bless_you/">首页</a></li>
+			<li><a id="MyLinks1_NewPostLink" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+			<li><a id="MyLinks1_ContactLink" accesskey="9" rel="nofollow" href="http://space.cnblogs.com/msg/send/God+bless+you">联系</a></li>
+			<li><a id="MyLinks1_Syndication" href="http://www.cnblogs.com/god_bless_you/rss">订阅</a><a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/god_bless_you/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>
+			<li><a id="MyLinks1_Admin" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+		
+<h3>统计</h3>
+	<ul>
+		<li>随笔 - 45
+		<li>文章 - 0
+		<li>评论 - 55
+		<li>引用 - 0
+	</li>
+</ul>
+		
+<h3>公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+
+		<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+	
+</div>
+			
+			
+			
+			
+			 
+
+	
+
+</body>
+</html>

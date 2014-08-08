@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>.NET设计模式（15）：结构型模式专题总结 - TerryLee - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=1qg5Fq1BfYYdMk5fTTfihV9URZlgHAvNBQ1HiTkqam41"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/Custom/bundle-Custom.css?v=Z683z9azGWin6jOfOyAHK6FgPVxm_nmCnl3EFztc2eE1"/>
+<link type="text/css" rel="stylesheet" href="/blog/customcss/14203.css?v=BEYTAblmh1SKob933Q68Jni3hT0%3d"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/Terrylee/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/Terrylee/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/Terrylee/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'Terrylee', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=VMkXC8l5qxKu2l0FzsWE9b1uVVeruD06UGIVq31Bzhc1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<!--<link rel="shortcut icon" href="http://www.dotneteye.cn/pics/blogengine.ico" >-->
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/Terrylee/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/Terrylee/">TerryLee's Tech Space</a></h1>
+<h2>支持TerryLee的创业产品<a href="https://worktile.com?utm_source=cnblogs_terrylee">Worktile</a>，<a href="https://worktile.com?utm_source=cnblogs_terrylee">https://worktile.com</a><br />
+<a href="https://worktile.com?utm_source=cnblogs_terrylee">Worktile</a>，新一代简单好用、体验极致的团队协同、项目管理工具，让你和你的团队随时随地一起工作</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/Terrylee/">首页</a></li>
+<li><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/TerryLee">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/Terrylee/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/Terrylee/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔- 494&nbsp;
+文章- 3&nbsp;
+评论- 16396&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/Terrylee/archive/2006/06/01/designpattern_articles_structpattern.html">.NET设计模式（15）：结构型模式专题总结</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: right" align=right><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体">——探索设计模式系列之十五<span lang=EN-US><o:p></o:p></span></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: right" align=right><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体">Terrylee</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体">，<span lang=EN-US>2006</span>年<span lang=EN-US>5</span>月<span lang=EN-US><o:p></o:p></span></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">摘要：结构型模式，顾名思义讨论的是类和对象的结构，它采用继承机制来组合接口或实现（类结构型模式），或者通过组合一些对象，从而实现新的功能（对象结构型模式）。这些结构型模式，它们在某些方面具有很大的相似性，仔细推敲，侧重点却各有不同。本文试图对这几种结构型模式做一个简单的小结。</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p>&nbsp;</o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><b style="mso-bidi-font-weight: normal"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">主要内容</span></b><b style="mso-bidi-font-weight: normal"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></b></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">1</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">．结构型模式概述</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">2</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">．结构型模式区别与比较</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">3</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">．对变化的封装</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p>&nbsp;</o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><b style="mso-bidi-font-weight: normal"><span style="FONT-SIZE: 10pt; COLOR: #006699; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">结构型模式概述</span></b><b style="mso-bidi-font-weight: normal"><span lang=EN-US style="FONT-SIZE: 10pt; COLOR: #006699; LINE-HEIGHT: 200%"><o:p></o:p></span></b></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">结构型模式，顾名思义讨论的是类和对象的结构，它采用继承机制来组合接口或实现（类结构型模式），或者通过组合一些对象，从而实现新的功能（对象结构型模式）。这些结构型模式，它们在某些方面具有很大的相似性，仔细推敲，侧重点却各有不同。</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Adapter</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">模式通过类的继承或者对象的组合侧重于转换已有的接口；</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Bridge</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">模式通过将抽象和实现相分离，让它们可以分别独立的变化，它强调的是系统沿着多个方向的变化；</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Decorator</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">模式采用对象组合而非继承的手法，实现了在运行时动态的扩展对象功能的能力，它强调的是扩展接口；</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Composite</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">模式模糊了简单元素和复杂元素的概念，它强调的是一种类层次式的结构；</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Fa&#231;ade </span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">模式将复杂系统的内部子系统与客户程序之间的依赖解耦，它侧重于简化接口，更多的是一种架构模式；</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Flyweight</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">模式解决的是由于大量的细粒度对象所造成的内存开销的问题，它与</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Fa&#231;ade</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">模式恰好相反，关注的重点是细小的对象；</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Proxy</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">模式为其他对象提供一种代理以控制对这个对象的访问，它注重于增加间接层来简化复杂的问题。</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><b style="mso-bidi-font-weight: normal"><span style="FONT-SIZE: 10pt; COLOR: #006699; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">结构型模式区别与比较</span></b><b style="mso-bidi-font-weight: normal"><span lang=EN-US style="FONT-SIZE: 10pt; COLOR: #006699; LINE-HEIGHT: 200%"><o:p></o:p></span></b></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">1</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">．桥接模式与装饰模式</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">这两个模式在一定程度上都是为了减少子类的数目，避免出现复杂的继承关系。但是它们解决的方法却各有不同，装饰模式把子类中比基类中多出来的部分放到单独的类里面，以适应新功能增加的需要，当我们把描述新功能的类封装到基类的对象里面时，就得到了所需要的子类对象，这些描述新功能的类通过组合可以实现很多的功能组合，装饰模式的简略图如下：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><v:shapetype id=_x0000_t75 coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f"><v:stroke joinstyle="miter"></v:stroke><v:formulas><v:f eqn="if lineDrawn pixelLineWidth 0"></v:f><v:f eqn="sum @0 1 0"></v:f><v:f eqn="sum 0 0 @1"></v:f><v:f eqn="prod @2 1 2"></v:f><v:f eqn="prod @3 21600 pixelWidth"></v:f><v:f eqn="prod @3 21600 pixelHeight"></v:f><v:f eqn="sum @0 0 1"></v:f><v:f eqn="prod @6 1 2"></v:f><v:f eqn="prod @7 21600 pixelWidth"></v:f><v:f eqn="sum @8 21600 0"></v:f><v:f eqn="prod @7 21600 pixelHeight"></v:f><v:f eqn="sum @10 21600 0"></v:f></v:formulas><v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"></v:path><o:lock v:ext="edit" aspectratio="t"></o:lock></v:shapetype><img height=202 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_08.jpg" width=360 border=0><br>图1 &nbsp;装饰模式简略图<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">桥接模式则把原来的基类的实现化细节抽象出来，在构造到一个实现化的结构中，然后再把原来的基类改造成一个抽象化的等级结构，这样就可以实现系统在多个维度上的独立变化，桥接模式的简略图如下：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img height=126 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_09.jpg" width=478 border=0><br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p>图2&nbsp; 桥接模式简略图&nbsp;</o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">2</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">．外观模式和代理模式</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">外观模式和代理模式解决问题的侧重点不同，但是它们解决问题的手法却是一样的，即都是引入了间接层的手法，这也是我们软件系统中经常用的一种手法。外观模式虽然侧重于简化接口，但是在某些情况下，外观模式也可以兼任代理模式的责任，例如外观对象有可能是另一个位于另一个地址空间对象的远程代理，这时候我们可以叫做外观代理模式，或者代理外观模式。它们的类简略图如下：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img height=134 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_11.jpg" width=323 border=0></span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"></p>
+<o:p></o:p></span>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p>&nbsp; 图3&nbsp; 代理模式简略图</o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img height=256 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_10.jpg" width=266 border=0><br>图4&nbsp; 外观模式简略图<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">3</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">．适配器模式</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">适配器模式重在转换接口，它能够使原本不能在一起工作的两个类一起工作，所以经常用在类库复用，代码迁移等方面，有一种亡羊补牢的味道。类适配器和对象适配器可以根据具体实际情况来选用，但一般情况建议使用对象适配器模式，如下图所示，左边是类适配器模式，右边是对象适配器模式：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img height=153 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_12.jpg" width=512 border=0><br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p>&nbsp;&nbsp;&nbsp;图5&nbsp; 适配器模式简略图</o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><b style="mso-bidi-font-weight: normal"><span style="FONT-SIZE: 10pt; COLOR: #006699; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">对变化的封装</span></b><b style="mso-bidi-font-weight: normal"><span lang=EN-US style="FONT-SIZE: 10pt; COLOR: #006699; LINE-HEIGHT: 200%"><o:p></o:p></span></b></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">如何应对变化，是软件开发的一个永恒的主题，也许我们不能够杜绝变化的发生，但至少我们可以通过一些手段让变化降到最低。&#8220;找到系统可变的因素，将之封装起来&#8221;，通常就叫做对变化的封装。关于这个问题的解释在《</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Java</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">与模式》中讲的很清晰，抽象化与实现化的简单实现，也就是&#8220;开</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">-</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">闭&#8221;原则在类层次上的最简单实现，如下图所示：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img height=115 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_01.jpg" width=379 border=0><br>图6<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">在这个继承结构中，第一层是抽象化，它封装了抽象的业务逻辑，这是系统中不变的部分；第二层是实现化，它是具体的业务逻辑的实现，封装了系统中变化的部分，这个实现允许实现化角色多态性的变化：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img height=134 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_02.jpg" width=379 border=0><br>图7<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">也就是说，客户端依赖的是业务逻辑的抽象化类型的对象，而与抽象化的具体实现无关，不在乎它到底是&#8220;实现化&#8221;，&#8220;实现化</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">2</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">&#8221;还是&#8220;实现化</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">3</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">&#8221;，如下图所示：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_03.jpg" border=0><br>图8<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">每一种继承关系都封装了一个变化因素，而一个继承关系不应当处理两个变化因素，换言之，这种简单继承关系不能处理抽象化与实现化都变化的情况，如下图所示：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img height=134 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_04.jpg" width=379 border=0><br>图9<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">上图中的两个变化因素应当是独立的，可以在不影响另一者的情况下独立的变化，如下面这两个等级结构分别封装了自己的变化因素，由于每一个变化因素都是可以通过静态关系表达的，因此分别使用继承关系实现，如下图：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img height=134 alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_05.jpg" width=455 border=0><br>图10<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">在抽象化和实现化之间的联系怎么办呢？好的设计只有一个，不好的设计却有很多中，下面这种设计就是继续使用继承进行静态关系设计的类图：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_06.jpg" border=0><br>图11<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">这样的设计其实存在着很多的问题，首先出现的是多重的继承关系，随着具体实现化的增多，子类的继承关系会变得异常复杂；其次如果出现新的抽象化修正或者新的具体实现角色，就只好重新修改现有系统中的静态关系，以适应新的角色，这就违背了开放</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">-</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">封闭原则。正确是设计应该是使用两个独立的等级结构封装两个独立的变化因素，并在它们之间使用聚合关系，以达到功能复用的目的，这就回到了我们的桥接模式上，如下图所示：</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%; TEXT-ALIGN: center" align=center><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><img alt="" src="http://images.cnblogs.com/cnblogs_com/terrylee/StructPattern_07.jpg" border=0><br>图12<br><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">从另一个角度讲，一个好的设计通常没有多于两层的继承等级结构，或者说，如果出现两个以上的变化因素，就需要找出哪一个因素是静态的，可以使用静态关系，哪一个是动态的，必须使用聚合关系。</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p>&nbsp;</o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">更多的设计模式文章可以访问《</span><font color=#0066ff><span class=MsoHyperlink><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: Verdana; mso-bidi-font-weight: bold">.NET</span></span><span class=MsoHyperlink><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: Verdana; mso-hansi-font-family: Verdana; mso-bidi-font-weight: bold">设计模式系列文章</span></span></font><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">》</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p>&nbsp;</o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><b style="mso-bidi-font-weight: normal"><span style="FONT-SIZE: 10pt; COLOR: #006699; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">参考资料</span></b><b style="mso-bidi-font-weight: normal"><span lang=EN-US style="FONT-SIZE: 10pt; COLOR: #006699; LINE-HEIGHT: 200%"><o:p></o:p></span></b></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Erich Gamma</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">等，《设计模式：可复用面向对象软件的基础》，机械工业出版社</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Robert C.Martin</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，《敏捷软件开发：原则、模式与实践》，清华大学出版社</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">阎宏，《</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Java</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">与模式》，电子工业出版社</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%"><o:p></o:p></span></p>
+<p class=MsoNormal style="MARGIN: 0cm 0cm 0pt; LINE-HEIGHT: 200%"><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Alan Shalloway James R. Trott</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">，《</span><span lang=EN-US style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%">Design Patterns Explained</span><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 200%; FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times New Roman'; mso-hansi-font-family: 'Times New Roman'">》，中国电力出版社</span></p>
+</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2006-06-01 08:50</span> <a href='http://www.cnblogs.com/Terrylee/'>TerryLee</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=414472" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(414472);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=14203,cb_entryId=414472,cb_blogApp=currentBlogApp,cb_blogUserGuid='f743360b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2006/6/1 8:50:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = true;var googletag = googletag || {};googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +'//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+<script type='text/javascript'>
+    try {
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1346480159711-0' style='width:300px; height:250px;'>
+    <script type='text/javascript'>
+    try{
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+</div>
+<div id="blog_news_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2014 TerryLee
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>

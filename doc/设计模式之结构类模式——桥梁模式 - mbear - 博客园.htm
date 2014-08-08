@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<title>设计模式之结构类模式&mdash;&mdash;桥梁模式 - mbear - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=1qg5Fq1BfYYdMk5fTTfihV9URZlgHAvNBQ1HiTkqam41"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/facebook/bundle-facebook.css?v=TGivWDlNCzjndsrKbjzEkrx5wcMiMpugaOxwboLd7gQ1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/muzongyan/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/muzongyan/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/muzongyan/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'muzongyan', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=VMkXC8l5qxKu2l0FzsWE9b1uVVeruD06UGIVq31Bzhc1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<h1><a id="Header2_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/muzongyan/">mbear</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<!--done-->
+			<ul id="navList">
+				<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+				<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/muzongyan/">首页</a></li>
+				<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+				<li><a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/mbear">联系</a></li>
+				<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+				<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/muzongyan/rss">订阅</a>
+				<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/muzongyan/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a></li>
+			</ul>
+
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔- 22&nbsp;
+文章- 0&nbsp;
+评论- 4&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/muzongyan/archive/2010/09/01/1815153.html">设计模式之结构类模式&mdash;&mdash;桥梁模式</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>桥梁模式（Bridge Patter）也叫做桥接模式，是一个比较简单的模式。</p> <p>&nbsp;</p> <p><strong>定义：</strong></p> <p>将抽象和实现解耦，使得两者可以独立地变化。</p> <p>&nbsp;</p> <p><strong>通用类图：</strong></p> <p><a href="http://images.cnblogs.com/cnblogs_com/muzongyan/WindowsLiveWriter/d3b7abddfc3c_F852/image_2.png"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="283" alt="image" src="http://images.cnblogs.com/cnblogs_com/muzongyan/WindowsLiveWriter/d3b7abddfc3c_F852/image_thumb.png" width="644" border="0"></a> </p> <p>&nbsp;</p> <p>●　Abstraction——抽象化角色</p> <p>它主要的职责是定义出该角色的行为，同时保存一个对实现化角色的引用，该角色一般是抽象类。</p> <p>●　Implementro——实现化角色</p> <p>它是接口或者抽象类，定义角色必须的行为和属性。</p> <p>●　RefinedAbstraction——修正抽象化角色</p> <p>它引用实现化角色对抽象化角色进行修正。</p> <p>●　ConcreteImplementor——具体实现化角色</p> <p>它实现接口或抽象类定义的方法和属性。</p> <p>&nbsp;</p> <p><strong>通用代码：</strong></p><pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">/**
+ * 实现化角色
+ * 
+ * @author Administrator
+ * 
+ */
+public interface Implementor {
+
+    // 基本方法
+    public void doSomething();
+
+    public void doAnything();
+
+}</pre><pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">/**
+ * 具体实现化角色
+ * 
+ * @author Administrator
+ * 
+ */
+public class ConcreteImplementor1 implements Implementor {
+
+    public void doAnything() {
+        // 业务处理逻辑
+    }
+
+    public void doSomething() {
+        // 业务处理逻辑
+    }
+
+}</pre><pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">/**
+ * 具体实现化角色
+ * 
+ * @author Administrator
+ * 
+ */
+public class ConcreteImplementor2 implements Implementor {
+
+    public void doAnything() {
+        // 业务处理逻辑
+    }
+
+    public void doSomething() {
+        // 业务处理逻辑
+    }
+
+}</pre><pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">/**
+ * 抽象化角色
+ * 
+ * @author Administrator
+ * 
+ */
+public abstract class Abstraction {
+
+    // 定义对实现化角色的引用
+    private Implementor imp;
+
+    // 约束子类必须实现该构造函数
+    public Abstraction(Implementor _imp) {
+        this.imp = _imp;
+    }
+
+    // 自身的行为和属性
+    public void request() {
+        this.imp.doSomething();
+    }
+
+    // 获得实现化角色
+    public Implementor getImp() {
+        return this.imp;
+    }
+}</pre><pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">/**
+ * 具体抽象化角色
+ * 
+ * @author Administrator
+ * 
+ */
+public class RefinedAbstraction extends Abstraction {
+
+    // 覆写构造函数
+    public RefinedAbstraction(Implementor _imp) {
+        super(_imp);
+    }
+
+    // 修正父类的行为
+    @Override
+    public void request() {
+        /*
+         * 业务处理
+         */
+        super.request();
+        super.getImp().doAnything();
+    }
+
+}</pre><pre class="brush: java; auto-links: true; collapse: false; first-line: 1; gutter: true; html-script: false; light: false; ruler: false; smart-tabs: true; tab-size: 4; toolbar: true;">/**
+ * 场景类
+ * 
+ * @author Administrator
+ * 
+ */
+public class Client {
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        // 定义一个实现化角色
+        Implementor imp = new ConcreteImplementor1();
+
+        // 定义一个抽象化角色
+        Abstraction abs = new RefinedAbstraction(imp);
+
+        // 执行行文
+        abs.request();
+    }
+
+}</pre>
+<p>&nbsp;</p>
+<p>桥梁模式是一个非常简单的模式，它只是使用了类间的聚合关系、继承、覆写等常用功能，但是它却提供了一个非常清晰、稳定的架构。</p>
+<p>&nbsp;</p>
+<p><strong>桥梁模式的优点：</strong></p>
+<p>●　抽象和实现分离</p>
+<p>这是桥梁模式的主要特点，它完全是为了解决继承的缺点而提出的设计模式。在该模式下，实现可以不受抽象的约束，不用再绑定在一个固定的抽象层次上。</p>
+<p>●　优秀的扩展能力</p>
+<p>&nbsp;</p>
+<p>●　实现细节对客户透明</p>
+<p>客户不用关心细节的实现，它已经由抽象层通过聚合关系完成了封装。</p>
+<p>&nbsp;</p>
+<p><strong>桥梁模式的使用场景：</strong></p>
+<p>●　不希望或不适用使用继承的场景</p>
+<p>例如继承层次过渡、无法更细化设计颗粒等场景，需要考虑使用桥梁模式。</p>
+<p>●　接口或抽象类不稳定的场景</p>
+<p>明知道接口不稳定还想通过实现或继承来实现业务需求，那是得不偿失的，也是比较失败的做法。</p>
+<p>●　重用性要求较高的场景</p>
+<p>设计的颗粒度越细，则被重用的可能性就越大，而采用继承则受父类的限制，不可能出现太细的颗粒度。</p>
+<p>&nbsp;</p>
+<p><strong>桥梁模式的注意事项：</strong></p>
+<p>使用桥梁模式时主要考虑如何拆分抽象和实现，并不是一涉及继承就要考虑使用该模式，那还要继承干什么。</p>
+<p>桥梁模式的意图还是对变化的封装，尽量把可能变化的因素封装到最细、最小的逻辑单元中，避免风险扩散。</p>
+<p>系统设计时，发现类的继承有N层时，可以考虑使用桥梁模式。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2010-09-01 18:06</span> <a href='http://www.cnblogs.com/muzongyan/'>mbear</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=1815153" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(1815153);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=72563,cb_entryId=1815153,cb_blogApp=currentBlogApp,cb_blogUserGuid='1d5df2de-f483-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2010/9/1 18:06:00';loadViewCount(cb_entryId);</script>
+	
+</div>
+<!--end: topics 文章、评论容器-->
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = true;var googletag = googletag || {};googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +'//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+<script type='text/javascript'>
+    try {
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1346480159711-0' style='width:300px; height:250px;'>
+    <script type='text/javascript'>
+    try{
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+</div>
+<div id="blog_news_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+		<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+			
+			
+			<DIV id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</DIV>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2014 mbear
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>
