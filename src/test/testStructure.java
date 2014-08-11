@@ -7,6 +7,8 @@ import java.io.InputStream;
 
 import org.junit.Test;
 
+import structureType.adapterPattern.Adapter;
+import structureType.adapterPattern.Target;
 import structureType.bridgePattern.Abstraction;
 import structureType.bridgePattern.ConcreteImplementor1;
 import structureType.bridgePattern.Implementor;
@@ -52,5 +54,13 @@ public class testStructure {
 		{
 			e.printStackTrace();
 		}
+	}
+	@Test
+	/**
+	 * ÊÊÅäÆ÷Ä£Ê½
+	 */
+	public void Testadapter(){
+		Target target=new Adapter();
+		target.Request();
 	}
 }
