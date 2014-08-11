@@ -14,6 +14,7 @@ import structureType.bridgePattern.ConcreteImplementor1;
 import structureType.bridgePattern.Implementor;
 import structureType.bridgePattern.RefinedAbstraction;
 import structureType.decorativePattern.LowerCaseInputStream;
+import structureType.proxyPattern.MathProxy;
 
 public class testStructure {
 
@@ -62,5 +63,20 @@ public class testStructure {
 	public void Testadapter(){
 		Target target=new Adapter();
 		target.Request();
+	}
+	@Test
+	/**
+	 *代理模式
+	 */
+	public void Testproxy(){
+		MathProxy proxy = new MathProxy();
+        double addresult = proxy.Add(2,3);
+        System.out.println("2+3="+String.valueOf(addresult));
+        double subresult = proxy.Sub(2,3);
+        System.out.println("2-3="+String.valueOf(subresult));
+        double mulresult = proxy.Mul(2,3);
+        System.out.println("2*3="+String.valueOf(mulresult));
+        double devresult = proxy.Dev(2,3);
+        System.out.println("2/3="+String.valueOf(devresult));
 	}
 }
