@@ -14,6 +14,8 @@ import structureType.bridgePattern.ConcreteImplementor1;
 import structureType.bridgePattern.Implementor;
 import structureType.bridgePattern.RefinedAbstraction;
 import structureType.decorativePattern.LowerCaseInputStream;
+import structureType.facadePattern.Customer;
+import structureType.facadePattern.Mortgage;
 import structureType.proxyPattern.MathProxy;
 
 public class testStructure {
@@ -78,5 +80,17 @@ public class testStructure {
         System.out.println("2*3="+String.valueOf(mulresult));
         double devresult = proxy.Dev(2,3);
         System.out.println("2/3="+String.valueOf(devresult));
+	}
+	@Test
+	/**
+	 * 外观模式
+	 */
+	public void Testfacade(){
+		//外观
+        Mortgage mortgage = new Mortgage();
+        Customer customer = new Customer("Ann McKinsey");
+        Boolean eligable = mortgage.IsEligible(customer, 125000);
+        System.out.println("\n" + customer.getName() +
+            " has been " + (eligable ? "Approved" : "Rejected")); 
 	}
 }
