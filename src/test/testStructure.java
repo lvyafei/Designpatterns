@@ -13,6 +13,8 @@ import structureType.bridgePattern.Abstraction;
 import structureType.bridgePattern.ConcreteImplementor1;
 import structureType.bridgePattern.Implementor;
 import structureType.bridgePattern.RefinedAbstraction;
+import structureType.compositePattern.JoinInStore;
+import structureType.compositePattern.StoreOrBranch;
 import structureType.decorativePattern.LowerCaseInputStream;
 import structureType.facadePattern.Customer;
 import structureType.facadePattern.Mortgage;
@@ -92,5 +94,21 @@ public class testStructure {
         Boolean eligable = mortgage.IsEligible(customer, 125000);
         System.out.println("\n" + customer.getName() +
             " has been " + (eligable ? "Approved" : "Rejected")); 
+	}
+	@Test
+	/**
+	 * 组合模式
+	 */
+	public void Testcomposite(){
+		 StoreOrBranch store = new StoreOrBranch("朝阳总店");
+         StoreOrBranch brach = new StoreOrBranch("东城分店");
+         JoinInStore jstore = new JoinInStore("海淀加盟店一");
+         JoinInStore jstore1 = new JoinInStore("上地加盟店二");
+
+         brach.Add(jstore);
+         brach.Add(jstore1);
+         store.Add(brach);
+
+         store.PayByCard();
 	}
 }

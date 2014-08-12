@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>设计模式系列-组合模式 - 王波洋 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=vVKakOZtmmmI9PttuB8cajJQIPwEqvGelvnOjnc3uik1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/WebLoad/bundle-WebLoad.css?v=kasZryhvDNuyBYE8JtyeGJtsOgPMDaVTtD-KQIKNFxc1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/doubleliang/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/doubleliang/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/doubleliang/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'doubleliang', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=5SljHjvFayhSwYEpPGn3hGjzMUiUy8_LhBNYFY8TdeA1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/doubleliang/">王波洋</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/doubleliang/">首页</a></li>
+<li id="nav_q"><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li id="nav_ing"><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li id="nav_newpost"><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/%e7%8e%8b%e6%b3%a2%e6%b4%8b">联系</a></li>
+<li id="nav_rss"><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/doubleliang/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/doubleliang/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-25&nbsp;
+文章-0&nbsp;
+评论-287&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/doubleliang/archive/2011/12/27/2304104.html">设计模式系列-组合模式</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 今天下班客厅的灯确实亮堂了许多，照照镜子感觉自己一下苍老许多，看来还是灯光暗比较好，看不出来自己的憔悴啊，哈哈，其实还是头发长了，决定出去剪发。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 进到美发店，便有热情的服务生招呼，显示洗头，挑选造型师，开始剪发，剪发中被造型师推荐了各种各样的收费项目，我只选择了一样软化头发。完毕之后，看了下单子哇塞、好贵噢，不过造型师给我剪的发型我还是很喜欢的，我决定以后还找他剪，但是又太贵，无奈中，发型师向我推荐了他们的会员卡，全场所有项目均5折，最近因为圣诞节还在搞活动这期间办卡的可享受折上折8.6，我心想那这下就太划算了，而且他们总店，分店都可以用，所以毫不犹豫的办了张会员卡。。。囧。。。。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 到家后稍微有点后悔，我竟然一时冲动花了那么多钱办了张剪发的会员卡，不过办也办了，只好自己安慰安慰自己，心想，办了卡可以打折上折，而且那么多分店想去哪家去哪家，顿时心情好为能好一点了，突然间想到了一个模式，跟现在的场景很合适，名字叫《组合模式》，为什么说跟组合模式很相似呢？</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 先看看组合模式的定义吧，在《大话设计模式一书中》组合模式的定义为：&#8220;<strong>将对象组合成树形结构以表示&#8216;部分-整体&#8217;的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</strong>&#8221;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 那就拿我剪发办卡的事情来分析一下吧。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 首先，一张卡可以在总部，分店，加盟店使用，那么总部可以刷卡，分店也可以刷卡，加盟店也可以刷卡，这个属性结构的店面层级关系就明确啦。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 那么，总店刷卡消费与分店刷卡消费是一样的道理，那么总店与分店对会员卡的使用也具有一致性。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>1.组合模式的例子</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组合模式结构图：<img border="0" alt="" src="http://images.cnblogs.com/cnblogs_com/doubleliang/1.jpg" width="470" height="358" /></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 那么组合模式的实例如下：</p>
+<div class="cnblogs_code">
+<div>&nbsp;<span style="color: #008000">//</span><span style="color: #008000">抽象的部件类描述将来所有部件共有的行为</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">abstract</span>&nbsp;<span style="color: #0000ff">class</span>&nbsp;Component<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">protected</span>&nbsp;<span style="color: #0000ff">string</span>&nbsp;name;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">string</span>&nbsp;Name<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">get</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">return</span>&nbsp;name;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">set</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;=&nbsp;value;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">添加部件</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">abstract</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Add(Component&nbsp;component);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">删除部件</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">abstract</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Remove(Component&nbsp;component);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">遍历所有子部件</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">abstract</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;eachChild();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">组合部件类</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">class</span>&nbsp;Leaf&nbsp;:&nbsp;Component<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">叶子节点不具备添加的能力，所以不实现</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Add(Component&nbsp;component)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">throw</span>&nbsp;<span style="color: #0000ff">new</span>&nbsp;NotImplementedException();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">叶子节点不具备添加的能力必然也不能删除</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Remove(Component&nbsp;component)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">throw</span>&nbsp;<span style="color: #0000ff">new</span>&nbsp;NotImplementedException();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">叶子节点没有子节点所以显示自己的执行结果</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;eachChild()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color: #800000">"</span><span style="color: #800000">{0}执行了..</span><span style="color: #800000">"</span>,name);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">组合类</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">class</span>&nbsp;Composite&nbsp;:&nbsp;Component<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">用来保存组合的部件</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;Component&gt;&nbsp;myList&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;List&lt;Component&gt;();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">添加节点&nbsp;添加部件</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Add(Component&nbsp;component)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myList.Add(component);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">删除节点&nbsp;删除部件</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Remove(Component&nbsp;component)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myList.Remove(component);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">遍历子节点</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;eachChild()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color: #800000">"</span><span style="color: #800000">{0}执行了..</span><span style="color: #800000">"</span>,&nbsp;name);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">foreach</span>&nbsp;(Component&nbsp;c&nbsp;<span style="color: #0000ff">in</span>&nbsp;myList)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.eachChild();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">static</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Main(<span style="color: #0000ff">string</span>[]&nbsp;args)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">构造根节点</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Composite&nbsp;rootComponent&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;Composite();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rootComponent.Name&nbsp;=&nbsp;<span style="color: #800000">"</span><span style="color: #800000">根节点</span><span style="color: #800000">"</span>;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">添加两个叶子几点，也就是子部件</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leaf&nbsp;l&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;Leaf();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l.Name&nbsp;=&nbsp;<span style="color: #800000">"</span><span style="color: #800000">叶子节点一</span><span style="color: #800000">"</span>;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leaf&nbsp;l1&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;Leaf();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l1.Name&nbsp;=&nbsp;<span style="color: #800000">"</span><span style="color: #800000">叶子节点二</span><span style="color: #800000">"</span>;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rootComponent.Add(l);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rootComponent.Add(l1);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">遍历组合部件</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rootComponent.eachChild();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</div></div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 运行结果如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img border="0" alt="" src="http://images.cnblogs.com/cnblogs_com/doubleliang/2.jpg" width="667" height="109" /></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong> 2.应用组合模式的会员卡消费</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 那么我们就根据我们会员卡的消费，来模拟一下组合模式的实现吧！let's go！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 首先：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.我们的部件有，总店，分店，加盟店！</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.我们的部件共有的行为是：刷会员卡</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.部件之间的层次关系，也就是店面的层次关系是，总店下有分店、分店下可以拥有加盟店。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有了我们这几个必要条件后，我的要求就是目前店面搞活动当我在总店刷卡后，就可以累积相当于在所有下级店面刷卡的积分总额，设计的代码如下：</p>
+<div class="cnblogs_code">
+<div>&nbsp;<span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;summary&gt;</span><span style="color: #008000"><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;店面类&nbsp;抽象出来的店面部件<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;/summary&gt;</span><span style="color: #808080"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">abstract</span>&nbsp;<span style="color: #0000ff">class</span>&nbsp;Storefront<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">店名</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">protected</span>&nbsp;<span style="color: #0000ff">string</span>&nbsp;storeName&nbsp;=&nbsp;<span style="color: #0000ff">string</span>.Empty;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">string</span>&nbsp;StoreName<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">get</span><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">return</span>&nbsp;storeName;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">添加店面</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">abstract</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Add(Storefront&nbsp;store);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">删除店面</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">abstract</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Remove(Storefront&nbsp;store);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">定义所有部件公用的行为&nbsp;刷卡行为</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">abstract</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;PayByCard();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">class</span>&nbsp;StoreOrBranch&nbsp;:&nbsp;Storefront<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">构造函数</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;StoreOrBranch()&nbsp;{&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;StoreOrBranch(<span style="color: #0000ff">string</span>&nbsp;storeName)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">this</span>.storeName&nbsp;=&nbsp;storeName;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;Storefront&gt;&nbsp;myStoreList&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;List&lt;Storefront&gt;();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">刷卡消费</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;PayByCard()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color: #800000">"</span><span style="color: #800000">店面{0}的积分已累加进该会员卡</span><span style="color: #800000">"</span>,&nbsp;storeName);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">foreach</span>&nbsp;(Storefront&nbsp;sf&nbsp;<span style="color: #0000ff">in</span>&nbsp;myStoreList)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sf.PayByCard();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">增加店面</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Add(Storefront&nbsp;store)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myStoreList.Add(store);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">解除店面</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Remove(Storefront&nbsp;store)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myStoreList.Remove(store);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">class</span>&nbsp;JoinInStore&nbsp;:&nbsp;Storefront<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">构造函数</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;JoinInStore()&nbsp;{&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;JoinInStore(<span style="color: #0000ff">string</span>&nbsp;storeName)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">this</span>.storeName&nbsp;=&nbsp;storeName;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #008000">//</span><span style="color: #008000">刷卡消费</span><span style="color: #008000"><br /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;PayByCard()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span style="color: #800000">"</span><span style="color: #800000">店面{0}的积分已累加进该会员卡</span><span style="color: #800000">"</span>,&nbsp;storeName);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Add(Storefront&nbsp;store)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">throw</span>&nbsp;<span style="color: #0000ff">new</span>&nbsp;NotImplementedException();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">public</span>&nbsp;<span style="color: #0000ff">override</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Remove(Storefront&nbsp;store)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">throw</span>&nbsp;<span style="color: #0000ff">new</span>&nbsp;NotImplementedException();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;<span style="color: #0000ff">static</span>&nbsp;<span style="color: #0000ff">void</span>&nbsp;Main(<span style="color: #0000ff">string</span>[]&nbsp;args)<br />&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StoreOrBranch&nbsp;store&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;StoreOrBranch(<span style="color: #800000">"</span><span style="color: #800000">朝阳总店</span><span style="color: #800000">"</span>);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StoreOrBranch&nbsp;brach&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;StoreOrBranch(<span style="color: #800000">"</span><span style="color: #800000">东城分店</span><span style="color: #800000">"</span>);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JoinInStore&nbsp;jstore&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;JoinInStore(<span style="color: #800000">"</span><span style="color: #800000">海淀加盟店一</span><span style="color: #800000">"</span>);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JoinInStore&nbsp;jstore1&nbsp;=&nbsp;<span style="color: #0000ff">new</span>&nbsp;JoinInStore(<span style="color: #800000">"</span><span style="color: #800000">上地加盟店二</span><span style="color: #800000">"</span>);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brach.Add(jstore);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;brach.Add(jstore1);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;store.Add(brach);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;store.PayByCard();<br />&nbsp;&nbsp;&nbsp;&nbsp;}</div></div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运行结果如下：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img border="0" alt="" src="http://images.cnblogs.com/cnblogs_com/doubleliang/3.jpg" width="666" height="118" /></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 这样在累积所有子店面积分的时候，就不需要去关心子店面的个数了，也不用关系是否是叶子节点还是组合节点了，也就是说不管是总店刷卡，还是加盟店刷卡，都可以正确有效的计算出活动积分。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>3.什么情况下使用组合模式</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 引用大话设计模式的片段：&#8220;<strong>当发现需求中是体现部分与整体层次结构时，以及你希望用户可以忽略组合对象与单个对象的不同，统一地使用组合结构中的所有对象时，就应该考虑组合模式了。&#8221;</strong></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2011-12-27 22:46</span> <a href='http://www.cnblogs.com/doubleliang/'>王波洋</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=2304104" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(2304104);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=54736,cb_entryId=2304104,cb_blogApp=currentBlogApp,cb_blogUserGuid='d21b4195-a619-de11-9510-001cf0cd104b',cb_entryCreatedDate='2011/12/27 22:46:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = true;var googletag = googletag || {};googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +'//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+<script type='text/javascript'>
+    try {
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1346480159711-0' style='width:300px; height:250px;'>
+    <script type='text/javascript'>
+    try{
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+</div>
+<div id="blog_news_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2014 王波洋
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>
