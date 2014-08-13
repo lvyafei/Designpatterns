@@ -87,11 +87,11 @@
 1.[点击这里你可以链接到www.google.com](http://www.google.com)<br />
 
 ###只是显示图片
-![github](http://github.com/unicorn.png "github")
+![github](https://avatars2.githubusercontent.com/u/6541847?v=2 "github")
 
 ###想点击某个图片进入一个网页,比如我想点击github的icorn然后再进入www.github.com
 [![image]](http://www.github.com/)
-[image]: http://github.com/github.png "github"
+[image]: https://avatars0.githubusercontent.com/u/9919?v=2 "github"
 
 ### 文字被些字符包围
 > 文字被些字符包围
