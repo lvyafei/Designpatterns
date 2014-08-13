@@ -18,97 +18,136 @@ import structureType.compositePattern.StoreOrBranch;
 import structureType.decorativePattern.LowerCaseInputStream;
 import structureType.facadePattern.Customer;
 import structureType.facadePattern.Mortgage;
+import structureType.flyweightPattern.FlavorFactory;
+import structureType.flyweightPattern.Order;
+import structureType.flyweightPattern.Table;
 import structureType.proxyPattern.MathProxy;
 
 public class testStructure {
 
-	@Test 
+	@Test
 	/**
 	 * 桥接模式
 	 */
-	public void Testbridge(){
+	public void Testbridge() {
 		// 定义一个实现化角色
-        Implementor imp = new ConcreteImplementor1();
-        // 定义一个抽象化角色
-        Abstraction abs = new RefinedAbstraction(imp);
-        // 执行行文
-        System.out.println("调用原来系统的功能");
-        abs.requestbaseadd(10, 20);
-        abs.requestbasesub(20, 10);
-        System.out.println("调用新系统的功能");
-        abs.requestnewMultiplication(10, 20);
-        abs.requestnewDivision(20, 10);
+		Implementor imp = new ConcreteImplementor1();
+		// 定义一个抽象化角色
+		Abstraction abs = new RefinedAbstraction(imp);
+		// 执行行文
+		System.out.println("调用原来系统的功能");
+		abs.requestbaseadd(10, 20);
+		abs.requestbasesub(20, 10);
+		System.out.println("调用新系统的功能");
+		abs.requestnewMultiplication(10, 20);
+		abs.requestnewDivision(20, 10);
 	}
+
 	@Test
 	/**
 	 * 装饰模式
 	 */
-	public void Testdecorative(){
-        int c;
-		try
-		{
+	public void Testdecorative() {
+		int c;
+		try {
 			InputStream in = new LowerCaseInputStream(new BufferedInputStream(
-					new FileInputStream("D:\\test.txt")));	
-			while ((c = in.read()) >= 0)
-			{
+					new FileInputStream("D:\\test.txt")));
+			while ((c = in.read()) >= 0) {
 				System.out.print((char) c);
 			}
 			in.close();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 	@Test
 	/**
 	 * 适配器模式
 	 */
-	public void Testadapter(){
-		Target target=new Adapter();
+	public void Testadapter() {
+		Target target = new Adapter();
 		target.Request();
 	}
+
 	@Test
 	/**
 	 *代理模式
 	 */
-	public void Testproxy(){
+	public void Testproxy() {
 		MathProxy proxy = new MathProxy();
-        double addresult = proxy.Add(2,3);
-        System.out.println("2+3="+String.valueOf(addresult));
-        double subresult = proxy.Sub(2,3);
-        System.out.println("2-3="+String.valueOf(subresult));
-        double mulresult = proxy.Mul(2,3);
-        System.out.println("2*3="+String.valueOf(mulresult));
-        double devresult = proxy.Dev(2,3);
-        System.out.println("2/3="+String.valueOf(devresult));
+		double addresult = proxy.Add(2, 3);
+		System.out.println("2+3=" + String.valueOf(addresult));
+		double subresult = proxy.Sub(2, 3);
+		System.out.println("2-3=" + String.valueOf(subresult));
+		double mulresult = proxy.Mul(2, 3);
+		System.out.println("2*3=" + String.valueOf(mulresult));
+		double devresult = proxy.Dev(2, 3);
+		System.out.println("2/3=" + String.valueOf(devresult));
 	}
+
 	@Test
 	/**
 	 * 外观模式
 	 */
-	public void Testfacade(){
-		//外观
-        Mortgage mortgage = new Mortgage();
-        Customer customer = new Customer("Ann McKinsey");
-        Boolean eligable = mortgage.IsEligible(customer, 125000);
-        System.out.println("\n" + customer.getName() +
-            " has been " + (eligable ? "Approved" : "Rejected")); 
+	public void Testfacade() {
+		// 外观
+		Mortgage mortgage = new Mortgage();
+		Customer customer = new Customer("Ann McKinsey");
+		Boolean eligable = mortgage.IsEligible(customer, 125000);
+		System.out.println("\n" + customer.getName() + " has been "
+				+ (eligable ? "Approved" : "Rejected"));
 	}
+
 	@Test
 	/**
 	 * 组合模式
 	 */
-	public void Testcomposite(){
-		 StoreOrBranch store = new StoreOrBranch("朝阳总店");
-         StoreOrBranch brach = new StoreOrBranch("东城分店");
-         JoinInStore jstore = new JoinInStore("海淀加盟店一");
-         JoinInStore jstore1 = new JoinInStore("上地加盟店二");
+	public void Testcomposite() {
+		StoreOrBranch store = new StoreOrBranch("朝阳总店");
+		StoreOrBranch brach = new StoreOrBranch("东城分店");
+		JoinInStore jstore = new JoinInStore("海淀加盟店一");
+		JoinInStore jstore1 = new JoinInStore("上地加盟店二");
 
-         brach.Add(jstore);
-         brach.Add(jstore1);
-         store.Add(brach);
+		brach.Add(jstore);
+		brach.Add(jstore1);
+		store.Add(brach);
 
-         store.PayByCard();
+		store.PayByCard();
+	}
+
+	private static FlavorFactory flavorFactory;
+	private static int ordersMade = 0;
+
+	@Test
+	/**
+	 * 享元模式
+	 */
+	public void Testflyweight() {
+		flavorFactory = new FlavorFactory();
+
+		TakeOrder("Black Coffee");
+		TakeOrder("Capucino");
+		TakeOrder("Espresso");
+		TakeOrder("Capucino");
+		TakeOrder("Espresso");
+		TakeOrder("Black Coffee");
+		TakeOrder("Espresso");
+		TakeOrder("Espresso");
+		TakeOrder("Black Coffee");
+		TakeOrder("Capucino");
+		TakeOrder("Capucino");
+		TakeOrder("Black Coffee");
+
+		System.out.println("\nTotal Orders made: " + ordersMade);
+
+		System.out.println("\nTotal Flavor objects made: "
+				+ flavorFactory.GetTotalFlavorsMade());
+	}
+
+	private static void TakeOrder(String aFlavor) {
+		Order o = flavorFactory.GetOrder(aFlavor);
+		// 将咖啡卖给客人
+		o.Serve(new Table(++ordersMade));
 	}
 }
