@@ -23,7 +23,7 @@
 > ### 组合(Composite pattern)
 > ### 装饰(Decorator pattern)
 > ### 外观(Façade pattern)
-> ### 享元(Flyweight pattern)
+> ### [享元(Flyweight pattern)](http://www.cnblogs.com/zhenyulu/articles/55793.html)
 > ### 代理(Proxy pattern)
 
 行为范例
