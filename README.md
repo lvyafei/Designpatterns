@@ -13,18 +13,18 @@
 > ### 单例模式(Singleton pattern)
 
 
-结构范例
+[结构范例](http://www.cnblogs.com/Terrylee/archive/2006/06/01/designpattern_articles_structpattern.html)
 -----
 
 这组范例都是关于类及对象复合关系的。
 
-> ### 适配器(Adapter pattern)
-> ### 桥接(Bridge pattern)
-> ### 组合(Composite pattern)
-> ### 装饰(Decorator pattern)
-> ### 外观(Façade pattern)
+> ### [适配器(Adapter pattern)](http://www.cnblogs.com/wangjq/archive/2012/07/09/2582485.html)
+> ### [桥接(Bridge pattern)](http://www.cnblogs.com/muzongyan/archive/2010/09/01/1815153.html)
+> ### [组合(Composite pattern)](http://www.cnblogs.com/doubleliang/archive/2011/12/27/2304104.html)
+> ### [装饰(Decorator pattern)](http://www.cnblogs.com/god_bless_you/archive/2010/06/10/1755212.html)
+> ### [外观(Façade pattern)](http://www.cnblogs.com/Terrylee/archive/2006/03/17/352349.html)
 > ### [享元(Flyweight pattern)](http://www.cnblogs.com/zhenyulu/articles/55793.html)
-> ### 代理(Proxy pattern)
+> ### [代理(Proxy pattern)](http://www.cnblogs.com/Terrylee/archive/2006/05/18/403382.html)
 
 行为范例
 -----
