@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 import org.junit.Test;
 
@@ -12,6 +13,7 @@ import behavioralType.commandPattern.CommandOff;
 import behavioralType.commandPattern.CommandOn;
 import behavioralType.commandPattern.Control;
 import behavioralType.commandPattern.Tv;
+import behavioralType.interpreterPattern.Context;
 import behavioralType.responsibilityPattern.DeptManager;
 import behavioralType.responsibilityPattern.GeneralManager;
 import behavioralType.responsibilityPattern.Handler;
@@ -220,7 +222,18 @@ public class testStructure {
 	 * 解析器模式
 	 */
 	public void testinterpreter() {
+		String expStr = "a+b-c+d";
+		HashMap<String, Integer> var = new HashMap<String, Integer>();
+		var.put("a", 1);
+		var.put("b", 2);
+		var.put("c", 2);
+		var.put("d", 4);
 
+		Context context = new Context();
+		// 先解析运算表达式
+		context.analyse(expStr);
+		// 进行运算
+		System.out.println(context.run(var));
 	}
 
 	@Test
