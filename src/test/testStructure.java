@@ -4,7 +4,10 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 
 import org.junit.Test;
 
@@ -14,6 +17,7 @@ import behavioralType.commandPattern.CommandOn;
 import behavioralType.commandPattern.Control;
 import behavioralType.commandPattern.Tv;
 import behavioralType.interpreterPattern.Context;
+import behavioralType.iteratorPattern.RenMinMony;
 import behavioralType.responsibilityPattern.DeptManager;
 import behavioralType.responsibilityPattern.GeneralManager;
 import behavioralType.responsibilityPattern.Handler;
@@ -241,6 +245,35 @@ public class testStructure {
 	 * 迭代器模式
 	 */
 	public void testiterator() {
-
+		int n = 20;
+	    int sum = 0;
+        Collection<RenMinMony> set = new HashSet<RenMinMony>();//集合对象
+        for(int i=1;i<=n;i++){
+            if(i==n/2 || i==n/5 || i==n/6){
+                set.add(new RenMinMony(100,false));
+            }else{
+                set.add(new RenMinMony(100,true));
+            }
+        }
+        Iterator<RenMinMony> iterator = set.iterator();
+      
+        System.out.println("保险箱共有"+set.size()+"张人民币！");
+        int k = 0;
+        while(iterator.hasNext()){
+            RenMinMony money = iterator.next();
+            k++;
+            if(money.isTure() == false){
+                System.out.println("第"+k+"张是假币，被销毁");
+                iterator.remove();//移除掉最近一次本next()返回的对象
+                k++;
+            }
+        }
+        System.out.println("保险箱现有真人民币"+set.size()+"张，总价值是：");
+        iterator = set.iterator();
+        while(iterator.hasNext()){
+            RenMinMony money = iterator.next();
+            sum = sum + money.getValue();
+        }
+        System.out.println(sum+"元");     
 	}
 }

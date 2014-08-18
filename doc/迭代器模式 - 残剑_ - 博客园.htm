@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>迭代器模式 - 残剑_ - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=vVKakOZtmmmI9PttuB8cajJQIPwEqvGelvnOjnc3uik1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/elf/bundle-elf.css?v=m1ffdAkdU6pLIBVVhuDiKZPtpJ6BKnevg8RIbTFCGUo1"/>
+<link type="text/css" rel="stylesheet" href="/blog/customcss/122373.css?v=ZFEs1GsxTsRX6SiDRhrORG3NMqU%3d"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/liuling/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/liuling/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/liuling/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'liuling', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=5SljHjvFayhSwYEpPGn3hGjzMUiUy8_LhBNYFY8TdeA1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/liuling/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/liuling/">残剑</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/liuling/">首页</a></li>
+<li><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/%e6%ae%8b%e5%89%91_">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/liuling/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/liuling/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔- 104&nbsp;
+文章- 3&nbsp;
+评论- 150&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/liuling/archive/2013/04/14/iterator.html">迭代器模式</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>　　迭代器模式遍历集合的成熟模式，迭代器模式的关键是将遍历集合的任务交给一个叫做迭代器的对象，它的工作时遍历并选择序列中的对象，而客户端程序员不必知道或关心该集合序列底层的结构。</p>
+<p>　　迭代器模式的结构中包括四种角色。</p>
+<p>　　一、集合：一个接口，规定了具体集合需要实现的操作。</p>
+<p>　　二、具体集合：具体集合石实现了集合接口的一个实例，具体的集合按照一定的结构存储对象。具体集合应该有一个方法，该方法返回一个针对该集合的具体迭代器。</p>
+<p>　　三、迭代器：一个接口，规定了遍历具体集合的方法，比如next()方法。</p>
+<p>　　四、具体迭代器：实现了迭代器接口的类的实例。具体迭代器在实现迭代器接口所规定的遍历集合的方法时，比如next()方法，要保证首次调用将按着集合的数据结构找到该集合的一个对象，并且每当找到集合中的一个对象，立即根据该集合的存储结构得到待遍历的后继对象的引用，并保证一次调用next()方法可以遍历集合。</p>
+<p>　　下列应用程序中，使用了迭代器模式中所涉及的类。该应用程序模拟点钞，使用HashSet类的实例，即一个集合模拟保险箱HashSet类的实例调用iterator()方法返回一个迭代器，用该迭代器模拟点钞机，而且在点钞过程中销毁假钞。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">package</span><span style="color: #000000;"> com.iterator;
+</span><span style="color: #008080;"> 2</span> 
+<span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.Collection;
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.HashSet;
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.Iterator;
+</span><span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Application {
+</span><span style="color: #008080;"> 8</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+</span><span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">int</span> n = 20<span style="color: #000000;">;
+</span><span style="color: #008080;">10</span>         <span style="color: #0000ff;">int</span> sum = 0<span style="color: #000000;">;
+</span><span style="color: #008080;">11</span>         Collection&lt;RenMinMony&gt; set = <span style="color: #0000ff;">new</span> HashSet&lt;RenMinMony&gt;();<span style="color: #008000;">//</span><span style="color: #008000;">集合对象</span>
+<span style="color: #008080;">12</span>         <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=1;i&lt;=n;i++<span style="color: #000000;">){
+</span><span style="color: #008080;">13</span>             <span style="color: #0000ff;">if</span>(i==n/2 || i==n/5 || i==n/6<span style="color: #000000;">){
+</span><span style="color: #008080;">14</span>                 set.add(<span style="color: #0000ff;">new</span> RenMinMony(100,<span style="color: #0000ff;">false</span><span style="color: #000000;">));
+</span><span style="color: #008080;">15</span>             }<span style="color: #0000ff;">else</span><span style="color: #000000;">{
+</span><span style="color: #008080;">16</span>                 set.add(<span style="color: #0000ff;">new</span> RenMinMony(100,<span style="color: #0000ff;">true</span><span style="color: #000000;">));
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">19</span>         Iterator&lt;RenMinMony&gt; iterator =<span style="color: #000000;"> set.iterator();
+</span><span style="color: #008080;">20</span>         <span style="color: #0000ff;">int</span> jia = 0, zhen = 0<span style="color: #000000;">;
+</span><span style="color: #008080;">21</span>         System.out.println("保险箱共有"+set.size()+"张人民币！"<span style="color: #000000;">);
+</span><span style="color: #008080;">22</span>         <span style="color: #0000ff;">int</span> k = 0<span style="color: #000000;">;
+</span><span style="color: #008080;">23</span>         <span style="color: #0000ff;">while</span><span style="color: #000000;">(iterator.hasNext()){
+</span><span style="color: #008080;">24</span>             RenMinMony money =<span style="color: #000000;"> iterator.next();
+</span><span style="color: #008080;">25</span>             k++<span style="color: #000000;">;
+</span><span style="color: #008080;">26</span>             <span style="color: #0000ff;">if</span>(money.isTure() == <span style="color: #0000ff;">false</span><span style="color: #000000;">){
+</span><span style="color: #008080;">27</span>                 System.out.println("第"+k+"张是假币，被销毁"<span style="color: #000000;">);
+</span><span style="color: #008080;">28</span>                 iterator.remove();<span style="color: #008000;">//</span><span style="color: #008000;">移除掉最近一次本next()返回的对象</span>
+<span style="color: #008080;">29</span>                 k++<span style="color: #000000;">;
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">31</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">32</span>         System.out.println("保险箱现有真人民币"+set.size()+"张，总价值是："<span style="color: #000000;">);
+</span><span style="color: #008080;">33</span>         iterator =<span style="color: #000000;"> set.iterator();
+</span><span style="color: #008080;">34</span>         <span style="color: #0000ff;">while</span><span style="color: #000000;">(iterator.hasNext()){
+</span><span style="color: #008080;">35</span>             RenMinMony money =<span style="color: #000000;"> iterator.next();
+</span><span style="color: #008080;">36</span>             sum = sum +<span style="color: #000000;"> money.getValue();
+</span><span style="color: #008080;">37</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">38</span>         System.out.println(sum+"元"<span style="color: #000000;">);
+</span><span style="color: #008080;">39</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">40</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">41</span> 
+<span style="color: #008080;">42</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> RenMinMony{
+</span><span style="color: #008080;">43</span>     <span style="color: #0000ff;">int</span><span style="color: #000000;"> value;
+</span><span style="color: #008080;">44</span>     <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> isTure;
+</span><span style="color: #008080;">45</span>     <span style="color: #0000ff;">public</span> RenMinMony(<span style="color: #0000ff;">int</span> value,<span style="color: #0000ff;">boolean</span><span style="color: #000000;"> isTure) {
+</span><span style="color: #008080;">46</span>         <span style="color: #0000ff;">this</span>.value =<span style="color: #000000;"> value;
+</span><span style="color: #008080;">47</span>         <span style="color: #0000ff;">this</span>.isTure =<span style="color: #000000;"> isTure;
+</span><span style="color: #008080;">48</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">49</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> getValue() {
+</span><span style="color: #008080;">50</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> value;
+</span><span style="color: #008080;">51</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">52</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> isTure() {
+</span><span style="color: #008080;">53</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> isTure;
+</span><span style="color: #008080;">54</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">55</span> }</pre>
+</div>
+<p>运行结果如下：<br />保险箱共有20张人民币！<br />第6张是假币，被销毁<br />第12张是假币，被销毁<br />第17张是假币，被销毁<br />保险箱现有真人民币17张，总价值是：<br />1700元</p>
+<p>　　迭代器优点之一：能够快速遍历集合。</p>
+<p>　　看下面的例子就能感觉出它的快速优势：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">package</span><span style="color: #000000;"> com.iterator;
+</span><span style="color: #008080;"> 2</span> 
+<span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.Iterator;
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.LinkedList;
+</span><span style="color: #008080;"> 5</span> 
+<span style="color: #008080;"> 6</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> TestSpeed {
+</span><span style="color: #008080;"> 7</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+</span><span style="color: #008080;"> 8</span>         LinkedList&lt;String&gt; list = <span style="color: #0000ff;">new</span> LinkedList&lt;String&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = 0; i &lt; 60000; i++<span style="color: #000000;">) {
+</span><span style="color: #008080;">10</span>             list.add("speed"+<span style="color: #000000;">i);
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">12</span>         Iterator&lt;String&gt; iter =<span style="color: #000000;"> list.iterator();
+</span><span style="color: #008080;">13</span>         <span style="color: #0000ff;">long</span> startTime =<span style="color: #000000;"> System.currentTimeMillis();
+</span><span style="color: #008080;">14</span>         <span style="color: #0000ff;">while</span><span style="color: #000000;">(iter.hasNext()){
+</span><span style="color: #008080;">15</span>             String te =<span style="color: #000000;"> iter.next();
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">17</span>         <span style="color: #0000ff;">long</span> endTime =<span style="color: #000000;"> System.currentTimeMillis();
+</span><span style="color: #008080;">18</span>         <span style="color: #0000ff;">long</span> result = endTime -<span style="color: #000000;"> startTime;
+</span><span style="color: #008080;">19</span>         System.out.println("使用迭代器遍历集合的时间："+result+"毫秒"<span style="color: #000000;">);
+</span><span style="color: #008080;">20</span>         startTime =<span style="color: #000000;"> System.currentTimeMillis();
+</span><span style="color: #008080;">21</span>         <span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = 0; i &lt; list.size(); i++<span style="color: #000000;">) {
+</span><span style="color: #008080;">22</span>             String te =<span style="color: #000000;"> list.get(i);
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">24</span>         endTime =<span style="color: #000000;"> System.currentTimeMillis();
+</span><span style="color: #008080;">25</span>         result = endTime -<span style="color: #000000;"> startTime;
+</span><span style="color: #008080;">26</span>         System.out.println("使用get()遍历集合的时间："+result+"毫秒"<span style="color: #000000;">);
+</span><span style="color: #008080;">27</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">28</span> }</pre>
+</div>
+<p>　　迭代器的优点之二：能够实现不重新代码就可以应用于不能的容器类型。比如说原先用的事List编码的，但是后来想把相同的代码用于Set，用迭代器将会显得特别方便。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">package</span><span style="color: #000000;"> com.iterator;
+</span><span style="color: #008080;"> 2</span> 
+<span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.ArrayList;
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.HashSet;
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.Iterator;
+</span><span style="color: #008080;"> 6</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.LinkedList;
+</span><span style="color: #008080;"> 7</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.List;
+</span><span style="color: #008080;"> 8</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.Set;
+</span><span style="color: #008080;"> 9</span> 
+<span style="color: #008080;">10</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> IteratorTest {
+</span><span style="color: #008080;">11</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+</span><span style="color: #008080;">12</span>         <span style="color: #008000;">//</span><span style="color: #008000;">List&lt;String&gt; conn = new ArrayList&lt;String&gt;();</span>
+<span style="color: #008080;">13</span>         Set&lt;String&gt; conn = <span style="color: #0000ff;">new</span> HashSet&lt;String&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">14</span>         conn.add("aaa"<span style="color: #000000;">);
+</span><span style="color: #008080;">15</span>         conn.add("aaa"<span style="color: #000000;">);
+</span><span style="color: #008080;">16</span>         conn.add("bbb"<span style="color: #000000;">);
+</span><span style="color: #008080;">17</span>         conn.add("ccc"<span style="color: #000000;">);
+</span><span style="color: #008080;">18</span>         Iterator&lt;String&gt; iterator =<span style="color: #000000;"> conn.iterator();
+</span><span style="color: #008080;">19</span>         <span style="color: #0000ff;">while</span><span style="color: #000000;">(iterator.hasNext()){
+</span><span style="color: #008080;">20</span>             String a =<span style="color: #000000;"> iterator.next();
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">            System.out.println(a);
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">23</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">24</span> }</pre>
+</div>
+<p>&nbsp;</p>
+<p>　　下面讲一讲ListIterator</p>
+<p>　　ListIterator是一个更加强大的Iterator的子类型，但是它只能用于各种List类的访问。尽管Iterator只能向前移动，但是ListIterator可以双向移动。他还可以产生相对于迭代器在列表中指向当前位置的前一个和后一个元素的索引，并且还可以用set()方法替换掉它访问过的最后一个元素。你可以通过调用listIterator()方法产生一个指向List开始处的ListIterator，并且还可以通过调用listIterator(n)方法创建一个一开始就指向列表索引为n的元素处的ListIterator。下面的示例演示了所有这些功能：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">package</span><span style="color: #000000;"> com.iterator;
+</span><span style="color: #008080;"> 2</span> 
+<span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.ArrayList;
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.List;
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> java.util.ListIterator;
+</span><span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> ListIteratorTest {
+</span><span style="color: #008080;"> 8</span> 
+<span style="color: #008080;"> 9</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+</span><span style="color: #008080;">10</span>         List&lt;Integer&gt; list1 = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">11</span>         <span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = 0; i &lt;= 10; i++<span style="color: #000000;">) {
+</span><span style="color: #008080;">12</span> <span style="color: #000000;">            list1.add(i);
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">14</span>         List&lt;Integer&gt; list2 = <span style="color: #0000ff;">new</span> ArrayList&lt;Integer&gt;<span style="color: #000000;">();
+</span><span style="color: #008080;">15</span>         <span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = 0; i &lt;= 10; i++<span style="color: #000000;">) {
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">            list2.add(i);
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">18</span>         <span style="color: #008000;">//</span><span style="color: #008000;">现在将list1的元素反序插入到list2中</span>
+<span style="color: #008080;">19</span>         ListIterator&lt;Integer&gt; it =<span style="color: #000000;"> list1.listIterator(list1.size());
+</span><span style="color: #008080;">20</span>         <span style="color: #0000ff;">while</span><span style="color: #000000;">(it.hasPrevious()){
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">            list2.add(it.previous());
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">23</span>         <span style="color: #008000;">//</span><span style="color: #008000;">遍历list2</span>
+<span style="color: #008080;">24</span>         it =<span style="color: #000000;"> list2.listIterator();
+</span><span style="color: #008080;">25</span>         <span style="color: #0000ff;">while</span><span style="color: #000000;">(it.hasNext()){
+</span><span style="color: #008080;">26</span> <span style="color: #000000;">            System.out.println(it.next());
+</span><span style="color: #008080;">27</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">28</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">29</span> }</pre>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2013-04-14 20:28</span> <a href='http://www.cnblogs.com/liuling/'>残剑_</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=3020830" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(3020830);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=122373,cb_entryId=3020830,cb_blogApp=currentBlogApp,cb_blogUserGuid='bb406e7b-23ba-e111-aa3f-842b2b196315',cb_entryCreatedDate='2013/4/14 20:28:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = true;var googletag = googletag || {};googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +'//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+<script type='text/javascript'>
+    try {
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1346480159711-0' style='width:300px; height:250px;'>
+    <script type='text/javascript'>
+    try{
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+</div>
+<div id="blog_news_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2014 残剑_
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>
