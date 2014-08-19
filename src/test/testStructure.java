@@ -22,6 +22,7 @@ import behavioralType.responsibilityPattern.DeptManager;
 import behavioralType.responsibilityPattern.GeneralManager;
 import behavioralType.responsibilityPattern.Handler;
 import behavioralType.responsibilityPattern.ProjectManager;
+import behavioralType.statePattern.VoteManager;
 import structureType.adapterPattern.Adapter;
 import structureType.adapterPattern.Target;
 import structureType.bridgePattern.Abstraction;
@@ -275,5 +276,15 @@ public class testStructure {
             sum = sum + money.getValue();
         }
         System.out.println(sum+"Ԫ");     
+	}
+	@Test
+	/**
+	 * ״̬ģʽ
+	 */
+	public void teststate(){
+		VoteManager vm = new VoteManager();
+        for(int i=0;i<9;i++){
+            vm.vote("u1","A");
+        }
 	}
 }
