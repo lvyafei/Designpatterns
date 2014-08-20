@@ -18,6 +18,11 @@ import behavioralType.commandPattern.Control;
 import behavioralType.commandPattern.Tv;
 import behavioralType.interpreterPattern.Context;
 import behavioralType.iteratorPattern.RenMinMony;
+import behavioralType.mediatorPattern.Monitor;
+import behavioralType.mediatorPattern.QQMediator;
+import behavioralType.mediatorPattern.StudentA;
+import behavioralType.mediatorPattern.StudentB;
+import behavioralType.mediatorPattern.TuanZhiShu;
 import behavioralType.responsibilityPattern.DeptManager;
 import behavioralType.responsibilityPattern.GeneralManager;
 import behavioralType.responsibilityPattern.Handler;
@@ -286,5 +291,39 @@ public class testStructure {
         for(int i=0;i<9;i++){
             vm.vote("u1","A");
         }
+	}
+	@Test
+	/**
+	 * 中介者模式
+	 */
+	public void testmediator(){
+		QQMediator qq = new QQMediator();
+		Monitor studentMonitor=new Monitor();
+		studentMonitor.setName("Vincent");
+		TuanZhiShu studentTuanZhiShu=new TuanZhiShu();
+		studentTuanZhiShu.setName("Robort");
+		StudentA studentA=new StudentA();
+		studentA.setName("Sam");
+		StudentB studentB=new StudentB();
+		studentB.setName("Tom");
+	    /*----------------------班长发通知-----------------------------*/
+		System.out.println("下面的班长发布一个通知的场景：");
+	    //将同学们加入到qq群中
+		qq.add_student(studentMonitor);
+		qq.add_student(studentTuanZhiShu);
+		qq.add_student(studentA);
+		qq.add_student(studentB);
+		//设置大家的回复信息
+		studentMonitor.setContent("明天下午2点开年级会，收到回复^^。");
+		studentTuanZhiShu.setContent("知道了，肯定到!!");
+		studentA.setContent("收到了，但是可能晚点到!!");
+		studentB.setContent("收到了，但是明天要去面试!!");
+		//开始发通知
+		qq.notify(studentMonitor);
+		/*--------------------两个同学私下交流--------------------------*/
+		System.out.println("下面是两个同学的私下交流：");
+		studentMonitor.setContent("你觉得咱们“软件项目管理老师”讲的怎么样？");
+		studentA.setContent("我觉得讲的不够生动，还点名，不太好!!!");
+		qq.chart(studentMonitor,studentA);
 	}
 }
