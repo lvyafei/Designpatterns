@@ -23,6 +23,8 @@ import behavioralType.mediatorPattern.QQMediator;
 import behavioralType.mediatorPattern.StudentA;
 import behavioralType.mediatorPattern.StudentB;
 import behavioralType.mediatorPattern.TuanZhiShu;
+import behavioralType.mementoPattern.MementoIF;
+import behavioralType.mementoPattern.Originator;
 import behavioralType.responsibilityPattern.DeptManager;
 import behavioralType.responsibilityPattern.GeneralManager;
 import behavioralType.responsibilityPattern.Handler;
@@ -325,5 +327,20 @@ public class testStructure {
 		studentMonitor.setContent("你觉得咱们“软件项目管理老师”讲的怎么样？");
 		studentA.setContent("我觉得讲的不够生动，还点名，不太好!!!");
 		qq.chart(studentMonitor,studentA);
+	}
+	@Test
+	/**
+	 * 备忘录模式
+	 */
+	public void testmemento(){
+		Originator o = new Originator();
+        //修改状态
+        o.changeState("state 0");
+        //创建备忘录
+        MementoIF memento = o.createMemento();
+        //修改状态
+        o.changeState("state 1");
+        //按照备忘录恢复对象的状态
+        o.restoreMemento(memento);
 	}
 }
