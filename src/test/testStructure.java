@@ -25,6 +25,9 @@ import behavioralType.mediatorPattern.StudentB;
 import behavioralType.mediatorPattern.TuanZhiShu;
 import behavioralType.mementoPattern.MementoIF;
 import behavioralType.mementoPattern.Originator;
+import behavioralType.observerPattern.Accountant;
+import behavioralType.observerPattern.Cashier;
+import behavioralType.observerPattern.Dilliveryman;
 import behavioralType.responsibilityPattern.DeptManager;
 import behavioralType.responsibilityPattern.GeneralManager;
 import behavioralType.responsibilityPattern.Handler;
@@ -342,5 +345,19 @@ public class testStructure {
         o.changeState("state 1");
         //按照备忘录恢复对象的状态
         o.restoreMemento(memento);
+	}
+	@Test
+	/**
+	 * 观察者模式
+	 */
+	public void testobserver(){
+		 behavioralType.observerPattern.Customer subject =new behavioralType.observerPattern.Customer();
+
+         subject.Attach(new Accountant(subject));
+         subject.Attach(new Cashier(subject));
+         subject.Attach(new Dilliveryman(subject));
+
+         subject.setCustomerState("已付款");
+         subject.Notify();
 	}
 }
