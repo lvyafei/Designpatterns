@@ -1,0 +1,221 @@
+ <!doctype html>
+<html>
+<head>
+<title>深入浅出Java的访问者模式                                                                            _天极网</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="description" content="设计模式 模式 Java,深入浅出Java的访问者模式,对于系统中一个已经完成的类层次结构，我们已经给它提供了满足需求的接口" />
+<meta name="keywords" content="设计模式, 模式, Java" />
+<meta http-equiv="mobile-agent" content="format=html5; url=http://wap.yesky.com/dev/82/2036582.shtml" />
+<link rel="alternate" type="application/rss+xml" title="开发频道_天极网" href="http://dev.yesky.com/index.xml" />
+<link rel="stylesheet" href="http://www.yesky.com/TLimages2009/yesky/css/article2013-news.css?time=130925.css" type="text/css" media="all" />
+<base target="_blank" />
+<script type="text/javascript"><!--
+var site = 'yesky';//站点名称
+var referId = 2036582;
+var articletitle = '深入浅出Java的访问者模式                                                                            ';
+var channelId = 412;
+var articleurl= 'http://dev.yesky.com/82/2036582.shtml';
+var artckey = 'Java,IT技术';
+if (channelId==0) channelId=22;
+//--></script>
+<!-- baidu_tc page: {"page_type":"CONTENT", "default_action":"DELETE"} -->
+</head>
+<body>
+<!-- baidu_tc block_begin: {"action":" FOLD", "type":"PAGE_NAV"} -->
+<div class="main_nav"><div class="w1000"><div class="fr"><div class="ysearch_box"><form id="srchform" class="arsech" method="post" name="f1" action="http://search.yesky.com/search.do"><input type="text" onfocus="this.value=''" value="输入您要查找的内容" class="s_text"><input type="submit" class="s_bmt" value="搜索"></form><div class="sctype"><span qb='wy'>网页</span><ul><li qb="wy" val="">网页</li><li qb="cp" val="">产品</li><li qb="tp" val="">图片</li><li qb="bj" val="">报价</li><li qb="xz" val="">下载</li></ul></div></div><script type="text/javascript" src='http://passport.yesky.com/cas/jsclient/outputcookie.js' charset="gbk"></script><script type="text/javascript">if(pinCookie() == null) {document.writeln("<a href=\"http:\/\/passport.yesky.com/\"  target=\"_self\">登录<\/a>|<a href=\"http:\/\/passport.yesky.com\/jsp\/newyesky\/yeskysys_login_i.jsp?auto=1\">注册<\/a>")} else {document.write("<a href=\"http://passport.yesky.com/\">"+getCookie(findNickCookie)+"<\/a>");document.write("|<a href=\"http://passport.yesky.com/cas/logout?service="+location.href+"\"  target=\"_self\">退出<\/a>")}</script></div><a href="http://www.yesky.com/" target="_self">天极网</a><a href="http://news.yesky.com/" target="_self">新闻</a><a href="http://www.yesky.com/fangtan/" target="_self">访谈</a><a href="http://news.yesky.com/opinion/" target="_self">观点</a><a href="http://zhibo.yesky.com/">图文直播</a><a href="http://q.yesky.com/">群乐论坛</a><a href="http://product.yesky.com/">产品报价</a><a href="http://product.yesky.com/maintain/">维修</a><a href="http://mydown.yesky.com/">软件下载</a><a href="http://www.yesky.com/sitemap.html" target="_self">更多>></a></div></div>
+<!-- baidu_tc block_end -->
+<div class="wrap"><span id='adv_div_521977' class='advemptydiv'></span><script language='JavaScript' advid='521977_1' src='http://adsame.tianjimedia.com:80/s?z=yesky&c=93372'></script>
+<!-- baidu_tc block_begin: {"action":" FOLD", "type":"PAGE_NAV"} -->
+<div class="sub_nav"><a href="http://www.yesky.com/"><img src="http://www.yesky.com/TLimages2009/yesky/images/content/logo.gif" alt="全球最大IT中文站" /></a><dl><dt>全国分站</dt><dd><a href="http://bj.yesky.com/" target="_self">北京</a><a href="http://hd.yesky.com/" target="_self">上海</a><a href="http://gz.yesky.com/" target="_self">广州</a><a href="http://szhk.yesky.com/" target="_self">深港</a><a href="http://wh.yesky.com/" target="_self">武汉</a><a href="http://nj.yesky.com/" target="_self">南京</a><a href="http://fj.yesky.com/" target="_self">福建</a><a href="http://sy.yesky.com/" target="_self">沈阳</a><a href="http://cd.yesky.com/" target="_self">成都</a><a href="http://hz.yesky.com/" target="_self">杭州</a><a href="http://cs.yesky.com/" target="_self">长沙</a><a href="http://xa.yesky.com/" target="_self">西安</a><a href="http://cc.yesky.com/" target="_self">长春</a><a href="http://cq.yesky.com/" target="_self">重庆</a><a href="http://dq.yesky.com/" target="_self">大庆</a><a href="http://hf.yesky.com/" target="_self">合肥</a><a href="http://huiz.yesky.com/" target="_self">惠州</a><a href="http://qd.yesky.com/" target="_self">青岛</a><a href="http://zz.yesky.com/" target="_self">郑州</a><a href="http://tz.yesky.com/">泰州</a><a href="http://xm.yesky.com/">厦门</a><a href="http://zb.yesky.com/">淄博</a><a href="http://tj.yesky.com/">天津</a><a href="http://wx.yesky.com/">无锡</a><a href="http://heb.yesky.com/" target="_self">哈尔滨</a></dd></dl><div><h3><a href="http://mobile.yesky.com/" target="_self">手机</a></h3><h3><a href="http://notebook.yesky.com/" target="_self">电脑</a></h3><h3><a href="http://digital.yesky.com/" target="_self">数码</a></h3><h3><a href="http://dh.yesky.com/" target="_self">家电</a></h3><h3><a href="http://diy.yesky.com/" target="_self">硬件外设</a></h3><h3><a href="http://enterprise.yesky.com/" target="_self">企业办公</a></h3><h3><a href="http://game.yesky.com/" target="_self">游戏</a></h3></div><div><p><a href="http://mobile.yesky.com/">手机</a><a href="http://www.angeeks.com/">安极</a><br /><a class="eng" href="http://mobile.yesky.com/4g/">4G</a><a href="http://mobile.yesky.com/windowsphone/">WP专区</a><br /><a href="http://peijian.yesky.com/">配件</a><a href="http://mobilepower.yesky.com/">移动电源</a></p><p class="pc"><a href="http://notebook.yesky.com/">笔记本</a><a href="http://ultrabook.yesky.com/">超极本</a><a href="http://pad.yesky.com/">平板</a><br /><a href="http://aio.yesky.com/">一体机</a><a href="http://pc.yesky.com/">台式机</a><a href="http://smb.yesky.com/">商用</a><br /><a href="http://workstation.yesky.com/">工作站</a><a href="http://zbj.yesky.com/forum.php">知本家</a><a href="http://wearable.yesky.com/">可穿戴</a></p><p class="di"><a href="http://dc.yesky.com/">相机</a><a href="http://dv.yesky.com/">摄像机</a><a href="http://dc.yesky.com/evildc/">单电</a><br /><a href="http://dc.yesky.com/dslr/">单反</a><a href="http://evildc.yesky.com/">海极社</a><a href="http://digital.yesky.com/tripchannel/">行摄频道</a><br /><a class="eng" href="http://gps.yesky.com/">GPS</a><a href="http://digital.yesky.com/young/">潮生活</a><a href="http://mid.yesky.com/">国产平板</a></p><p class="dh"><a href="http://tv.yesky.com/">电视</a><a href="http://icebox.yesky.com/">冰箱</a><a href="http://washer.yesky.com/">洗衣机</a><br /><a href="http://ac.yesky.com/">空调</a><a href="http://dh.yesky.com/3d/">高清</a><a href="http://dh.yesky.com/hdplayer/">盒子</a><br /><a href="http://chuwei.yesky.com/">厨卫</a><a href="http://projector.yesky.com/">投影</a><a href="http://life.yesky.com/">生活家电</a></p><p class="dy"><a class="eng" href="http://cpu.yesky.com/">CPU</a><a href="http://mb.yesky.com/">主板</a><a href="http://lcd.yesky.com/">显示器</a><br /><a href="http://speaker.yesky.com/">音频</a><a href="http://power.yesky.com/">机电</a><a href="http://input.yesky.com/">键鼠</a><br /><a href="http://vga.yesky.com/">显卡</a><a href="http://storage.yesky.com/">内存硬盘</a></p><p class="oa"><a href="http://server.yesky.com/">服务器</a><a href="http://cio.yesky.com/">信息化</a><a href="http://dev.yesky.com/">开发</a><br /><a href="http://oa.yesky.com/">办公打印</a><a href="http://net.yesky.com/">网络设备</a><br /><a href="http://oa.yesky.com/hpsmbink/">商喷</a><a href="http://server.yesky.com/Solution/">方案</a><a href="http://cloud.yesky.com/">云计算</a></p><p class="gm"><a href="http://game.yesky.com/">游戏</a><a href="http://game.yesky.com/mbgame/">手机游戏</a><br /><a href="http://mydown.yesky.com/">下载</a><a href="http://gpc.yesky.com/">游戏硬件</a><br /><a href="http://comic.yesky.com/">动漫</a><a href="http://game.yesky.com/webgame/">网页游戏</a></p></div></div>
+<DIV class=ch_nav>
+<H2>开发</H2><STRONG><A href="http://oa.yesky.com/">办公</A></STRONG><STRONG><A href="http://soft.yesky.com/">软件</A></STRONG><STRONG><A href="http://server.yesky.com/">服务器</A></STRONG><STRONG><A href="http://net.yesky.com/">网络</A></STRONG><STRONG><A href="http://dev.yesky.com/">开发</A></STRONG><STRONG><A href="http://bizsoft.yesky.com/">信息化</A></STRONG><STRONG><A href="http://server.yesky.com/Solution/">方案库</A></STRONG><STRONG><A href="http://news.yesky.com/">IT新闻</A></STRONG></DIV>
+<!-- baidu_tc block_end -->
+
+<!-- baidu_tc block_begin: {"action":" SHOW", "type":"LOGIN"} -->
+<div class="current">您现在的位置： <a href="http://www.yesky.com/" target="_self">天极网</a> &gt; <a href="http://dev.yesky.com/" target="_self">开发</a>&gt;<a href="/c/412_15890.shtml">新闻</a>&gt;<span>深入浅出Java的访问者模式</span></div><!-- baidu_tc block_end -->
+<div class="con_left"><div class="title">
+<!-- baidu_tc block_begin: {"action":" SHOW", "type":"TITLE"} --><h1>深入浅出Java的访问者模式                                                                            </h1><!-- baidu_tc block_end --><div class="detail"><span>blog</span><span>2005-07-16 12:41</span><span class="share"><!-- Baidu Button BEGIN --><div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"><a class="bds_qzone"></a><a class="bds_tsina"></a><a class="bds_tqq"></a><a class="bds_renren"></a><a class="bds_tsohu"></a><span class="bds_more" title="更多分享"></span></div>
+<!-- Baidu Button END -->分享到：</span><span><a href="#pl" target="_self">我要吐槽</a></span></div></div>
+<div class="article">
+<!-- baidu_tc block_begin: {"type": "CONTENT", "action": "SHOW"} -->
+　　<B>一、引子</B> <BR><BR>　　对于系统中一个已经完成的类层次结构，我们已经给它提供了满足需求的接口。但是面对新增加的需求，我们应该怎么做呢？如果这是为数不多的几次变动，而且你不用为了一个需求的调整而将整个类层次结构统统地修改一遍，那么直接在原有类层次结构上修改也许是个不错的主意。<BR><BR>　　但是往往我们遇到的却是：这样的需求变动也许会不停的发生；更重要的是需求的任何变动可能都要让你将整个类层次结构修改个底朝天……。这种类似的操作分布在不同的类里面，不是一个好现象，我们要对这个结构重构一下了。<BR><BR>　　那么，访问者模式也许是你很好的选择。 <BR><BR>　　<B>二、定义与结构</B><BR><BR>　　访问者模式，顾名思义使用了这个模式后就可以在不修改已有程序结构的前提下，通过添加额外的“访问者”来完成对已有代码功能的提升。<BR><BR>　　《设计模式》一书对于访问者模式给出的定义为：表示一个作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。从定义可以看出结构对象是使用访问者模式必须条件，而且这个结构对象必须存在遍历自身各个对象的方法。这便类似于java中的collection概念了。<BR><BR>　　以下是访问者模式的组成结构：<BR><BR>　　1) 访问者角色（Visitor）：为该对象结构中具体元素角色声明一个访问操作接口。该操作接口的名字和参数标识了发送访问请求给具体访问者的具体元素角色。这样访问者就可以通过该元素角色的特定接口直接访问它。<BR><BR>　　2) 具体访问者角色（Concrete Visitor）：实现每个由访问者角色（Visitor）声明的操作。<BR><BR>　　3) 元素角色（Element）：定义一个Accept操作，它以一个访问者为参数。<BR><BR>　　4) 具体元素角色（Concrete Element）：实现由元素角色提供的Accept操作。<BR><BR>　　5) 对象结构角色（Object Structure）：这是使用访问者模式必备的角色。它要具备以下特征：能枚举它的元素；可以提供一个高层的接口以允许该访问者访问它的元素；可以是一个复合（组合模式）或是一个集合，如一个列表或一个无序集合。<BR><BR>　　来张类图就能更加清晰的看清访问者模式的结构了。<BR><BR>
+<TABLE width="90%" align=center border=0>
+<TBODY>
+<TR>
+<TD>
+<DIV align=center><FONT size=3><IMG alt="" src="/imagelist/05/07/9du0ok8rj791.jpg" align=middle></FONT></DIV></TD></TR></TBODY></TABLE><BR>　　那么像引言中假想的。我们应该做些什么才能让访问者模式跑起来呢？首先我们要在原有的类层次结构中添加accept方法。然后将这个类层次中的类放到一个对象结构中去。这样再去创建访问者角色……<BR><BR>　　<B>三、举例</B><BR><BR>　　本人阅历实在可怜，没能找到访问者模式在实际<a class="keyword_link"  href="http://search.yesky.com/search.do?wd=应用" target="_blank">应用</a>中的例子。只好借《Thinking in Patterns with java》中的教学代码一用。我稍微做了下修改。<BR><BR>
+<TABLE borderColor=#ffcc66 width="90%" align=center bgColor=#e3e3e3 border=1>
+<TBODY>
+<TR>
+<TD>import java.util.*;<BR>import junit.framework.*;<BR><BR>//访问者角色<BR><BR>interface Visitor { <BR>　void visit(Gladiolus g);<BR>　void visit(Runuculus r);<BR>　void visit(Chrysanthemum c);<BR>}<BR><BR>// The Flower hierarchy cannot be changed:<BR>//元素角色<BR><BR>interface Flower { <BR>　void accept(Visitor v);<BR>}<BR><BR>//以下三个具体元素角色<BR><BR>class Gladiolus implements Flower { <BR>　public void accept(Visitor v) { v.visit(this);}<BR>}<BR><BR>class Runuculus implements Flower { <BR>　public void accept(Visitor v) { v.visit(this);}<BR>}<BR><BR>class Chrysanthemum implements Flower { <BR>　public void accept(Visitor v) { v.visit(this);}<BR>}<BR><BR>// Add the ability to produce a string:<BR>//实现的具体访问者角色 <BR><BR>class StringVal implements Visitor {<BR>　String s; <BR>　public String toString() { return s; }<BR>　public void visit(Gladiolus g) { <BR>　　s = "Gladiolus"; <BR>　}<BR><BR>　public void visit(Runuculus r) { <BR>　　s = "Runuculus"; <BR>　}<BR><BR>　public void visit(Chrysanthemum c) { <BR>　　s = "Chrysanthemum"; <BR>　}<BR>}<BR><BR>// Add the ability to do "Bee" activities:<BR>//另一个具体访问者角色 <BR><BR>class Bee implements Visitor { <BR>　public void visit(Gladiolus g) {<BR>　　System.out.println("Bee and Gladiolus");<BR>　}<BR><BR>　public void visit(Runuculus r) {<BR>　　System.out.println("Bee and Runuculus");<BR>　}<BR><BR>　public void visit(Chrysanthemum c) {<BR>　　System.out.println("Bee and Chrysanthemum");<BR>　}<BR>}<BR><BR>//这是一个对象生成器<BR>//这不是一个完整的对象结构，这里仅仅是模拟对象结构中的元素 <BR><BR>class FlowerGenerator {<BR>　private static Random rand = new Random();<BR>　public static Flower newFlower() {<BR>　　switch(rand.nextInt(3)) {<BR>　　default:<BR>　　　case 0: return new Gladiolus();　<BR>　　　case 1: return new Runuculus();<BR>　　　case 2: return new Chrysanthemum();<BR>　　}<BR>　}<BR>}<BR><BR>//客户测试程序<BR><BR>public class BeeAndFlowers extends TestCase {<BR><BR>　/*<BR>　　在这里你能看到访问者模式执行的流程：<BR>　　首先在客户端先获得一个具体的访问者角色<BR>　　遍历对象结构<BR>　　对每一个元素调用accept方法，将具体访问者角色传入<BR>　　这样就完成了整个过程<BR>　*/<BR>　//对象结构角色在这里才组装上 <BR><BR>　List flowers = new ArrayList();<BR>　public BeeAndFlowers() {<BR>　　for(int i = 0; i &lt; 10; i++)<BR>　　　flowers.add(FlowerGenerator.newFlower());<BR>　}<BR><BR>　Visitor sval ;<BR>　public void test() {<BR>　　// It’s almost as if I had a function to<BR>　　// produce a Flower string representation:<BR>　　//这个地方你可以修改以便使用另外一个具体访问者角色<BR><BR>　　sval = new StringVal();<BR>　　Iterator it = flowers.iterator();<BR>　　while(it.hasNext()) {<BR>　　　((Flower)it.next()).accept(sval);<BR>　　　System.out.println(sval);<BR>　　}<BR>　}<BR><BR>　public static void main(String args[]) { <BR>　　junit.textui.TestRunner.run(BeeAndFlowers.class);<BR>　}<BR><BR>}</TD></TR></TBODY></TABLE><BR>　　<B>四、双重分派 </B><BR><BR>　　对了，你在上面的例子中体会到双重分派的实现了没有？<BR><BR>　　首先在客户程序中将具体访问者模式作为参数传递给具体元素角色（加亮的地方所示）。这便完成了一次分派。<BR><BR>　　进入具体元素角色后，具体元素角色调用作为参数的具体访问者模式中的visitor方法，同时将自己（this）作为参数传递进去。具体访问者模式再根据参数的不同来选择方法来执行（加亮的地方所示）。这便完成了第二次分派。<BR><BR>　　<B>五、优缺点及适用情况</B><BR><BR>　　先来看下访问者模式的使用能否避免引言中的痛苦。使用了访问者模式以后，对于原来的类层次增加新的操作，仅仅需要实现一个具体访问者角色就可以了，而不必修改整个类层次。而且这样符合“开闭原则”的要求。而且每个具体的访问者角色都对应于一个相关操作，因此如果一个操作的需求有变，那么仅仅修改一个具体访问者角色，而不用改动整个类层次。 <BR><BR>　　看来访问者模式确实能够解决我们面临的一些问题。<BR><BR>　　而且由于访问者模式为我们的系统多提供了一层“访问者”，因此我们可以在访问者中添加一些对元素角色的额外操作。<BR><BR>　　但是“开闭原则”的遵循总是片面的。如果系统中的类层次发生了变化，会对访问者模式产生什么样的影响呢？你必须修改访问者角色和每一个具体访问者角色……<BR><BR>　　看来访问者角色不适合具体元素角色经常发生变化的情况。而且访问者角色要执行与元素角色相关的操作，就必须让元素角色将自己内部属性暴露出来，而在java中就意味着其它的对象也可以访问。这就破坏了元素角色的封装性。而且在访问者模式中，元素与访问者之间能够传递的信息有限，这往往也会限制访问者模式的使用。<BR><BR>　　《设计模式》一书中给出了访问者模式适用的情况：<BR><BR>　　1) 一个对象结构包含很多类对象，它们有不同的接口，而你想对这些对象实施一些依赖于其具体类的操作。<BR><BR>　　2) 需要对一个对象结构中的对象进行很多不同的并且不相关的操作，而你想避免让这些操作“污染”这些对象的类。Visitor使得你可以将相关的操作集中起来定义在一个类中。<BR><BR>　　3) 当该对象结构被很多应用共享时，用Visitor模式让每个应用仅包含需要用到的操作。<BR><BR>　　4) 定义对象结构的类很少改变，但经常需要在此结构上定义新的操作。改变对象结构类需要重定义对所有访问者的接口，这可能需要很大的代价。如果对象结构类经常改变，那么可能还是在这些类中定义这些操作较好。<BR><BR>　　你是否能很好的理解呢？<BR><BR>　　<B>六、总结</B><BR><BR>　　这是一个巧妙而且复杂的模式，它的使用条件比较苛刻。当系统中存在着固定的数据结构（比如上面的类层次），而有着不同的行为，那么访问者模式也许是个不错的选择。 
+
+
+<div class="editor">（<span>作者：ai92</span>责任编辑：方舟）</div>
+<!-- baidu_tc block_end -->
+<div class="weibo"><div class="welc"><a href="http://weibo.com/yesky/"><img alt="请关注天极网" src="http://www.yesky.com/TLimages2009/yesky/images/content/ygame_v.gif" /></a>欢迎在新浪微博上关注我们</div><span id="snopen" class="snopen"></span></div>
+<div class="clear"></div>
+<!-- baidu_tc block_begin: {"type": "CONTENT", "action": "SHOW"} -->
+<div class="tita" id="relink">相关文章</div>
+<ul class="rear">
+<li><a href="http://dev.yesky.com/136/38691136.shtml">APP业者的聚会 Apper之夜活动即将举行</a></li><li><a href="http://dev.yesky.com/283/38647283.shtml">HTML5峰会 傲游云浏览器给开发者送福利</a></li><li><a href="http://dev.yesky.com/142/38593142.shtml">传统应用程序开发实践将对移动应用失效</a></li><li><a href="http://dev.yesky.com/274/38591274.shtml">Oculus VR虚拟现实开发套件支持苹果系统</a></li><li><a href="http://dev.yesky.com/153/38560653.shtml">雅虎专家在Velocity运维大会分享实战经验</a></li><li><a href="http://dev.yesky.com/318/38314818.shtml">王军:手游开发者应警惕用户蒸发的7大陷阱</a></li></ul>
+<div class="clear"></div>
+
+<!-- baidu_tc block_end -->
+<span id='adv_div_34487763' class='advemptydiv'></span><script language='JavaScript' advid='34487763_1' src='http://adsame.tianjimedia.com:80/s?z=yesky&c=171010'></script>
+<div class="tita" id="pl">评论</div>
+<div class="saymore" id="saymore"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="2036582" data-title="深入浅出Java的访问者模式                                                                            "></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tianjimedia"};
+(function() {
+var ds = document.createElement('script');
+ds.type = 'text/javascript';ds.async = true;
+ds.src = 'http://static.duoshuo.com/embed.js';
+ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0] 
+|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- Duoshuo Comment END --></div></div></div>
+<div class="con_right">
+<div class="box">
+<div class="titb mb7">最新文章</div><span class="more"><a href="http://dev.yesky.com/more/412.shtml">更多>></a></span>
+<div class="clear"></div>
+<dl><dt><a href="http://dev.yesky.com/136/38691136.shtml"><img src="http://image.tianjimedia.com//uploadImages/leadimage/2014/234/38/53531V320FWR_2.png" alt="Apper之夜" /></a></dt>
+<dd><a href="http://dev.yesky.com/136/38691136.shtml">APP业者的聚会 Apper之夜活动即将举行</a></dd></dl><dl><dt><a href="http://dev.yesky.com/283/38647283.shtml"><img src="http://image.tianjimedia.com//uploadImages/leadimage/2014/231/17/2893AAG92111_2.jpg" alt="傲游云浏览器" /></a></dt>
+<dd><a href="http://dev.yesky.com/283/38647283.shtml">HTML5峰会 傲游云浏览器给开发者送福利</a></dd></dl><ul>
+<li><a href="http://dev.yesky.com/142/38593142.shtml">传统应用程序开发实践将对移动应用失效</a></li>
+<li><a href="http://dev.yesky.com/274/38591274.shtml">Oculus VR虚拟现实开发套件支持苹果系统</a></li>
+<li><a href="http://dev.yesky.com/153/38560653.shtml">雅虎专家在Velocity运维大会分享实战经验</a></li>
+<li><a href="http://dev.yesky.com/318/38314818.shtml">王军:手游开发者应警惕用户蒸发的7大陷阱</a></li>
+<li><a href="http://cloud.yesky.com/215/38244715.shtml">容联易通孙昌勋:云通讯平台带来开发革命</a></li>
+<li><a href="http://www.yesky.com/360/38174360.shtml">微软创投加速器2周年 四期初创公司成果展示</a></li>
+<li><a href="http://dev.yesky.com/435/38129935.shtml">第四届亚太区红帽挑战赛@Labs开始接受报名</a></li>
+<li><a href="http://dev.yesky.com/406/38116406.shtml">Testin云测王军:只有应用稳定才能留住用户</a></li>
+</ul>
+</div>
+<span id='adv_div_8310309' class='advemptydiv'></span><script language='JavaScript' advid='8310309_1' src='http://adsame.tianjimedia.com:80/s?z=yesky&c=70621'></script><span id='adv_div_35801775' class='advemptydiv'></span><script language='JavaScript' advid='35801775_3' src='http://adsame.tianjimedia.com:80/s?z=yesky&c=171990'></script>
+
+<div id="right_baidu_adbox"></div><div class="box">
+<div class="titb">频道精华</div>
+<ul>
+<li><a href="http://dev.yesky.com/136/38691136.shtml">APP业者的聚会 Apper之夜活动即将举行</a></li><li><a href="http://dev.yesky.com/188/36797188.shtml">我是如何把微信公众号做到10万粉丝的</a></li><li><a href="http://dev.yesky.com/145/36792145.shtml">增强用户体验：和你的用户谈一场恋爱</a></li><li><a href="http://dev.yesky.com/499/36791999.shtml">开源文化不再仅仅局限于开发者</a></li><li><a href="http://dev.yesky.com/80/36792080.shtml">年后跳槽那点事：乐视+金山+360面试之行</a></li><li><a href="http://dev.yesky.com/84/36739584.shtml">6点让码农的工作效率快速提高</a></li><li><a href="http://dev.yesky.com/376/36736376.shtml">你需要知道的10位Java开发牛人</a></li><li><a href="http://dev.yesky.com/145/36736145.shtml">Chris Anderson：我觉得开源会赢</a></li></ul>
+</div>
+<div class="box">
+<div class="titbs mb7">
+<span class="show">办公</span><span>软件</span><span>IT新闻</span><span>整机</span>
+<div class="clear"></div></div>
+<div class="channel">
+<div class="shows">
+<dl><dt><a href="http://dh.yesky.com/75/38740075.shtml"><img src="http://image.tianjimedia.com//uploadImages/leadimage/2014/237/42/B1595U88O861_2.jpg" alt="跨界融合产业" /></a></dt>
+<dd><a href="http://dh.yesky.com/75/38740075.shtml">国务院利好在线旅游 跨界融合产业联盟将诞</a></dd></dl><dl><dt><a href="http://projector.yesky.com/68/38740068.shtml"><img src="http://image.tianjimedia.com//uploadImages/leadimage/2014/237/39/1DGEPM36OEVG_2.jpg" alt="ME310XC特价" /></a></dt>
+<dd><a href="http://projector.yesky.com/68/38740068.shtml">有效节约能耗 NEC NP-ME310XC特价送豪礼</a></dd></dl><ul>
+<li><a href="http://dh.yesky.com/67/38740067.shtml">开启产品新视界 2014携程UED产品设计会举行</a></li>
+<li><a href="http://projector.yesky.com/135/38739635.shtml">高性能超便携投影机  NEC NP63+仅售9500元</a></li>
+<li><a href="http://projector.yesky.com/397/38739397.shtml">高清NEC V311W+投影机特价8500元</a></li>
+<li><a href="http://projector.yesky.com/383/38739383.shtml">NEC M260WS+宽屏无线鱼眼投影机</a></li>
+<li><a href="http://projector.yesky.com/373/38739373.shtml">Vivitek（丽讯）DX881ST教育新品强势登陆</a></li>
+</ul>
+</div>
+<div class="hidden">
+<dl><dt><a href="http://pad.yesky.com/391/38739391.shtml"><img src="http://image.tianjimedia.com//uploadImages/leadimage/2014/237/57/WXGWJ17VO4NJ_2.jpg" alt="低价平板电脑" /></a></dt>
+<dd><a href="http://pad.yesky.com/391/38739391.shtml">又到开学季 低价实惠平板电脑促销大汇总</a></dd></dl><dl><dt><a href="http://notebook.yesky.com/111/38739611.shtml"><img src="http://image.tianjimedia.com//uploadImages/leadimage/2014/237/06/UP7W9IR08A56_2.jpg" alt="游戏笔记本" /></a></dt>
+<dd><a href="http://notebook.yesky.com/111/38739611.shtml">游戏玩家必不可少 强劲性能笔记本推荐</a></dd></dl><ul>
+<li><a href="http://pad.yesky.com/274/38739274.shtml">微软Surface2降价 美国官网32GB版仅349美元</a></li>
+<li><a href="http://pad.yesky.com/108/38738608.shtml">开学前大促销 联想Yoga刺金平板售价2499元</a></li>
+<li><a href="http://pad.yesky.com/327/38738827.shtml">华为荣耀平板京东预定开始 最低799元起售</a></li>
+<li><a href="http://pad.yesky.com/113/38738613.shtml">最靠谱苹果爆料大神：大三学生马克·古尔曼</a></li>
+<li><a href="http://pad.yesky.com/191/38738191.shtml">代号为“Flounder”的HTC平板通过WiFi认证</a></li>
+</ul>
+</div>
+<div class="hidden">
+<dl><dt><a href="http://dc.yesky.com/480/38647980.shtml"><img src="http://image.tianjimedia.com//uploadImages/2014/231/46/8G2EKVVC7RYZ.jpg" alt="尼康 L330" /></a></dt>
+<dd><a href="http://dc.yesky.com/480/38647980.shtml">26倍高变焦 尼康COOLPIX L330 报价1459元</a></dd></dl><dl><dt><a href="http://dc.yesky.com/196/38647696.shtml"><img src="http://image.tianjimedia.com//uploadImages/2014/231/32/X89KZ0V6W8HI.jpg" alt="尼康S2800" /></a></dt>
+<dd><a href="http://dc.yesky.com/196/38647696.shtml">实用卡片 尼康Coolpix S2800报价699元</a></dd></dl><ul>
+<li><a href="http://dc.yesky.com/342/38662342.shtml">高清高速摄照一体 JVC GC-PX100报价8180元</a></li>
+<li><a href="http://dc.yesky.com/254/38739754.shtml">奥林巴斯E-M10/12-40mmPRO斩获EISA顶级大奖</a></li>
+<li><a href="http://www.yesky.com/ebook/50/38739550.shtml">“封女神”贴吧人气季军变身轻熟女郎</a></li>
+<li><a href="http://dc.yesky.com/424/38661924.shtml">专业中的专业 宾得中画幅645Z单机报59999元</a></li>
+<li><a href="http://dc.yesky.com/493/38677493.shtml">128G高容量 创见UHS-I 600X SDXC报价699元</a></li>
+</ul>
+</div>
+<div class="hidden">
+<dl><dt><a href="http://qq.yesky.com/172/38740172.shtml"><img src="http://image.tianjimedia.com//uploadImages/leadimage/2014/237/07/M0J111279414_2.jpg" alt="QQ空间个性说说：心乱的时候就特么的喜欢惹百度" /></a></dt>
+<dd><a href="http://qq.yesky.com/172/38740172.shtml">QQ空间个性说说：心乱的时候就特么的喜欢惹百度</a></dd></dl><dl><dt><a href="http://qq.yesky.com/173/38740173.shtml"><img src="http://image.tianjimedia.com//uploadImages/leadimage/2014/237/30/UC0R099K5H5A_2.jpg" alt="小清新伤感qq网名 シ爱情中没有胜利者" /></a></dt>
+<dd><a href="http://qq.yesky.com/173/38740173.shtml">小清新伤感qq网名 シ爱情中没有胜利者</a></dd></dl><ul>
+<li><a href="http://qq.yesky.com/87/38740087.shtml">QQ空间个性说说：像一场烂电影 ,看过就忘记</a></li>
+<li><a href="http://qq.yesky.com/170/38740170.shtml">个性伤感男生qq网名 敷衍最后成了累赘</a></li>
+<li><a href="http://qq.yesky.com/tupian/169/38740169.shtml">QQ搞笑签名：前女友就好象是亲生的,后女友就像是领养的</a></li>
+<li><a href="http://qq.yesky.com/86/38740086.shtml">伤感男生QQ网名 停留在记忆里的时间</a></li>
+<li><a href="http://qq.yesky.com/81/38740081.shtml">QQ空间个性说说：微笑永远是一个人身上最好看的东西</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="box jdrc">
+<div class="titb">焦点热词</div>
+<strong><A href="http://dev.yesky.com/more/412_46412_open_1.shtml">开源</A><A href="http://dev.yesky.com/more/412_46412_cloud_1.shtml">云计算</A><A class=zt18 href="http://dev.yesky.com/more/412_46412_bbate_1.shtml">大数据</A> <A class=zt24 href="http://dev.yesky.com/more/412_46412_ios_1.shtml">iOS开发</A><A class=zt20 href="http://dev.yesky.com/more/412_46412_html5_1.shtml">HTML5</A><A class=zt30 href="http://dev.yesky.com/more/412_46412_wp_1.shtml">WP开发</A><A href="http://dev.yesky.com/more/412_46412_java_1.shtml">Java</A><A href="http://dev.yesky.com/more/412_46412_oracle_1.shtml">Oracle</A><A href="http://win8.yesky.com/">Windows8</A><A class=zt30 href="http://dev.yesky.com/more/412_46412_andr_1.shtml">Android开发</A>
+</strong></div>
+<span id="jxslist"></span>
+<div id="right_taobao_adbox"></div>
+</div><div class="clear"></div></div>
+<div id="foot"><div class="channel_content">
+<a rel="nofollow" href="http://www.tianjimedia.com/372/11453872.shtml">关于我们</a>|<a rel="nofollow" href="http://www.tianjimedia.com/english/">About us</a>|<a rel="nofollow" href="http://www.tianjimedia.com/382/11453882.shtml">天极服务</a>|<a rel="nofollow" href="http://www.yesky.com/focus/">天极大视野</a>|<a rel="nofollow" href="http://www.tianjimedia.com/more/32560_22516_tjdt_1.shtml">天极动态</a>|<a rel="nofollow" href="http://www.tianjimedia.com/412/11453912.shtml">加入我们</a>|<a href="http://www.yesky.com/sitemap.shtml">网站地图</a>|<a rel="nofollow" href="http://www.tianjimedia.com/408/11453908_4.shtml">网站律师</a>|<a href="http://link.yesky.com/">友情合作</a>|<a rel="nofollow" href="http://rss.yesky.com/">RSS订阅</a>|<a rel="nofollow" href="http://opinion.yesky.com/reader/reader.jhtml?sitemapId=22&amp;url=http://www.yesky.com">意见反馈</a><span>Copyright (C) 1999-2014 Yesky.com, All Rights Reserved 版权所有 天极网络</span><span>京公网安备11010802015384号</span>
+</div></div>
+<ul class="sidebar"><li><a href="http://dev.yesky.com" class="chal" target="_self" title="返回频道"></a></li><li class="hidden"><a href="#relink" class="xgwz" target="_self" title="相关文章"></a></li><li><a href="#pl" class="pl" target="_self" title="相关评论"></a></li><li><a href="#top" class="top" target="_self" title="返回顶部"></a></li></ul>
+<script src="http://www.yesky.com/TLimages2009/yesky/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="http://www.yesky.com/TLimages2009/yesky/js/article2013.js" type="text/javascript"></script>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=13465" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!--finally loading-->
+<span id="span_jxslist" class="hidden"> 
+<script type="text/javascript">
+if(v_productid>0){
+document.write("<script src=\"http://interface.product.yesky.com/partner/product/propricewithregion.do?productid="+v_productid+"&rtype=js\"><\/script>");
+document.write("<script type=\"text/javascript\" src=\"http://js.tianjimedia.com/TLimages2009/yesky/js/article_jxslist_2013.js\"><\/script>");
+}
+</script>
+</span>
+<span id="span_right_baidu_adbox" class="hidden"><script type="text/javascript">/*文章页广告位*/ var cpro_id = 'u702233';</script><script src="http://cpro.baidu.com/cpro/ui/c.js" type="text/javascript"></script></span> 
+<span id="span_right_taobao_adbox" class="hidden"> </span> 
+<script type="text/javascript">
+document.getElementById("jxslist").innerHTML=document.getElementById("span_jxslist").innerHTML;document.getElementById("span_jxslist").innerHTML="";
+document.getElementById("right_baidu_adbox").innerHTML=document.getElementById("span_right_baidu_adbox").innerHTML;
+document.getElementById("span_right_baidu_adbox").innerHTML="";
+document.getElementById("right_taobao_adbox").innerHTML=document.getElementById("span_right_taobao_adbox").innerHTML;
+document.getElementById("span_right_taobao_adbox").innerHTML="";
+</script>
+<!--sina weibo-->
+<span id="span_snopen"><script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+<wb:follow-button type="red_4" uid="1649608047" social="text" width="460" height="40"></wb:follow-button></span>
+<script type="text/javascript">
+document.getElementById("snopen").innerHTML=document.getElementById("span_snopen").innerHTML;
+document.getElementById("span_snopen").innerHTML="";
+</script>
+<!--baidu-->
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0e8d8a461a52de0b1adddeba42c3b860";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script src="http://www.yesky.com/monitorjs/imp-zz.js" type="text/javascript"></script>
+
+<!-- 91603：天极网_开发频道_内容页_视频 类型：浮层广告位 尺寸：---> 
+<script type="text/javascript">//<![CDATA[ 
+ac_as_id = 91603; 
+ac_format = 0; 
+ac_mode = 1; 
+ac_group_id = 1; 
+ac_server_base_url = "afp.csbew.com/"; 
+//]]></script> 
+<script type="text/javascript" src="http://s.csbew.com/k.js"></script>
+<!-- baidu-tc footer{"type":"CLEAN","return_text":"天极WAP站","return_href":"http://wap.yesky.com/","channel_text_1":"返回天极网首页","channel_href_1":"http://www.yesky.com/"}-->
+</body></html>            
