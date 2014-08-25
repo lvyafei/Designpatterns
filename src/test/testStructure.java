@@ -4,10 +4,12 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -33,6 +35,13 @@ import behavioralType.responsibilityPattern.GeneralManager;
 import behavioralType.responsibilityPattern.Handler;
 import behavioralType.responsibilityPattern.ProjectManager;
 import behavioralType.statePattern.VoteManager;
+import behavioralType.strategyPattern.BackDoor;
+import behavioralType.strategyPattern.BlackEnemy;
+import behavioralType.strategyPattern.GivenGreenLight;
+import behavioralType.templatePattern.Account;
+import behavioralType.templatePattern.CDAccount;
+import behavioralType.templatePattern.MoneyMarketAccount;
+import behavioralType.visitorPattern.BeeAndFlowers;
 import structureType.adapterPattern.Adapter;
 import structureType.adapterPattern.Target;
 import structureType.bridgePattern.Abstraction;
@@ -359,5 +368,44 @@ public class testStructure {
 
          subject.setCustomerState("已付款");
          subject.Notify();
+	}
+	@Test
+	/**
+	 * 策略模式
+	 */
+	public void teststrategy(){
+	    behavioralType.strategyPattern.Context context;  
+        //刚到吴国的时候拆开第一个  
+        System.out.println("----------刚刚到吴国的时候拆开第一个---------------");  
+        context = new behavioralType.strategyPattern.Context(new BackDoor());  
+        context.operate();//拆开执行  
+          
+        //当刘备乐不思蜀时，拆开第二个  
+        System.out.println("----------刘备乐不思蜀，拆第二个了---------------");  
+        context = new behavioralType.strategyPattern.Context(new GivenGreenLight());  
+        context.operate();//拆开执行  
+          
+        //孙权的小追兵了，咋办？拆开第三个锦囊  
+        System.out.println("----------孙权的小追兵了，咋办？拆开第三个锦囊---------------");  
+        context = new behavioralType.strategyPattern.Context(new BlackEnemy());  
+        context.operate();//拆开执行  
+	}
+	@Test
+	/**
+	 * 模板方法模式
+	 */
+	public void testtemplate(){
+		 Account account = new MoneyMarketAccount();
+	     System.out.println("货币市场账号的利息数额为：" + account.calculateInterest());
+	     account = new CDAccount();
+	     System.out.println("定期账号的利息数额为：" + account.calculateInterest());
+	}
+	@Test
+	/**
+	 * 访问者模式
+	 */
+	public void testvisitor(){
+		BeeAndFlowers beeandflower=new BeeAndFlowers();
+		beeandflower.test();
 	}
 }
