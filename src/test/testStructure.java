@@ -13,6 +13,12 @@ import java.util.List;
 
 import org.junit.Test;
 
+import createType.factoryPattern.ExportFactory;
+import createType.factoryPattern.ExportFile;
+import createType.factoryPattern.ExportHtmlFactory;
+import createType.prototypePattern.ConcretePrototype;
+import createType.singletonPattern.Emperor;
+import createType.singletonPattern.EmperorNew;
 import behavioralType.commandPattern.CommandChange;
 import behavioralType.commandPattern.CommandOff;
 import behavioralType.commandPattern.CommandOn;
@@ -60,6 +66,48 @@ import structureType.proxyPattern.MathProxy;
 
 public class testStructure {
 
+	@Test
+	/**
+	 * 单例模式
+	 */
+	public void testsingleton(){
+		//第一天  
+        Emperor  emperor1 = Emperor.getInstance();  
+        //第一天见的皇帝叫什么名字呢？  
+        emperor1.emperorInfo();  
+        //第二天  
+        Emperor  emperor2 = Emperor.getInstance();  
+        //第二天见的皇帝叫什么名字呢？  
+        emperor2.emperorInfo();  
+        //第三天  
+        Emperor  emperor3 = Emperor.getInstance();  
+        //第三天见的皇帝叫什么名字呢？  
+        emperor3.emperorInfo();     
+        //三天见的皇帝都是同一个人，荣幸吧，呵呵。  
+        System.out.println("==============");
+        EmperorNew.emperorInfo();
+	}
+	@Test
+	/**
+	 * 工厂模式
+	 */
+	public void testfactory(){
+		 String data = "";
+	     ExportFactory exportFactory = new ExportHtmlFactory();
+	     ExportFile ef = exportFactory.factory("financial");
+	     ef.export(data);
+	}
+	@Test
+	/**
+	 * 原型模式
+	 */
+	public void testprototype() throws CloneNotSupportedException{
+		ConcretePrototype cp = new ConcretePrototype();  
+        for(int i=0; i< 10; i++){  
+            ConcretePrototype clonecp = (ConcretePrototype)cp.clone();  
+            clonecp.show();  
+        }  
+	}
 	@Test
 	/**
 	 * 桥接模式
