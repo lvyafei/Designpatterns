@@ -6,11 +6,11 @@
 
 创建范例全部是关于如何创建实例的。这组范例可以被划分为两组：类创建范例及对象创建范例。类创建实例在实例化过程中有效的使用类之间的继承关系，对象创建范例则使用代理来完成其任务
 
-> ### 抽象工厂（Abstact Factory）
-> ### 构造器(Builder Pattern)
-> ### 工厂方法(Factory Method pattern)
-> ### 原型(Prototype pattern)
-> ### 单例模式(Singleton pattern)
+> ### [抽象工厂（Abstact Factory）](http://blog.csdn.net/zhengzhb/article/details/7359385)
+> ### [构造器(Builder Pattern)](http://blog.csdn.net/luhuajcdd/article/details/8806897)
+> ### [工厂方法(Factory Method pattern)](http://www.cnblogs.com/java-my-life/archive/2012/03/25/2416227.html)
+> ### [原型(Prototype pattern)](http://blog.csdn.net/zhengzhb/article/details/7393528)
+> ### [单例模式(Singleton pattern)](http://yangguangfu.iteye.com/blog/815944)
 
 
 [结构范例](http://www.cnblogs.com/Terrylee/archive/2006/06/01/designpattern_articles_structpattern.html)
@@ -31,18 +31,26 @@
 
 这组范例都是关于对象之间如何通讯的。
 
-> ### 职责链(Chain-of-responsibility pattern)
-> ### 命令(Command pattern)
-> ### 翻译器(Interpreter pattern)
-> ### 迭代器(Iterator pattern)
-> ### 仲裁器(Mediator pattern)
-> ### 回忆(Memento pattern)
-> ### 观察者(Observer pattern)
-> ### 状态机(State pattern)
-> ### 策略(Strategy pattern)
-> ### 模板方法(Template method pattern)
-> ### 参观者(Visitor)
+> ### [职责链(Chain-of-responsibility pattern)](http://www.cnblogs.com/java-my-life/archive/2012/05/28/2516865.html)
+> ### [命令(Command pattern)](http://www.cnblogs.com/devinzhang/archive/2012/01/06/2315235.html)
+> ### [翻译器(Interpreter pattern)](http://wangwengcn.iteye.com/blog/1733971)
+> ### [迭代器(Iterator pattern)](http://www.cnblogs.com/liuling/archive/2013/04/14/iterator.html)
+> ### [仲裁器(Mediator pattern)](http://www.cnblogs.com/BeyondAnyTime/archive/2012/08/30/2663922.html)
+> ### [回忆(Memento pattern)](http://www.cnblogs.com/java-my-life/archive/2012/06/06/2534942.html)
+> ### [观察者(Observer pattern)](http://www.cnblogs.com/wangjq/archive/2012/07/12/2587966.html)
+> ### [状态机(State pattern)](http://www.cnblogs.com/java-my-life/archive/2012/06/08/2538146.html)
+> ### [策略(Strategy pattern)](http://yangguangfu.iteye.com/blog/815107)
+> ### [模板方法(Template method pattern)](http://www.cnblogs.com/java-my-life/archive/2012/05/14/2495235.html)
+> ### [参观者(Visitor)](http://dev.yesky.com/82/2036582.shtml)
 
+设计模式六大原则
+=====
+> ### [单一职责原则](http://blog.csdn.net/zhengzhb/article/details/7278174)
+> ### [里氏替换原则](http://blog.csdn.net/zhengzhb/article/details/7281833)
+> ### [依赖倒置原则](http://blog.csdn.net/zhengzhb/article/details/7289269)
+> ### [接口隔离原则](http://blog.csdn.net/zhengzhb/article/details/7296921)
+> ### [迪米特法则](http://blog.csdn.net/zhengzhb/article/details/7296930)
+> ### [开闭原则](http://blog.csdn.net/zhengzhb/article/details/7296944)
 
 -----------------------------Readme.md编辑指南------------------------------------------
 大标题
