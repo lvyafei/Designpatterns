@@ -13,6 +13,12 @@ import java.util.List;
 
 import org.junit.Test;
 
+import createType.abstactfactoryPattern.Factory;
+import createType.abstactfactoryPattern.IFactory;
+import createType.builderPattern.BMWBuilder;
+import createType.builderPattern.BenzBuilder;
+import createType.builderPattern.Car;
+import createType.builderPattern.Director;
 import createType.factoryPattern.ExportFactory;
 import createType.factoryPattern.ExportFile;
 import createType.factoryPattern.ExportHtmlFactory;
@@ -107,6 +113,33 @@ public class testStructure {
             ConcretePrototype clonecp = (ConcretePrototype)cp.clone();  
             clonecp.show();  
         }  
+	}
+	@Test
+	/**
+	 * 抽象工厂
+	 */
+	public void testabstractfactory(){
+		 IFactory factory = new Factory();  
+	     factory.createProduct1().show();  
+	     factory.createProduct2().show();  
+	}
+	@Test
+	/**
+	 * 构造器模式
+	 */
+	public void testbuilder(){
+		BenzBuilder benzBuilder = new BenzBuilder() ;  
+        BMWBuilder bmwBuilder = new BMWBuilder() ;  
+          
+        Director benzDirector = new Director(benzBuilder) ;  
+        benzDirector.getCarTogether() ;  
+        Car benz = benzBuilder.getCar() ;  
+        benz.run() ;  
+        System.out.println("----------------------------");  
+        Director bmwDirector = new Director(bmwBuilder) ;  
+        bmwDirector.getCarTogether() ;  
+        Car bmw = bmwBuilder.getCar() ;  
+        bmw.run() ;  
 	}
 	@Test
 	/**
