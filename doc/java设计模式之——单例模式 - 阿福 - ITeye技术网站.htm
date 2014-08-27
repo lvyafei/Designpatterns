@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>java设计模式之——单例模式 - 阿福 - ITeye技术网站</title>
+    <meta name="description" content="  java设计模式之——单例模式      1，什么是单例模式？  单例模式确保一个类只有一个实例，自行提供这个实例并向整个系统提供这个实例。     2，单例模式适合场景？      单例模式适合于一个类只有一个实例的情况，比如窗口管理器，打印缓冲池和文件系统，它们都是原型的例子。典型的情况是，那些对象的类型被遍及一个软件系统  的不同对象访问，因此需要一个全局的访问指针，这便是众所周知的单例模 ..." />
+    <meta name="keywords" content="设计模式, Java, 多线程, 项目管理 java设计模式之——单例模式" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="search" type="application/opensearchdescription+xml" href="/open_search.xml" title="ITeye" />
+    <link href="/rss" rel="alternate" title="阿福" type="application/rss+xml" />
+    <link href="http://www.iteye.com/stylesheets/blog.css?1406686577" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://www.iteye.com/stylesheets/themes/blog/blue.css?1326191326" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://www.iteye.com/javascripts/application.js?1358214518" type="text/javascript"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="http://www.iteye.com/javascripts/syntaxhighlighter/SyntaxHighlighter.css?1348819953" media="screen" rel="stylesheet" type="text/css" />
+  <script src="http://www.iteye.com/javascripts/syntaxhighlighter/shCoreCommon.js?1325907333" type="text/javascript"></script>
+<script src="http://www.iteye.com/javascripts/hotkey.js?1324994303" type="text/javascript"></script>
+  <script src="http://www.iteye.com/javascripts/code_favorites.js?1358214518" type="text/javascript"></script>
+<script src="http://www.iteye.com/javascripts/weiboshare.js?1324994303" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="header">
+      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">招聘</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+      <div id="user_nav">
+      <a href="/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="/login">登录</a>
+    <a href="/signup" class="nobg">注册</a>
+  </div>
+
+    </div>
+
+    <div id="page">
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="/">阿福</a></h1>
+        </div>
+        <div id='fd'></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class='blog_navbar_for'><a href="http://yangguangfu.iteye.com"><strong>博客</strong></a></li>
+            <li ><a href="/weibo">微博</a></li>
+            <li ><a href="/album">相册</a></li>
+            <li ><a href="/link">收藏</a></li>
+            <li ><a href="/blog/guest_book">留言</a></li>
+            <li ><a href="/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="" />
+              <input class="submit_search" type="submit" value="" />
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style='display:none'>
+  <a href="http://yangguangfu.iteye.com" class="p-author" target="_blank">yangguangfu</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="/blog/815944">java设计模式之——单例模式</a>
+      <em class="actions">      </em>
+    </h3>
+    
+        <div class='news_tag'><a href="http://www.iteye.com/blogs/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><a href="http://www.iteye.com/blogs/tag/Java">Java</a><a href="http://www.iteye.com/blogs/tag/%E5%A4%9A%E7%BA%BF%E7%A8%8B">多线程</a><a href="http://www.iteye.com/blogs/tag/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86">项目管理</a>&nbsp;</div>
+  </div>
+
+  <div id="blog_content" class="blog_content">
+    <h3>
+<a href="/blog/815787">java设计模式之——单例模式</a>
+
+</h3>
+<p>1，什么是单例模式？</p>
+<p>单例模式确保一个类只有一个实例，自行提供这个实例并向整个系统提供这个实例。</p>
+<p> </p>
+<p>2，单例模式适合场景？</p>
+<p>    单例模式适合于一个类只有一个实例的情况，比如窗口管理器，打印缓冲池和文件系统，它们都是原型的例子。典型的情况是，那些对象的类型被遍及一个软件系统
+的不同对象访问，因此需要一个全局的访问指针，这便是众所周知的单例模式的应用。当然这只有在你确信你不再需要任何多于一个的实例的情况下。
+<br>
+
+单例模式的用意在于前一段中所关心的。通过单例模式你可以：
+</p>
+<p> </p>
+<p>3，单例模式特点：
+</p>
+<p> <br>
+
+确保一个类只有一个实例被建立 
+<br>
+
+提供了一个对对象的全局访问指针 
+<br>
+
+在不影响单例类的客户端的情况下允许将来有多个实例
+。
+</p>
+<p> </p>
+<p> </p>
+<p>4，应用场景举例：</p>
+<p>我们举个比较难复制的对象：皇帝</p>
+<p>   中国的历史上很少出现两个皇帝并存的时期，是有，但不多，那我们就认为皇帝是个单例模式，在这个场景中，有皇帝，有大臣，大臣是天天要上朝参见皇帝的，今天参拜的皇帝应该是昨天、前天的一样（过渡期的不考虑，别找茬哦），大臣磕完头，抬头一看，嗨，还是昨天那个皇帝，单例模式，绝对的单例模式。</p>
+<p> </p>
+<p>先看看类图：<img alt="" src="http://dl.iteye.com/upload/attachment/351394/6ba881b9-dd8a-37c2-9733-288f73976074.jpg"></p>
+<p> </p>
+<p>然后我们看程序实现，先定义一个皇帝：</p>
+<pre class="java" name="code">package com.yangguangfu.singleton;
+/**
+ * 
+ * @author 阿福(trygf521@126.com)&lt;br&gt;
+ *中国的历史上都是一个朝代一个皇帝，有两个皇帝的话，必然要PK一个皇帝出来
+ */
+public class Emperor {
+	//定义一个皇帝放在那里，然后给这个皇帝起个名字
+	private static Emperor emperor = null;
+	
+	private Emperor(){
+		//世俗和道德的约束你，目的就不让你产生第二个皇帝
+	}
+	
+	public static Emperor getInstance(){
+		if(emperor==null){
+			emperor = new Emperor();
+		}
+		return emperor;
+	}
+	
+	//皇帝叫什么名字呀
+	public static void emperorInfo(){
+		System.out.println("我是皇帝某某某...阿福");
+	}
+
+}
+</pre>
+ 
+<p>然后定义大臣</p>
+<pre class="java" name="code">package com.yangguangfu.singleton;
+
+public class Minister {
+	public static void main(String[] args) {
+		//第一天
+		Emperor  emperor1 = Emperor.getInstance();
+		//第一天见的皇帝叫什么名字呢？
+		emperor1.emperorInfo();
+		
+		//第二天
+		Emperor  emperor2 = Emperor.getInstance();
+		//第二天见的皇帝叫什么名字呢？
+		emperor2.emperorInfo();
+		
+		//第三天
+		Emperor  emperor3 = Emperor.getInstance();
+		//第三天见的皇帝叫什么名字呢？
+		emperor3.emperorInfo();
+		
+		//三天见的皇帝都是同一个人，荣幸吧，呵呵。
+	}
+
+}
+</pre>
+<p>
+ 
+看到没，大臣天天见到的都是同一个皇帝，不会产生混乱情况，反正都是一个皇帝，是好是坏就这一个，只要提到皇帝，大家都知道指的的谁，清晰，而又明确。问题是通常情况，还有个例外的，如果同一个时期同一个朝代有两个皇帝，怎么办？ </p>
+<p>      单例模式很简单，就是在构造函数中多加了一个构造函数，访问权限是private的就可以了，这个模式是简单，但是简单中透着风险，风险？什么风险？在一个B/S项目中，每个HTTP Request请求道J2EE的容器上后都创建了一个线程，每个线程都要创建同一个单例对象，怎么办才好呢？好，我们写一个通用的单例程序，然后分析一下：</p>
+<p> </p>
+<p>我们看看皇帝中的：if(emperor==null){ emperor = new Emperor();   }</p>
+<p> 我们来看看上面这段代码，假如现在有两个线程A线程和B线程，线程A执行到emperor = new Emperor();，正在申请内存分配，可能需要0.001毫秒，就在这0.001毫秒之内，线程B执行if(emperor==null)，你说这个时候判断条件是true还是false?是true，那然后呢？线程B也往下走，于是乎就在内存中就有两个皇帝了，看看是不是出问题了？如果你是个单例去拿一个序列号或者创建一个信号资源的时候，会怎么样？业务逻辑混乱！数据一致性校验失败！最重要的是你从代码上看不出上面问题，这才是要命的！应为有这个情况基本上你是重视不了的，不寒而栗吧，那怎么修改？有多重方案，我就说一种，能简单的、彻底解决问题的方案：</p>
+<pre class="java" name="code">package com.yangguangfu.singleton;
+/**
+ * 
+ * @author 阿福(trygf521@126.com)&lt;br&gt;
+ *中国的历史上都是一个朝代一个皇帝，有两个皇帝的话，必然要PK一个皇帝出来
+ */
+public class EmperorNew {
+	//定义一个皇帝放在那里，然后给这个皇帝起个名字
+	private static final EmperorNew emperorNew = new EmperorNew();;
+	
+	private EmperorNew(){
+		//世俗和道德的约束你，目的就不让你产生第二个皇帝
+	}
+	
+	public  synchronized static  EmperorNew getInstance(){
+		
+		return emperorNew;
+	}
+	
+	//皇帝叫什么名字呀
+	public static void emperorInfo(){
+		System.out.println("我是皇帝某某某...阿福");
+	}
+
+}
+</pre>
+ 
+<p>直接new一个对象传递给类的成员变量emperorNew,你要的时候getInstance()直接返回给你，问题解决！欧啦！</p>
+<p> </p>
+  </div>
+
+  
+  <div class="attachments">
+    
+      
+        <ul>
+          <li><a href="http://dl.iteye.com/topics/download/7344c8b1-8f87-3794-a65d-9ab66cc074f5">Singleton.zip</a> (6.3 KB)</li>
+          <li>描述: 单例模式源代码</li>
+          <li>下载次数: 26</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0035/1394/6ba881b9-dd8a-37c2-9733-288f73976074.jpg" target="_blank"><img src='http://dl2.iteye.com/upload/attachment/0035/1394/6ba881b9-dd8a-37c2-9733-288f73976074-thumb.jpg' class='magplus' title='点击查看原始大小图片' /></a></li>
+          <li>描述: 单例模式</li>
+          <li>大小: 46.8 KB</li>
+        </ul>
+      
+    
+    
+      <ul>
+        <li><a href="#" onclick="$$('div.attachments ul').invoke('show');$(this).up(1).hide();return false;">查看图片附件</a></li>
+      </ul>
+    
+  </div>
+
+
+
+  
+  
+  <div id="bottoms" class="clearfix">
+    <div id="digg_bottom" class="clearfix"><div class='digged'><strong>0</strong> <br/>顶</div><div class='digged'><strong>2</strong> <br/>踩</div></div>
+    <div id="share_weibo">分享到：
+      <a data-type='sina' href="javascript:;" title="分享到新浪微博"><img src="/images/sina.jpg"></a>
+      <a data-type='qq' href="javascript:;" title="分享到腾讯微博"><img src="/images/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="/blog/826969" class="next" title="android中自己写的日志类">android中自己写的日志类</a>
+      |
+      <a href="/blog/815787" class="pre" title="java设计模式之——代理模式">java设计模式之——代理模式</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2010-11-19 10:55</li>
+      <li>浏览 4001</li>
+      <li><a href="#comments">评论(1)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/architecture">企业架构</a></li>      
+      <li class='last'><a href="http://www.iteye.com/wiki/blog/815944" target="_blank" class="more">相关推荐</a></li>
+    </ul>
+  </div>
+
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2255613">
+  <div class="comment_title">
+    1 楼
+    <a href='http://wordedit.iteye.com' target='_blank' title='wordedit'>wordedit</a>
+    2012-04-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">那个静态方法的输出永远一样，根本不能说明当前获得的实例是同一个</div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="/login" style="background-color:white;"> <img src="/images/login_icon.png" style="vertical-align:middle; margin-right: 10px;" /></a><a href="/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 815944;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'java设计模式之——单例模式');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'java设计模式之——单例模式');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href='http://yangguangfu.iteye.com'><img alt="yangguangfu的博客" class="logo" src="http://www.iteye.com/upload/logo/user/999865/3453af19-ebac-3669-b593-10e3049eed9d.jpg?1407505335" title="yangguangfu的博客: 阿福" width="" /></a></div>
+  <div id="blog_owner_name">yangguangfu</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 702851 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="http://www.iteye.com/images/icon_minigender_1.gif?1324994303" title="男" /></li>
+              <li>来自: 北京</li>
+              <li><img src='/images/status/offline.gif'/></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style='font-weight:normal;font-size:12px;padding-left:30px;'><a href="/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://zy19880406.iteye.com' target='_blank'><img alt="zy19880406的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1324994303" title="zy19880406的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://zy19880406.iteye.com' target='_blank' title='zy19880406'>zy19880406</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://zytszone.iteye.com' target='_blank'><img alt="zytszone的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1324994303" title="zytszone的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://zytszone.iteye.com' target='_blank' title='zytszone'>zytszone</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://小victor.iteye.com' target='_blank'><img alt="小victor的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1324994303" title="小victor的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://小victor.iteye.com' target='_blank' title='小victor'>小victor</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://201312105644.iteye.com' target='_blank'><img alt="空位的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1324994303" title="空位的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://201312105644.iteye.com' target='_blank' title='空位'>空位</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="/">全部博客 (178)</a></li>
+                
+                  <li><a href="/category/162731">android (17)</a></li>
+                
+                  <li><a href="/category/167892">Vim常用命令 (1)</a></li>
+                
+                  <li><a href="/category/215813">321影音工作室 (4)</a></li>
+                
+                  <li><a href="/category/275101">321影音全部更新 (1)</a></li>
+                
+                  <li><a href="/category/300441">321浏览器 (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id='month_blogs'>
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="/blog/post">我的论坛</a> (0)
+                </li>
+                <li><a href="/blog/answered_problems">我的问答</a> (0)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="/blog/monthblog/2014-03">2014-03</a> (1)</li>
+                
+                  <li><a href="/blog/monthblog/2014-02">2014-02</a> (1)</li>
+                
+                  <li><a href="/blog/monthblog/2013-12">2013-12</a> (1)</li>
+                
+                <li><a href="/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href='http://chenchuandong.iteye.com' target='_blank' title='chenchuandong'>chenchuandong</a>： 
+                   ...<br />
+                  <a href="/blog/895379#bc2355345">Android activity属性设置大全 </a>
+                </li>
+                
+                <li>
+                  <a href='http://yuhuiguan871890.iteye.com' target='_blank' title='yuhuiguan871890'>yuhuiguan871890</a>： 
+                  楼主的例子看了才懂，例子真心不错<br />
+                  <a href="/blog/815787#bc2355339">java设计模式之——代理模式</a>
+                </li>
+                
+                <li>
+                  <a href='http://xuminliang.iteye.com' target='_blank' title='xuminliang'>xuminliang</a>： 
+                   很好用，谢谢分享<br />
+                  <a href="/blog/832809#bc2354535">android ListView的分段显示、分页显示（附源码）</a>
+                </li>
+                
+                <li>
+                  <a href='http://lliiqiang.iteye.com' target='_blank' title='lliiqiang'>lliiqiang</a>： 
+                  处理方式一样.<br />
+                  <a href="/blog/815107#bc2354342">java设计模式之——策略模式</a>
+                </li>
+                
+                <li>
+                  <a href='http://lliiqiang.iteye.com' target='_blank' title='lliiqiang'>lliiqiang</a>： 
+                  应该是根据状态作出有效动作，其它无关状态随便.<br />
+                  <a href="/blog/815107#bc2354341">java设计模式之——策略模式</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+      </div>
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr/>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br />
+          &copy; 2003-2014 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script>
+
+<script src="http://csdnimg.cn/pubfooter/js/tracking.js?version=20130923164150" type="text/javascript"></script>
+
+    
+    
+  </body>
+</html>

@@ -1,0 +1,770 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>java设计模式之——策略模式 - 阿福 - ITeye技术网站</title>
+    <meta name="description" content="java设计模式之——策略模式     1，什么是策略模式？  策略模式，又叫算法簇模式，就是定义了不同的算法族，并且之间可以互相替换，此模式让算法� ..." />
+    <meta name="keywords" content="设计模式, Java, 算法 java设计模式之——策略模式" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="search" type="application/opensearchdescription+xml" href="/open_search.xml" title="ITeye" />
+    <link href="/rss" rel="alternate" title="阿福" type="application/rss+xml" />
+    <link href="http://www.iteye.com/stylesheets/blog.css?1406686577" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://www.iteye.com/stylesheets/themes/blog/blue.css?1326191326" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://www.iteye.com/javascripts/application.js?1358214518" type="text/javascript"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="http://www.iteye.com/javascripts/syntaxhighlighter/SyntaxHighlighter.css?1348819953" media="screen" rel="stylesheet" type="text/css" />
+  <script src="http://www.iteye.com/javascripts/syntaxhighlighter/shCoreCommon.js?1325907333" type="text/javascript"></script>
+<script src="http://www.iteye.com/javascripts/hotkey.js?1324994303" type="text/javascript"></script>
+  <script src="http://www.iteye.com/javascripts/code_favorites.js?1358214518" type="text/javascript"></script>
+<script src="http://www.iteye.com/javascripts/weiboshare.js?1324994303" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="header">
+      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">招聘</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+      <div id="user_nav">
+      <a href="/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="/login">登录</a>
+    <a href="/signup" class="nobg">注册</a>
+  </div>
+
+    </div>
+
+    <div id="page">
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="/">阿福</a></h1>
+        </div>
+        <div id='fd'></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class='blog_navbar_for'><a href="http://yangguangfu.iteye.com"><strong>博客</strong></a></li>
+            <li ><a href="/weibo">微博</a></li>
+            <li ><a href="/album">相册</a></li>
+            <li ><a href="/link">收藏</a></li>
+            <li ><a href="/blog/guest_book">留言</a></li>
+            <li ><a href="/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="" />
+              <input class="submit_search" type="submit" value="" />
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style='display:none'>
+  <a href="http://yangguangfu.iteye.com" class="p-author" target="_blank">yangguangfu</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="/blog/815107">java设计模式之——策略模式</a>
+      <em class="actions">      </em>
+    </h3>
+    
+        <div class='news_tag'><a href="http://www.iteye.com/blogs/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><a href="http://www.iteye.com/blogs/tag/Java">Java</a><a href="http://www.iteye.com/blogs/tag/%E7%AE%97%E6%B3%95">算法</a>&nbsp;</div>
+  </div>
+
+  <div id="blog_content" class="blog_content">
+    <p>java设计模式之——策略模式</p>
+<p> </p>
+<p>1，什么是策略模式？</p>
+<p>策略模式，又叫算法簇模式，就是定义了不同的算法族，并且之间可以互相替换，此模式让算法的变化独立于使用算法的客户。 </p>
+<p> </p>
+<p>2，策略模式有什么好处？</p>
+<p>     策略模式的好处在于你可以动态的改变对象的行为。</p>
+<p> </p>
+<p>3，设计原则</p>
+<p>  <br>
+     设计原则是把一个类中经常改变或者将来可能改变的部分提取出来，作为一个接口（c++z中可以用虚类），然后在类中包含这个对象的实例，这样类的实例在运行时就可以随意调用实现了这个接口的类的行为。下面是一个例子。  </p>
+<p><br>
+      
+策略模式属于对象行为型模式，主要针对一组算法，将每一个算法封装到具有共同接口的独立的类中，从而使得它们可以相互替换。策略模式使得算法可以在不影响
+到客户端的情况下发生变化。通常，策略模式适用于当一个应用程序需要实现一种特定的服务或者功能，而且该程序有多种实现方式时使用。</p>
+<p> </p>
+<p>4 ，策略模式中有三个对象：<br>
+（1）       环境对象：该类中实现了对抽象策略中定义的接口或者抽象类的引用。<br>
+（2）       抽象策略对象：它可由接口或抽象类来实现。<br>
+（3）       具体策略对象：它封装了实现同不功能的不同算法。<br>
+利用策略模式构建应用程序，可以根据用户配置等内容，选择不同有算法来实现应用程序的功能。具体的选择有环境对象来完成。采用这种方式可以避免由于使用条件语句而带来的代码混乱，提高应用程序的灵活性与条理性。</p>
+<p> </p>
+<p>5，应用场景举例：</p>
+<p> </p>
+<p>刘备要到江东娶老婆了，走之前诸葛亮给赵云（伴郎）三个锦囊妙计，说是按天机拆开能解决棘手问题，嘿，还别说，真解决了大问题，搞到最后是周瑜陪了夫人又折兵，那咱们先看看这个场景是什么样子的。</p>
+<p> </p>
+<p>先说说这个场景中的要素：三个妙计，一个锦囊，一个赵云，妙计是亮哥给的，妙计放在锦囊里，俗称就是锦囊妙计嘛，那赵云就是一个干活的人，从锦囊取出妙计，执行，然后获胜。用java程序怎么表现这些呢？</p>
+<p>那我们先来看看图？</p>
+<p><br><img alt="" src="http://dl.iteye.com/upload/attachment/350678/06a4b9d7-a392-3a49-a1ff-6b1c2342acdb.jpg"></p>
+<p> </p>
+<p>三个妙计是同一类型的东西，那咱就写个接口：</p>
+<pre class="java" name="code">package com.yangguangfu.strategy;
+/**
+ * 
+ * @author trygf521@126.com:阿福
+ * 首先定义一个策略接口，这是诸葛亮老人家给赵云的三个锦囊妙计的接口。
+ */
+public interface IStrategy {
+	//每个锦囊妙计都是一个可执行的算法。
+	public void operate();
+
+}
+</pre>
+ 
+<p>然后再写三个实现类，有三个妙计嘛：</p>
+<p> </p>
+<p>妙计一：初到吴国：</p>
+<pre class="java" name="code">package com.yangguangfu.strategy;
+/**
+ * 
+ * @author trygf521@126.com:阿福
+ * 找乔国老帮忙，使孙权不能杀刘备。
+ */
+public class BackDoor implements IStrategy {
+
+	@Override
+	public void operate() {
+		System.out.println("找乔国老帮忙，让吴国太给孙权施加压力，使孙权不能杀刘备...");
+	}
+
+}
+</pre>
+ 
+<p>妙计二：求吴国太开个绿灯，放行：</p>
+<pre class="java" name="code">package com.yangguangfu.strategy;
+/**
+ * 
+ * @author trygf521@126.com:阿福
+ * 求吴国太开个绿灯。
+ */
+public class GivenGreenLight implements IStrategy {
+
+	@Override
+	public void operate() {
+		System.out.println("求吴国太开个绿灯，放行！");
+		
+	}
+
+}
+</pre>
+<p> 妙计三：孙夫人断后，挡住追兵：</p>
+<pre class="java" name="code">package com.yangguangfu.strategy;
+/**
+ * 
+ * @author trygf521@126.com:阿福
+ * 孙夫人断后，挡住追兵。
+ */
+public class BlackEnemy implements IStrategy {
+
+	@Override
+	public void operate() {
+		System.out.println("孙夫人断后，挡住追兵...");
+
+	}
+
+}
+</pre>
+<p> </p>
+<p>好了，大家看看，三个妙计是有了，那需要有个地方放妙计啊，放锦囊里：</p>
+<p> </p>
+<pre class="java" name="code">package com.yangguangfu.strategy;
+/**
+ * 
+ * @author trygf521@126.com:阿福
+ *
+ */
+public class Context {
+	
+	private IStrategy strategy;
+	//构造函数，要你使用哪个妙计
+	public Context(IStrategy strategy){
+		this.strategy = strategy;
+	}
+	
+	public void operate(){
+		this.strategy.operate();
+	}
+
+}
+</pre>
+ 
+<p> </p>
+<p>然后就是赵云雄赳赳的揣着三个锦囊，拉着已步入老年行列，还想着娶纯情少女的，色咪咪的刘备老爷子去入赘了，嗨，还别说，亮哥的三个妙计还真不错，瞧瞧：</p>
+<pre class="java" name="code">package com.yangguangfu.strategy;
+
+public class ZhaoYun {
+
+	/**
+	 * 赵云出场了，他根据诸葛亮给他的交代，依次拆开妙计
+	 */
+	public static void main(String[] args) {
+		Context context;
+		
+		//刚到吴国的时候拆开第一个
+		System.out.println("----------刚刚到吴国的时候拆开第一个---------------");
+		context = new Context(new BackDoor());
+		context.operate();//拆开执行
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		
+		//当刘备乐不思蜀时，拆开第二个
+		System.out.println("----------刘备乐不思蜀，拆第二个了---------------");
+		context = new Context(new GivenGreenLight());
+		context.operate();//拆开执行
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		
+		//孙权的小追兵了，咋办？拆开第三个锦囊
+		System.out.println("----------孙权的小追兵了，咋办？拆开第三个锦囊---------------");
+		context = new Context(new BlackEnemy());
+		context.operate();//拆开执行
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	}
+
+}
+</pre>
+ 
+<p>后话：就这三招，搞得的周郎是“赔了夫人又折兵”呀！这就是策略模式，高内聚低耦合的特点也表现出来了，还有一个就是扩展性，也就是OCP原则，策略类可以继续添加下去气，只是修改Context.java就可以了，这个不多说了，自己领会吧。</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+  </div>
+
+  
+  <div class="attachments">
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0035/0678/06a4b9d7-a392-3a49-a1ff-6b1c2342acdb.jpg" target="_blank"><img src='http://dl2.iteye.com/upload/attachment/0035/0678/06a4b9d7-a392-3a49-a1ff-6b1c2342acdb-thumb.jpg' class='magplus' title='点击查看原始大小图片' /></a></li>
+          
+          <li>大小: 61 KB</li>
+        </ul>
+      
+    
+      
+        <ul>
+          <li><a href="http://dl.iteye.com/topics/download/6b316c5e-8d6e-3ef1-8f50-018e994d2726">Strategy.zip</a> (9 KB)</li>
+          <li>描述: 策略模式源代码</li>
+          <li>下载次数: 119</li>
+        </ul>
+      
+    
+    
+      <ul>
+        <li><a href="#" onclick="$$('div.attachments ul').invoke('show');$(this).up(1).hide();return false;">查看图片附件</a></li>
+      </ul>
+    
+  </div>
+
+
+
+  
+  
+  <div id="bottoms" class="clearfix">
+    <div id="digg_bottom" class="clearfix"><div class='digged'><strong>17</strong> <br/>顶</div><div class='digged'><strong>2</strong> <br/>踩</div></div>
+    <div id="share_weibo">分享到：
+      <a data-type='sina' href="javascript:;" title="分享到新浪微博"><img src="/images/sina.jpg"></a>
+      <a data-type='qq' href="javascript:;" title="分享到腾讯微博"><img src="/images/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="/blog/815787" class="next" title="java设计模式之——代理模式">java设计模式之——代理模式</a>
+      |
+      <a href="/blog/813001" class="pre" title="手机屏幕适配 ">手机屏幕适配 </a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2010-11-18 15:07</li>
+      <li>浏览 23199</li>
+      <li><a href="#comments">评论(21)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/architecture">企业架构</a></li>      
+      <li class='last'><a href="http://www.iteye.com/wiki/blog/815107" target="_blank" class="more">相关推荐</a></li>
+    </ul>
+  </div>
+
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2354342">
+  <div class="comment_title">
+    21 楼
+    <a href='http://lliiqiang.iteye.com' target='_blank' title='lliiqiang'>lliiqiang</a>
+    2014-07-22&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">处理方式一样.</div>
+</div>
+
+<div id="bc2354341">
+  <div class="comment_title">
+    20 楼
+    <a href='http://lliiqiang.iteye.com' target='_blank' title='lliiqiang'>lliiqiang</a>
+    2014-07-22&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">应该是根据状态作出有效动作，其它无关状态随便.</div>
+</div>
+
+<div id="bc2351601">
+  <div class="comment_title">
+    19 楼
+    <a href='http://lliiqiang.iteye.com' target='_blank' title='lliiqiang'>lliiqiang</a>
+    2014-06-25&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">根据状态决定调用.</div>
+</div>
+
+<div id="bc2351600">
+  <div class="comment_title">
+    18 楼
+    <a href='http://lliiqiang.iteye.com' target='_blank' title='lliiqiang'>lliiqiang</a>
+    2014-06-25&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">要综合看，如果被孤立的就无法注意到条件.</div>
+</div>
+
+<div id="bc2349387">
+  <div class="comment_title">
+    17 楼
+    <a href='http://destinyliu.iteye.com' target='_blank' title='一句诗的轻叹'>一句诗的轻叹</a>
+    2014-05-29&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">StrategyRegistry 还可以有public boolean accpet(xx)或者public boolean support(xx)方法</div>
+</div>
+
+<div id="bc2349386">
+  <div class="comment_title">
+    16 楼
+    <a href='http://destinyliu.iteye.com' target='_blank' title='一句诗的轻叹'>一句诗的轻叹</a>
+    2014-05-29&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼主，鉴于使用者要自行选择和构造策略类，我可能会想这样：<br />创建一个策略注册表<br />public interface StrategyRegistry {<br />&nbsp;&nbsp; public IStrategy select(String description);<br />}<br /><br />每次调用StrategyRegistry.select方法选择一个策略类。根据需求，或许可以不用Context类再包装一层，也可以使用Context。</div>
+</div>
+
+<div id="bc2349118">
+  <div class="comment_title">
+    15 楼
+    <a href='http://guoyanwei-ok.iteye.com' target='_blank' title='guoyanwei_ok'>guoyanwei_ok</a>
+    2014-05-26&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">是策略的。<br />状态模式至少能从一个状态跳转到其他一个或者多个状态。这个例子只是时序的，不能倒序或者插叙。</div>
+</div>
+
+<div id="bc2347557">
+  <div class="comment_title">
+    14 楼
+    <a href='http://windy0605.iteye.com' target='_blank' title='windy0605'>windy0605</a>
+    2014-05-09&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">同意 <div class="quote_title">palocc 写道</div><div class="quote_div">状态模式是指某种“状态”，<br /><br />比如<br /><br /><pre class="java" name="code">
+if(door ==1 ) //门是”开状态“
+    door = 0; //关门
+</pre><br /><br /><br />以上，表示门的状态切换（从“开”到“关”），这个是状态模式。<br />状态模式的一个典型特征是，状态类会切换自己的状态<br /><br />策略模式是指事项某种目的的方法。<br />lz的例子就是指的脱离陷阱的“方法”，而并非自己状态的切换。<br /><br />这是我的理解。</div><br /><br />lz所言确实策略模式<br /><br /></div>
+</div>
+
+<div id="bc2340770">
+  <div class="comment_title">
+    13 楼
+    <a href='http://kiddy2012.iteye.com' target='_blank' title='kiddy2012'>kiddy2012</a>
+    2014-02-27&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">确实是状态模式！目前正在学习设计模式。。通过这个文章学了两个模式！呵呵<br />策略模式：<br />1，当一个环境角色选择了一个具体的策略，那么在整个环境类的生命周期都不会改变<br />2，策略模式的环境自己选择一个具体的策略<br />3，策略模式并不明确告诉客户端它所选择的具体策略是什么，对客户是黑箱。<br />状态模式：<br />1，在整个环境类的生命周期中会有明显的状态改变。<br />2，状态模式是被外在原因放入一个策略<br />3,状态模式明显的告诉客户端当前的状态，对客户是白箱。 </div>
+</div>
+
+<div id="bc2339644">
+  <div class="comment_title">
+    12 楼
+    <a href='http://mthhk.iteye.com' target='_blank' title='mthhk'>mthhk</a>
+    2014-02-14&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">ctf_htj 写道</div><div class="quote_div">设计模式很多类图都很像，这个确实是策略模式的很经典使用，例子很易懂，状态模式主要是各个子类之间需要有跳转，<br />ps：上面各位说是状态模式的语气未免太强硬了，知识是用来讨论和分享的，最起码对楼主有一丝尊重。</div><br />少年，你不会是说我态度强硬吧？你没看出来我是给那哥们儿解释吗？</div>
+</div>
+
+<div id="bc2338475">
+  <div class="comment_title">
+    11 楼
+    <a href='http://ctf-htj.iteye.com' target='_blank' title='ctf_htj'>ctf_htj</a>
+    2014-01-22&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">设计模式很多类图都很像，这个确实是策略模式的很经典使用，例子很易懂，状态模式主要是各个子类之间需要有跳转，<br />ps：上面各位说是状态模式的语气未免太强硬了，知识是用来讨论和分享的，最起码对楼主有一丝尊重。</div>
+</div>
+
+<div id="bc2333780">
+  <div class="comment_title">
+    10 楼
+    <a href='http://mthhk.iteye.com' target='_blank' title='mthhk'>mthhk</a>
+    2013-12-06&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">我简单说下。<br />Context判断是否需要执行（或者说要执行哪个）策略的依据是自身的状态，所以说这个demo有点儿像状态模式。但需要声明的是楼主的代码绝对是策略模式的典型结构。<br />后来看的同学可以多留意下。<br /><div class="quote_title">islove1945 写道</div><div class="quote_div">呵呵，这个是状态模式，建议楼主改掉，免的坑爹误导</div> 层主，做技术的没必要这么大火气，每天呵呵不累么？</div>
+</div>
+
+<div id="bc2324175">
+  <div class="comment_title">
+    9 楼
+    <a href='http://islove1945.iteye.com' target='_blank' title='islove1945'>islove1945</a>
+    2013-09-01&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">呵呵，这个是状态模式，建议楼主改掉，免的坑爹误导</div>
+</div>
+
+<div id="bc2269938">
+  <div class="comment_title">
+    8 楼
+    <a href='http://wpf523.iteye.com' target='_blank' title='wpf523'>wpf523</a>
+    2012-07-15&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">看完状态模式再来看看！</div>
+</div>
+
+<div id="bc2266698">
+  <div class="comment_title">
+    7 楼
+    <a href='http://hanazawakana.iteye.com' target='_blank' title='hanazawakana'>hanazawakana</a>
+    2012-06-27&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">马克，我觉得状态模式起码要有“推动状态变化的逻辑”所以这个应该不是状态模式的</div>
+</div>
+
+<div id="bc2259356">
+  <div class="comment_title">
+    6 楼
+    <a href='http://chenwill3.iteye.com' target='_blank' title='chenwill3'>chenwill3</a>
+    2012-05-17&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">不是好像，这直接就是状态模式。估计是弄错了。</div>
+</div>
+
+<div id="bc2253381">
+  <div class="comment_title">
+    5 楼
+    <a href='http://chenjunfei23.iteye.com' target='_blank' title='chenjunfei23'>chenjunfei23</a>
+    2012-04-16&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">太高明了吧&nbsp; 佩服</div>
+</div>
+
+<div id="bc2247097">
+  <div class="comment_title">
+    4 楼
+    <a href='http://palocc.iteye.com' target='_blank' title='palocc'>palocc</a>
+    2012-03-12&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">状态模式是指某种“状态”，<br /><br />比如<br /><br /><pre class="java" name="code">
+if(door ==1 ) //门是”开状态“
+    door = 0; //关门
+</pre><br /><br /><br />以上，表示门的状态切换（从“开”到“关”），这个是状态模式。<br />状态模式的一个典型特征是，状态类会切换自己的状态<br /><br />策略模式是指事项某种目的的方法。<br />lz的例子就是指的脱离陷阱的“方法”，而并非自己状态的切换。<br /><br />这是我的理解。</div>
+</div>
+
+<div id="bc2234448">
+  <div class="comment_title">
+    3 楼
+    <a href='http://hui-windows.iteye.com' target='_blank' title='hui_windows'>hui_windows</a>
+    2011-12-09&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">我看也比较贴近 状态模式~~<br /></div>
+</div>
+
+<div id="bc2233057">
+  <div class="comment_title">
+    2 楼
+    <a href='http://klts.iteye.com' target='_blank' title='klts'>klts</a>
+    2011-12-02&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">能解释下策略模式和状态模式的区别吗？</div>
+</div>
+
+
+    
+    <div class="pagination"><span class="disabled prev_page">&laquo; 上一页</span> <span class="current">1</span> <a href="/blog/815107?page=2#comments" rel="next">2</a> <a href="/blog/815107?page=2#comments" class="next_page" rel="next">下一页 &raquo;</a></div>
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="/login" style="background-color:white;"> <img src="/images/login_icon.png" style="vertical-align:middle; margin-right: 10px;" /></a><a href="/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 815107;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'java设计模式之——策略模式');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'java设计模式之——策略模式');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href='http://yangguangfu.iteye.com'><img alt="yangguangfu的博客" class="logo" src="http://www.iteye.com/upload/logo/user/999865/3453af19-ebac-3669-b593-10e3049eed9d.jpg?1407505335" title="yangguangfu的博客: 阿福" width="" /></a></div>
+  <div id="blog_owner_name">yangguangfu</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 701986 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="http://www.iteye.com/images/icon_minigender_1.gif?1324994303" title="男" /></li>
+              <li>来自: 北京</li>
+              <li><img src='/images/status/offline.gif'/></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style='font-weight:normal;font-size:12px;padding-left:30px;'><a href="/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://yaobao888.iteye.com' target='_blank'><img alt="yaobao888的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1324994303" title="yaobao888的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://yaobao888.iteye.com' target='_blank' title='yaobao888'>yaobao888</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://qq1212.iteye.com' target='_blank'><img alt="qq1212的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1324994303" title="qq1212的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://qq1212.iteye.com' target='_blank' title='qq1212'>qq1212</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://zhangyqpost.iteye.com' target='_blank'><img alt="zhangyqpost的博客" class="logo" src="http://www.iteye.com/upload/logo/user/33126/cdc2a0c0-f3d9-304d-87a0-d2fd6b6b55a6-thumb.bmp?1236833411" title="zhangyqpost的博客: zhangyqpost" width="48px" /></a></div>
+                <div class="left"><a href='http://zhangyqpost.iteye.com' target='_blank' title='zhangyqpost'>zhangyqpost</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href='http://wetyboy.iteye.com' target='_blank'><img alt="wetyboy的博客" class="logo" src="http://www.iteye.com/images/user-logo-thumb.gif?1324994303" title="wetyboy的博客: " width="48px" /></a></div>
+                <div class="left"><a href='http://wetyboy.iteye.com' target='_blank' title='wetyboy'>wetyboy</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="/">全部博客 (178)</a></li>
+                
+                  <li><a href="/category/162731">android (17)</a></li>
+                
+                  <li><a href="/category/167892">Vim常用命令 (1)</a></li>
+                
+                  <li><a href="/category/215813">321影音工作室 (4)</a></li>
+                
+                  <li><a href="/category/275101">321影音全部更新 (1)</a></li>
+                
+                  <li><a href="/category/300441">321浏览器 (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id='month_blogs'>
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="/blog/post">我的论坛</a> (0)
+                </li>
+                <li><a href="/blog/answered_problems">我的问答</a> (0)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="/blog/monthblog/2014-03">2014-03</a> (1)</li>
+                
+                  <li><a href="/blog/monthblog/2014-02">2014-02</a> (1)</li>
+                
+                  <li><a href="/blog/monthblog/2013-12">2013-12</a> (1)</li>
+                
+                <li><a href="/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href='http://chenchuandong.iteye.com' target='_blank' title='chenchuandong'>chenchuandong</a>： 
+                   ...<br />
+                  <a href="/blog/895379#bc2355345">Android activity属性设置大全 </a>
+                </li>
+                
+                <li>
+                  <a href='http://yuhuiguan871890.iteye.com' target='_blank' title='yuhuiguan871890'>yuhuiguan871890</a>： 
+                  楼主的例子看了才懂，例子真心不错<br />
+                  <a href="/blog/815787#bc2355339">java设计模式之——代理模式</a>
+                </li>
+                
+                <li>
+                  <a href='http://xuminliang.iteye.com' target='_blank' title='xuminliang'>xuminliang</a>： 
+                   很好用，谢谢分享<br />
+                  <a href="/blog/832809#bc2354535">android ListView的分段显示、分页显示（附源码）</a>
+                </li>
+                
+                <li>
+                  <a href='http://lliiqiang.iteye.com' target='_blank' title='lliiqiang'>lliiqiang</a>： 
+                  处理方式一样.<br />
+                  <a href="/blog/815107#bc2354342">java设计模式之——策略模式</a>
+                </li>
+                
+                <li>
+                  <a href='http://lliiqiang.iteye.com' target='_blank' title='lliiqiang'>lliiqiang</a>： 
+                  应该是根据状态作出有效动作，其它无关状态随便.<br />
+                  <a href="/blog/815107#bc2354341">java设计模式之——策略模式</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+      </div>
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr/>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br />
+          &copy; 2003-2014 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script>
+
+<script src="http://csdnimg.cn/pubfooter/js/tracking.js?version=20130923164150" type="text/javascript"></script>
+
+    
+    
+  </body>
+</html>

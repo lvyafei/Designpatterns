@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>设计模式之中介者模式（Mediator） - VincentCZW - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=vVKakOZtmmmI9PttuB8cajJQIPwEqvGelvnOjnc3uik1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/blue/bundle-blue.css?v=INTa_cwddoXi1VOiOjBYVQa389V_3ZZZTTYCI3bVnq81"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/BeyondAnyTime/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/BeyondAnyTime/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/BeyondAnyTime/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'BeyondAnyTime', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=jvJZmSCHVKCE2JBQ2Jnh-ulNTcIvLVKFiU_ws2zCGYs1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div class="pagelayout">
+    
+<div class="header">
+	<div>
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/BeyondAnyTime/">VincentCZW</a>
+	</div>
+	<div>
+		
+	</div>
+</div>
+    <div id="leftmenu" class="leftcolumn">
+        
+            
+<h1 class = "listtitle">导航</h1>
+<ul class = "list">
+			<li class = "listitem"><a id="MyLinks1_HomeLink" class="listitem" href="http://www.cnblogs.com/">博客园</a></li>
+			<li class = "listitem"><a id="MyLinks1_MyHomeLink" href="http://www.cnblogs.com/BeyondAnyTime/">首页</a>
+			<li class = "listitem"><a id="MyLinks1_NewPostLink" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>
+			<li class = "listitem"><a id="MyLinks1_ContactLink" accesskey="9" class="listitem" rel="nofollow" href="http://space.cnblogs.com/msg/send/VincentCZW">联系</a></li>
+			<li class = "listitem">
+			<li class = "listitem"><a id="MyLinks1_Admin" class="listitem" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+            <div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+            
+<div class = "listtitle">统计</div>
+	<ul class = "list">
+		<li class = "listitem">随笔 - 75
+		<li class = "listitem">文章 - 16
+		<li class = "listitem">评论 - 322
+		<li class = "listitem">引用 - 0
+	</li>
+</ul>
+            
+<div class = "listtitle">公告</div>
+	<ul class = "list">
+		<li class = "listitem">
+			<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+	</li>
+</ul>
+            <div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+        
+        <div class="spacer">
+            &nbsp;</div>
+    </div>
+    <div class="centercolumn">
+        
+
+<div class = "singlepost">
+	<div class = "posttitle">
+		<a id="cb_post_title_url" class="singleposttitle" href="http://www.cnblogs.com/BeyondAnyTime/archive/2012/08/30/2663922.html">设计模式之中介者模式（Mediator）</a>
+	</div>
+    <div class="postbody">
+	<div id="cnblogs_post_body"><p><strong><span style="font-size: 14pt; color: #800080;">一、初识中介者模式</span></strong></p>
+<p><span style="font-size: 16px;">那些年，我们一起上过的大学，班级里有班长，有团书记。想一想如果没有QQ这种通讯工具的话，那么班长或者团支书该怎样下达消息呢？？同时，班级上两个同学之间也可惜沟通啊，沟通一下，院里哪个女生，哪个帅哥呀~~~如果没有QQ的话，大概就是下面的情景：</span></p>
+<p><img src="http://pic002.cnblogs.com/images/2012/406683/2012083015255184.jpg" alt="" /></p>
+<p><span style="font-size: 16px;">哎呀呀，看看这个乱那。如果同学的数目多起来就会变成网状的结构啦。原本把一个系统分割成一些对象是可以增强复用性的，但是现在的情况是，这些兑现之间存在着大量的联系，耦合性极高。这是很不利于复用的，同时这种情况使得系统的灵活性大大的降低，使得对系统的扩展很难，要是新转来一个学生的话，要改动的地方就多了去了。</span></p>
+<p><span style="font-size: 16px;">如果现在可以使用QQ，那么可以采用另一种方式设计这个系统呢，比如做成星形的结构：</span></p>
+<p><img src="http://pic002.cnblogs.com/images/2012/406683/2012083015361570.jpg" alt="" /></p>
+<p><span style="font-size: 16px;">看看这种&ldquo;星形结构&rdquo;和&ldquo;网状结构&rdquo;的区别吧，显然采用星形结构就可以避免上面的网状结构存在的问题了，实际上这里的QQ就是指的是中介，这样一来每个学生对象就不用存在耦合了，同学之间需要交流可以通过一个QQ群。</span></p>
+<p><span style="font-size: 16px;">本人认为，由原来的网状结构到星形结构的转变是理解中介者模式比较好的途径，下面来具体看看中介者模式，</span><span style="font-size: 16px;">GoF说：</span></p>
+<hr />
+<p><strong style="font-size: 16px;">中介者模式（Mediator Pattern）：</strong><span style="font-size: 16px;">定义一个中介对象来封装系列对象之间的交互。中介者使各个对象不需要显示地相互引用，从而使其耦合性松散，而且可以独立地改变他们之间的交互。</span></p>
+<hr />
+<p><span style="font-size: 16px;">看看结构图的形象描述吧：</span></p>
+<p><img src="http://pic002.cnblogs.com/images/2012/406683/2012083015463686.jpg" alt="" /></p>
+<p><span style="font-size: 16px;">对于设计模式这个东西，理解了，应该写一个代码体会一下：看看这些类，比如：Mediator，ConcreteMediator，Colleague和ConcreteColleage1到底是怎么组织的。</span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('362648a0-4a76-4646-b7a1-c21146ca02ed')"><img id="code_img_closed_362648a0-4a76-4646-b7a1-c21146ca02ed" class="code_img_closed" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_362648a0-4a76-4646-b7a1-c21146ca02ed" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('362648a0-4a76-4646-b7a1-c21146ca02ed',event)" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" /><span class="cnblogs_code_collapse">View Code </span>
+<div id="cnblogs_code_open_362648a0-4a76-4646-b7a1-c21146ca02ed" class="cnblogs_code_hide">
+<pre><span style="color: #008080;">  1</span> #include &lt;iostream&gt;
+<span style="color: #008080;">  2</span> #include &lt;vector&gt;
+<span style="color: #008080;">  3</span> #include &lt;<span style="color: #0000ff;">string</span>&gt;
+<span style="color: #008080;">  4</span> 
+<span style="color: #008080;">  5</span> <span style="color: #0000ff;">using</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> std;
+</span><span style="color: #008080;">  6</span> 
+<span style="color: #008080;">  7</span> 
+<span style="color: #008080;">  8</span> <span style="color: #008000;">//</span><span style="color: #008000;">抽象的同事类</span>
+<span style="color: #008080;">  9</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Colleage
+</span><span style="color: #008080;"> 10</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 11</span> <span style="color: #0000ff;">private</span><span style="color: #000000;">:
+</span><span style="color: #008080;"> 12</span>     <span style="color: #0000ff;">string</span><span style="color: #000000;"> name;
+</span><span style="color: #008080;"> 13</span>     <span style="color: #0000ff;">string</span><span style="color: #000000;"> content;
+</span><span style="color: #008080;"> 14</span> <span style="color: #0000ff;">public</span><span style="color: #000000;">:
+</span><span style="color: #008080;"> 15</span>     Colleage(<span style="color: #0000ff;">string</span> n = <span style="color: #800000;">"</span> <span style="color: #800000;">"</span><span style="color: #000000;">):name(n){};
+</span><span style="color: #008080;"> 16</span>     <span style="color: #0000ff;">void</span> set_name(<span style="color: #0000ff;">string</span><span style="color: #000000;"> name)
+</span><span style="color: #008080;"> 17</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 18</span>         <span style="color: #0000ff;">this</span>-&gt;name =<span style="color: #000000;"> name;
+</span><span style="color: #008080;"> 19</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 20</span>     <span style="color: #0000ff;">string</span><span style="color: #000000;"> get_name()
+</span><span style="color: #008080;"> 21</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 22</span>         <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>-&gt;<span style="color: #000000;">name;
+</span><span style="color: #008080;"> 23</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 24</span>     <span style="color: #0000ff;">void</span> set_content(<span style="color: #0000ff;">string</span><span style="color: #000000;"> content)
+</span><span style="color: #008080;"> 25</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 26</span>         <span style="color: #0000ff;">this</span>-&gt;content =<span style="color: #000000;"> content;
+</span><span style="color: #008080;"> 27</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 28</span>     <span style="color: #0000ff;">string</span><span style="color: #000000;"> get_content()
+</span><span style="color: #008080;"> 29</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 30</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> content;
+</span><span style="color: #008080;"> 31</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 32</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> talk(){};
+</span><span style="color: #008080;"> 33</span> 
+<span style="color: #008080;"> 34</span> <span style="color: #000000;">};
+</span><span style="color: #008080;"> 35</span> <span style="color: #008000;">//</span><span style="color: #008000;">具体的同事类:班长</span>
+<span style="color: #008080;"> 36</span> <span style="color: #0000ff;">class</span> Monitor : <span style="color: #0000ff;">public</span><span style="color: #000000;"> Colleage
+</span><span style="color: #008080;"> 37</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 38</span> <span style="color: #0000ff;">public</span><span style="color: #000000;">:
+</span><span style="color: #008080;"> 39</span>     Monitor(<span style="color: #0000ff;">string</span> n = <span style="color: #800000;">""</span><span style="color: #000000;">):Colleage(n){};
+</span><span style="color: #008080;"> 40</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> talk()
+</span><span style="color: #008080;"> 41</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 42</span>         cout&lt;&lt;<span style="color: #800000;">"</span><span style="color: #800000;">大班长 说：</span><span style="color: #800000;">"</span>&lt;&lt;get_content()&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;"> 43</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 44</span> <span style="color: #000000;">};
+</span><span style="color: #008080;"> 45</span> <span style="color: #008000;">//</span><span style="color: #008000;">具体的同事类:团支书</span>
+<span style="color: #008080;"> 46</span> <span style="color: #0000ff;">class</span> TuanZhiShu : <span style="color: #0000ff;">public</span><span style="color: #000000;"> Colleage
+</span><span style="color: #008080;"> 47</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 48</span> <span style="color: #0000ff;">public</span><span style="color: #000000;">:
+</span><span style="color: #008080;"> 49</span>     TuanZhiShu(<span style="color: #0000ff;">string</span> n = <span style="color: #800000;">""</span><span style="color: #000000;">):Colleage(n){};
+</span><span style="color: #008080;"> 50</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> talk()
+</span><span style="color: #008080;"> 51</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 52</span>         cout&lt;&lt;<span style="color: #800000;">"</span><span style="color: #800000;">团支书 说：</span><span style="color: #800000;">"</span>&lt;&lt;get_content()&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;"> 53</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 54</span> <span style="color: #000000;">};
+</span><span style="color: #008080;"> 55</span> <span style="color: #008000;">//</span><span style="color: #008000;">具体的同事类:同学A</span>
+<span style="color: #008080;"> 56</span> <span style="color: #0000ff;">class</span> StudentA : <span style="color: #0000ff;">public</span><span style="color: #000000;"> Colleage
+</span><span style="color: #008080;"> 57</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 58</span> <span style="color: #0000ff;">public</span><span style="color: #000000;">:
+</span><span style="color: #008080;"> 59</span>     StudentA(<span style="color: #0000ff;">string</span> n = <span style="color: #800000;">""</span><span style="color: #000000;">):Colleage(n){};
+</span><span style="color: #008080;"> 60</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> talk()
+</span><span style="color: #008080;"> 61</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 62</span>         cout&lt;&lt;<span style="color: #800000;">"</span><span style="color: #800000;">学生 A 说：</span><span style="color: #800000;">"</span>&lt;&lt;get_content()&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;"> 63</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 64</span> <span style="color: #000000;">};
+</span><span style="color: #008080;"> 65</span> <span style="color: #008000;">//</span><span style="color: #008000;">具体的同事类:同学B</span>
+<span style="color: #008080;"> 66</span> <span style="color: #0000ff;">class</span> StudentB : <span style="color: #0000ff;">public</span><span style="color: #000000;"> Colleage
+</span><span style="color: #008080;"> 67</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 68</span> <span style="color: #0000ff;">public</span><span style="color: #000000;">:
+</span><span style="color: #008080;"> 69</span>     StudentB(<span style="color: #0000ff;">string</span> n = <span style="color: #800000;">""</span><span style="color: #000000;">):Colleage(n){};
+</span><span style="color: #008080;"> 70</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> talk()
+</span><span style="color: #008080;"> 71</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 72</span>         cout&lt;&lt;<span style="color: #800000;">"</span><span style="color: #800000;">学生 B 说：</span><span style="color: #800000;">"</span>&lt;&lt;get_content()&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;"> 73</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;"> 74</span> <span style="color: #000000;">};
+</span><span style="color: #008080;"> 75</span> <span style="color: #008000;">//</span><span style="color: #008000;">抽象中介者</span>
+<span style="color: #008080;"> 76</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Mediator
+</span><span style="color: #008080;"> 77</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 78</span> <span style="color: #0000ff;">public</span><span style="color: #000000;">:
+</span><span style="color: #008080;"> 79</span>     vector&lt;Colleage*&gt;<span style="color: #000000;"> studentList;
+</span><span style="color: #008080;"> 80</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span> add_student(Colleage *<span style="color: #000000;">student)
+</span><span style="color: #008080;"> 81</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 82</span> <span style="color: #000000;">        studentList.push_back(student);
+</span><span style="color: #008080;"> 83</span> <span style="color: #000000;">    };
+</span><span style="color: #008080;"> 84</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span> notify(Colleage *<span style="color: #000000;">student){};
+</span><span style="color: #008080;"> 85</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span> chart(Colleage *student1,Colleage *<span style="color: #000000;">student2){};
+</span><span style="color: #008080;"> 86</span> <span style="color: #000000;">};
+</span><span style="color: #008080;"> 87</span> <span style="color: #008000;">//</span><span style="color: #008000;">具体中介者qq通讯平台</span>
+<span style="color: #008080;"> 88</span> <span style="color: #0000ff;">class</span> QQMediator : <span style="color: #0000ff;">public</span><span style="color: #000000;"> Mediator
+</span><span style="color: #008080;"> 89</span> <span style="color: #000000;">{
+</span><span style="color: #008080;"> 90</span> <span style="color: #0000ff;">public</span><span style="color: #000000;">:
+</span><span style="color: #008080;"> 91</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span> notify(Colleage *<span style="color: #000000;">student)
+</span><span style="color: #008080;"> 92</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 93</span>         student-&gt;<span style="color: #000000;">talk();
+</span><span style="color: #008080;"> 94</span>         <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">0</span> ; i &lt; studentList.size() ; ++<span style="color: #000000;">i)
+</span><span style="color: #008080;"> 95</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 96</span>             <span style="color: #008000;">//</span><span style="color: #008000;">不是说话者</span>
+<span style="color: #008080;"> 97</span>             <span style="color: #0000ff;">if</span>(student !=<span style="color: #000000;"> studentList[i])
+</span><span style="color: #008080;"> 98</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;"> 99</span>                 studentList[i]-&gt;<span style="color: #000000;">talk();
+</span><span style="color: #008080;">100</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">101</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">102</span> <span style="color: #000000;">    };
+</span><span style="color: #008080;">103</span>     <span style="color: #0000ff;">virtual</span> <span style="color: #0000ff;">void</span> chart(Colleage *student1,Colleage *<span style="color: #000000;">student2)
+</span><span style="color: #008080;">104</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;">105</span>         student1-&gt;<span style="color: #000000;">talk();
+</span><span style="color: #008080;">106</span>         student2-&gt;<span style="color: #000000;">talk();
+</span><span style="color: #008080;">107</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">108</span> <span style="color: #000000;">};
+</span><span style="color: #008080;">109</span> 
+<span style="color: #008080;">110</span> 
+<span style="color: #008080;">111</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> main()
+</span><span style="color: #008080;">112</span> <span style="color: #000000;">{
+</span><span style="color: #008080;">113</span> <span style="color: #000000;">    QQMediator qq;
+</span><span style="color: #008080;">114</span>     Monitor studentMonitor(<span style="color: #800000;">"</span><span style="color: #800000;">Vincent</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">115</span>     TuanZhiShu studentTuanZhiShu(<span style="color: #800000;">"</span><span style="color: #800000;">Robort</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">116</span>     StudentA studentA(<span style="color: #800000;">"</span><span style="color: #800000;">Sam</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">117</span>     StudentB studentB(<span style="color: #800000;">"</span><span style="color: #800000;">Tom</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">118</span>     <span style="color: #008000;">/*</span><span style="color: #008000;">----------------------班长发通知-----------------------------</span><span style="color: #008000;">*/</span>
+<span style="color: #008080;">119</span>     cout&lt;&lt;<span style="color: #800000;">"</span><span style="color: #800000;">下面的班长发布一个通知的场景：</span><span style="color: #800000;">"</span>&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;">120</span>     <span style="color: #008000;">//</span><span style="color: #008000;">将同学们加入到qq群中</span>
+<span style="color: #008080;">121</span>     qq.add_student(&amp;<span style="color: #000000;">studentMonitor);
+</span><span style="color: #008080;">122</span>     qq.add_student(&amp;<span style="color: #000000;">studentTuanZhiShu);
+</span><span style="color: #008080;">123</span>     qq.add_student(&amp;<span style="color: #000000;">studentA);
+</span><span style="color: #008080;">124</span>     qq.add_student(&amp;<span style="color: #000000;">studentB);
+</span><span style="color: #008080;">125</span>     <span style="color: #008000;">//</span><span style="color: #008000;">设置大家的回复信息</span>
+<span style="color: #008080;">126</span>     studentMonitor.set_content(<span style="color: #800000;">"</span><span style="color: #800000;">明天下午2点开年级会，收到回复^^。</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">127</span>     studentTuanZhiShu.set_content(<span style="color: #800000;">"</span><span style="color: #800000;">知道了，肯定到!!</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">128</span>     studentA.set_content(<span style="color: #800000;">"</span><span style="color: #800000;">收到了，但是可能晚点到!!</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">129</span>     studentB.set_content(<span style="color: #800000;">"</span><span style="color: #800000;">收到了，但是明天要去面试!!</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">130</span>     <span style="color: #008000;">//</span><span style="color: #008000;">开始发通知</span>
+<span style="color: #008080;">131</span>     qq.notify(&amp;<span style="color: #000000;">studentMonitor);
+</span><span style="color: #008080;">132</span>     <span style="color: #008000;">/*</span><span style="color: #008000;">--------------------两个同学私下交流--------------------------</span><span style="color: #008000;">*/</span>
+<span style="color: #008080;">133</span>     cout&lt;&lt;endl&lt;&lt;<span style="color: #800000;">"</span><span style="color: #800000;">下面是两个同学的私下交流：</span><span style="color: #800000;">"</span>&lt;&lt;<span style="color: #000000;">endl;
+</span><span style="color: #008080;">134</span>     studentMonitor.set_content(<span style="color: #800000;">"</span><span style="color: #800000;">你觉得咱们&ldquo;软件项目管理老师&rdquo;讲的怎么样？</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">135</span>     studentA.set_content(<span style="color: #800000;">"</span><span style="color: #800000;">我觉得讲的不够生动，还点名，不太好!!!</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">136</span>     qq.chart(&amp;studentMonitor,&amp;<span style="color: #000000;">studentA);
+</span><span style="color: #008080;">137</span>     <span style="color: #0000ff;">return</span> <span style="color: #800080;">0</span><span style="color: #000000;">;
+</span><span style="color: #008080;">138</span> }</pre>
+</div>
+</div>
+<p><span style="font-size: 16px;">下面是运行的结果：</span></p>
+<p><img src="http://pic002.cnblogs.com/images/2012/406683/2012083016583834.jpg" alt="" /></p>
+<p><span style="font-size: 16px;">看看，这样就利用qq这个平台完成了同学之间的交流。并且同学之间并没有相互联系，联系都是通过qq实现的，如果现在要对象进行扩展，比如也可以通过飞信啊，只需要加入<strong>class FeiXin:public Mediator&nbsp;</strong>就可以了，如果想扩展同学C只需要，<strong>class StudentC:public Colleage&nbsp;</strong>即可。并且在客户端的使用也是很方便的哦~~这时回过头想一想如果不用&ldquo;中介者模式&rdquo;的话，系统会是什么样呢？？？</span></p>
+<p><span style="font-size: 14pt;"><strong><span style="color: #800080;">二、使用中介者模式的场合和优缺点</span></strong></span></p>
+<p><span style="color: #008000; font-size: 16px;"><strong>使用终结者模式的场合</strong></span></p>
+<p><span style="font-size: 16px;">1.一组定义良好的对象，现在要进行复杂的通信。</span></p>
+<p><span style="font-size: 16px;">2.定制一个分布在多个类中的行为，而又不想生成太多的子类。</span></p>
+<p><span style="font-size: 16px;">可以看出，中介对象主要是用来封装行为的，行为的参与者就是那些对象，但是通过中介者，这些对象不用相互知道。呵呵~~~</span></p>
+<p><span style="color: #008000;"><strong><span style="font-size: medium;"><span style="line-height: 24px;">使用中介者模式的优点：</span></span></strong></span></p>
+<p><span style="font-size: medium;"><span style="line-height: 24px;">1.降低了系统对象之间的耦合性，使得对象易于独立的被复用。</span></span></p>
+<p><span style="font-size: medium;"><span style="line-height: 24px;">2.提高系统的灵活性，使得系统易于扩展和维护。</span></span></p>
+<p><span style="color: #008000;"><strong><span style="font-size: medium;"><span style="line-height: 24px;">使用中介者模式的缺点：</span></span></strong></span></p>
+<p><span style="font-size: medium;"><span style="line-height: 24px;">中介者模式的缺点是显而易见的，因为这个&ldquo;中介&ldquo;承担了较多的责任，所以一旦这个中介对象出现了问题，那么整个系统就会受到重大的影响。</span></span></p>
+<p>&nbsp;<span style="font-size: 16px;">&nbsp;</span></p>
+<hr />
+<p style="text-align: center;"><strong style="text-align: center;"><span style="font-family: 仿宋; font-size: 18pt; color: #ff6600;">学习中的一点总结，欢迎拍砖哦^^</span></strong></p>
+<hr />
+<p><span style="font-size: 16px;">&nbsp;</span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+    </div>
+	<div class = "itemdesc">
+		posted on <span id="post-date">2012-08-30 17:23</span> <a href='http://www.cnblogs.com/BeyondAnyTime/'>VincentCZW</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=2663922" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(2663922);return false;">收藏</a>
+	</div>
+</div>
+	<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=116985,cb_entryId=2663922,cb_blogApp=currentBlogApp,cb_blogUserGuid='c966d7ad-c498-e111-aa3f-842b2b196315',cb_entryCreatedDate='2012/8/30 17:23:00';loadViewCount(cb_entryId);</script>
+	
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = true;var googletag = googletag || {};googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +'//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+<script type='text/javascript'>
+    try {
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1346480159711-0' style='width:300px; height:250px;'>
+    <script type='text/javascript'>
+    try{
+        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+</div>
+<div id="blog_news_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+});
+</script>
+</div>
+
+        <div class="spacer">
+            &nbsp;</div>
+    </div>
+    
+<div class="footer">
+	Powered by: 
+	<br />
+	
+	<a id="Footer1_Hyperlink3" NAME="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br />
+	Copyright &copy; VincentCZW
+</div>
+</div>
+
+</body>
+</html>
