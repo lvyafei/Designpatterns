@@ -1,0 +1,852 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>
+
+    <script id="allmobilize" charset="utf-8" src="http://a.yunshipei.com/46aae4d1e2371e4aa769798941cef698/allmobilize.min.js"></script>
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>设计模式六大原则（3）：依赖倒置原则 - 卡奴达摩的专栏
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="定义：高层模块不应该依赖低层模块，二者都应该依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。问题由来：类A直接依赖类B，假如要将类A改为依赖类C，则必须通过修改类A的代码来达成。这种场景下，类A一般是高层模块，负责复杂的业务逻辑；类B和类C是低层模块，负责基本的原子操作；假如修改类A，会给程序带来不必要的风险。解决方案：将类A修改为依赖接口I，类B和类C各自实现接口I，类A通过接口I间接" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://static.csdn.net/public/common/toolbar/css/index.css">        <!--new top-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/light_blue/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/zhengzhb/rss/list" />
+    <link rel="shortcut icon" href="http://csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+</head>
+<body>
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://static.csdn.net/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/zhengzhb">卡奴达摩的专栏</a></h2>
+            <h3>海洋之大，源于点滴之水的积累。</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+                <li id="btnContents"><a href="http://blog.csdn.net/zhengzhb?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/zhengzhb?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/zhengzhb/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "zhengzhb";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/zhengzhb";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/38514369"target="_blank">
+<font color=blue>7月推荐文章
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://bbs.csdn.net/topics/390863850">
+<font color=red>【限时活动】建专辑得大奖</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://bbs.csdn.net/ask">
+<font color=blue>社区问答第九期：老罗的Android之旅
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://blog.csdn.net/blogdevteam/article/details/38657235"><font color=red>当青春遇上互联网，能否点燃你的创业梦
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://blog.csdn.net/blogdevteam/article/details/38418263">
+<font color=blue>推荐有礼--找出您心中的技术大牛
+</font></a>
+
+
+</div>                        </div>
+                        
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://csdnimg.cn/rabbit/search-service/main.js"></script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/zhengzhb/article/details/7289269">
+        设计模式六大原则（3）：依赖倒置原则
+        </a></span>
+    </h1>
+</div>
+
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="/zhengzhb/article/category/926691" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">设计模式</a> 
+        </span>
+    <span class="link_postdate">2012-02-24 08:46</span>
+    <span class="link_view" title="阅读次数">31889人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(75)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shoucang']);collectArticle('设计模式六大原则（3）：依赖倒置原则','7289269');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report"  onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_jubao']);report(7289269,2);return false;" title="举报">举报</a></span>
+    
+</div>
+<div class="tag2box"><a href='http://www.csdn.net/tag/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">设计模式</a><a href='http://www.csdn.net/tag/string' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">string</a><a href='http://www.csdn.net/tag/class' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">class</a><a href='http://www.csdn.net/tag/%e7%bc%96%e7%a8%8b' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">编程</a><a href='http://www.csdn.net/tag/setter' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">setter</a><a href='http://www.csdn.net/tag/interface' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">interface</a></div>
+
+  
+    
+<div id="article_content" class="article_content">
+
+<strong>定义：</strong>高层模块不应该依赖低层模块，二者都应该依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。
+<p><strong>问题由来：</strong>类A直接依赖类B，假如要将类A改为依赖类C，则必须通过修改类A的代码来达成。这种场景下，类A一般是高层模块，负责复杂的业务逻辑；类B和类C是低层模块，负责基本的原子操作；假如修改类A，会给程序带来不必要的风险。</p>
+<p><strong>解决方案：</strong>将类A修改为依赖接口I，类B和类C各自实现接口I，类A通过接口I间接与类B或者类C发生联系，则会大大降低修改类A的几率。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 依赖倒置原则基于这样一个事实：相对于细节的多变性，抽象的东西要稳定的多。以抽象为基础搭建起来的架构比以细节为基础搭建起来的架构要稳定的多。在java中，抽象指的是接口或者抽象类，细节就是具体的实现类，使用接口或者抽象类的目的是制定好规范和契约，而不去涉及任何具体的操作，把展现细节的任务交给他们的实现类去完成。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 依赖倒置原则的核心思想是<strong>面向接口编程，</strong>我们依旧用一个例子来说明面向接口编程比相对于面向实现编程好在什么地方。场景是这样的，母亲给孩子讲故事，只要给她一本书，她就可以照着书给孩子讲故事了。代码如下：</p>
+<pre class="java" name="code">class Book{
+	public String getContent(){
+		return &quot;很久很久以前有一个阿拉伯的故事……&quot;;
+	}
+}
+
+class Mother{
+	public void narrate(Book book){
+		System.out.println(&quot;妈妈开始讲故事&quot;);
+		System.out.println(book.getContent());
+	}
+}
+
+public class Client{
+	public static void main(String[] args){
+		Mother mother = new Mother();
+		mother.narrate(new Book());
+	}
+}
+</pre>
+<p>运行结果：</p>
+<p align="left"><span style="color:#000099">妈妈开始讲故事<br>
+很久很久以前有一个阿拉伯的故事……</span></p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 运行良好，假如有一天，需求变成这样：不是给书而是给一份报纸，让这位母亲讲一下报纸上的故事，报纸的代码如下：</p>
+<pre class="java" name="code">class Newspaper{
+	public String getContent(){
+		return &quot;林书豪38+7领导尼克斯击败湖人……&quot;;
+	}
+}
+</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 这位母亲却办不到，因为她居然不会读报纸上的故事，这太荒唐了，只是将书换成报纸，居然必须要修改Mother才能读。假如以后需求换成杂志呢？换成网页呢？还要不断地修改Mother，这显然不是好的设计。原因就是Mother与Book之间的耦合性太高了，必须降低他们之间的耦合度才行。</p>
+<p>我们引入一个抽象的接口IReader。读物，只要是带字的都属于读物：</p>
+<pre class="java" name="code">interface IReader{
+	public String getContent();
+}
+</pre>
+<p>Mother类与接口IReader发生依赖关系，而Book和Newspaper都属于读物的范畴，他们各自都去实现IReader接口，这样就符合依赖倒置原则了，代码修改为：</p>
+<pre class="java" name="code">class Newspaper implements IReader {
+	public String getContent(){
+		return &quot;林书豪17+9助尼克斯击败老鹰……&quot;;
+	}
+}
+class Book implements IReader{
+	public String getContent(){
+		return &quot;很久很久以前有一个阿拉伯的故事……&quot;;
+	}
+}
+
+class Mother{
+	public void narrate(IReader reader){
+		System.out.println(&quot;妈妈开始讲故事&quot;);
+		System.out.println(reader.getContent());
+	}
+}
+
+public class Client{
+	public static void main(String[] args){
+		Mother mother = new Mother();
+		mother.narrate(new Book());
+		mother.narrate(new Newspaper());
+	}
+}</pre>
+<p>运行结果：</p>
+<p align="left"><span style="color:#000099">妈妈开始讲故事<br>
+很久很久以前有一个阿拉伯的故事……<br>
+妈妈开始讲故事<br>
+林书豪17&#43;9助&#23612;克斯击败老鹰……</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;这样修改后，无论以后怎样扩展Client类，都不需要再修改Mother类了。这只是一个简单的例子，实际情况中，代表高层模块的Mother类将负责完成主要的业务逻辑，一旦需要对它进行修改，引入错误的风险极大。所以遵循依赖倒置原则可以降低类之间的耦合性，提高系统的稳定性，降低修改程序造成的风险。</p>
+<p>&nbsp;&nbsp;&nbsp; 采用依赖倒置原则给多人并行开发带来了极大的便利，比如上例中，原本Mother类与Book类直接耦合时，Mother类必须等Book类编码完成后才可以进行编码，因为Mother类依赖于Book类。修改后的程序则可以同时开工，互不影响，因为Mother与Book类一点关系也没有。参与协作开发的人越多、项目越庞大，采用依赖导致原则的意义就越重大。现在很流行的TDD开发模式就是依赖倒置原则最成功的应用。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 传递依赖关系有三种方式，以上的例子中使用的方法是<strong>接口传递，</strong>另外还有两种传递方式：<strong>构造方法传递</strong>和<strong>setter方法传递，</strong>相信用过Spring框架的，对依赖的传递方式一定不会陌生。<br>
+在实际编程中，我们一般需要做到如下3点：</p>
+<ul>
+<li>低层模块尽量都要有抽象类或接口，或者两者都有。</li><li>变量的声明类型尽量是抽象类或接口。</li><li>使用继承时遵循里氏替换原则。</li></ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 依赖倒置原则的核心就是要我们<strong>面向接口编程</strong>，理解了面向接口编程，也就理解了依赖倒置。<br>
+</p>
+
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+<div class="bdsharebuttonbox" style="float: right;">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+<!--192.168.100.33-->
+<ul class="article_next_prev">
+            <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/zhengzhb/article/details/7281833';">上一篇</span><a href="/zhengzhb/article/details/7281833" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">设计模式六大原则（2）：里氏替换原则</a></li>
+            <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='/zhengzhb/article/details/7289325';">下一篇</span><a href="/zhengzhb/article/details/7289325" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">有2n+1个数，其中有2n个数出现过两次，找出其中只出现一次的数</a></li>
+</ul>
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+        <div id="digg" ArticleId="7289269">
+            <dl id="btnDigg" class="digg digg_disable">
+                <dt onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_ding'])">顶</dt>
+                <dd>91</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+                <dt onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_cai'])">踩</dt>
+                <dd>2</dd>
+            </dl>
+        </div>
+</div>
+      <dl class="blog-associat-tag">
+        <dt>主题推荐</dt>
+        <dd>
+                <a href="http://www.csdn.net/tag/设计模式" target="_blank" class="blog-tage-red" >设计模式</a> 
+                <a href="http://www.csdn.net/tag/开发模式" target="_blank" class="blog-tage-red" >开发模式</a> 
+                <a href="http://www.csdn.net/tag/解决方案" target="_blank" class="blog-tage-red" >解决方案</a> 
+                <a href="http://www.csdn.net/tag/interface" target="_blank" class="blog-tage-red" >interface</a> 
+                <a href="http://www.csdn.net/tag/编程" target="_blank" class="blog-tage-red" >编程</a> 
+        </dd>
+    </dl> 
+
+
+<dl class="blog-ass-articl tracking-ad"  data-mod="popu_36" id="res-relatived"> 
+     <dt><span>猜你在找</span></dt>    
+</dl>
+
+<script type="text/javascript">
+    var searchtitletags = '设计模式六大原则（3）：依赖倒置原则' + ',' + '设计模式,开发模式,解决方案,interface,编程';
+    searchService({
+        index: 'blog',
+        query: searchtitletags,
+        from: 10,
+        size: 10,
+        appendTo: '#res-relatived',
+        url: 'recommend',
+        his: 2,
+        client: "blog_cf_enhance",
+        tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+    });
+
+ </script>   
+
+
+    <div id="ad_cen">
+   
+          <script type="text/javascript">
+              new Ad(4, 'ad_cen');
+          </script>
+    </div>
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '7289269';
+    var commentscount = 75;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+    <script type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+      
+
+       <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);
+        
+
+        if($("#comment_content").length>0)
+        {
+            $("#quick-reply").show();
+
+            $("#quick-reply").click(function(){
+                setEditorFocus();
+            });
+        }       
+     
+        var d_top = $('#d-top-a');
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div class="tag_list">
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/数据库" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone " target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/云计算" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace " target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/大数据" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+</div>
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+            <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/zhengzhb" target="_blank">
+    <img src="http://avatar.csdn.net/9/C/E/1_zhengzhb.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/zhengzhb" class="user_name" target="_blank">zhengzhb</a></span>
+</div>
+<div class="interact">
+<a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_guanzhu'])"></a>
+<a href="javascript:void(0);" class="letter" onclick="loginto(1)" title="[发私信]" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>
+</div>
+<div id="blog_medal">
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>713971次</span></li>
+    <li>积分：<span>7450分</span></li>
+    <li>排名：<span>第725名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>52篇</span></li>
+    <li>转载：<span>23篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>1076条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/pattern.html" target="_blank"><img src="http://avatar.csdn.net/blogpic/20120316154752878.jpg" style="width:75px;height:75px;" /></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/pattern.html" target="_blank">设计模式</a>
+    <p>文章：25篇</p>
+    <span>阅读：530373</span>
+    </td>
+    </tr></table>
+    </ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/909183" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">数据库</a><span>(14)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/925805" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">疑难问题</a><span>(12)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/912310" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">SSH框架</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/926666" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Linux</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/926667" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">程序人生</a><span>(7)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/926689" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">javascript</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/926691" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">设计模式</a><span>(27)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/928948" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">字符串处理</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/937011" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">web前台</a><span>(5)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/926690" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">算法</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/2168599" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">项目管理</a><span>(0)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/926645" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">项目总结</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/936027" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">国学</a><span>(0)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/938592" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">工作流</a><span>(0)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/938594" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">JVM</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/1054552" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">JAVA源码</a><span>(4)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/1084765" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C++系列</a><span>(0)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/1054627" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">网络</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/zhengzhb/article/category/1084756" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">高性能Web</a><span>(0)</span>
+            </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="http://blog.csdn.net/zhengzhb/article/month/2013/07">2013年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2013/02">2013年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2012/07">2012年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2012/06">2012年06月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2012/05">2012年05月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2012/04">2012年04月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2012/03">2012年03月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2012/02">2012年02月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2012/01">2012年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2011/12">2011年12月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2011/11">2011年11月</a><span>(10)</span></li><li><a href="http://blog.csdn.net/zhengzhb/article/month/2011/10">2011年10月</a><span>(10)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/zhengzhb/article/details/7331369" title="23种设计模式（1）：单例模式">23种设计模式（1）：单例模式</a><span>(50372)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7359385" title="23种设计模式（3）：抽象工厂模式">23种设计模式（3）：抽象工厂模式</a><span>(46879)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7348707" title="23种设计模式（2）：工厂方法模式">23种设计模式（2）：工厂方法模式</a><span>(37329)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7278174" title="设计模式六大原则（1）：单一职责原则">设计模式六大原则（1）：单一职责原则</a><span>(33924)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7281833" title="设计模式六大原则（2）：里氏替换原则">设计模式六大原则（2）：里氏替换原则</a><span>(31766)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7289269" title="设计模式六大原则（3）：依赖倒置原则">设计模式六大原则（3）：依赖倒置原则</a><span>(31486)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7296944" title="设计模式六大原则（6）：开闭原则">设计模式六大原则（6）：开闭原则</a><span>(30386)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7331354" title="单例模式讨论篇：单例模式与垃圾回收">单例模式讨论篇：单例模式与垃圾回收</a><span>(25752)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7296930" title="设计模式六大原则（5）：迪米特法则">设计模式六大原则（5）：迪米特法则</a><span>(23926)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7247188" title="迈出从3K到1W的重要一步——掌握设计模式">迈出从3K到1W的重要一步——掌握设计模式</a><span>(23919)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/zhengzhb/article/details/7296944" title="设计模式六大原则（6）：开闭原则">设计模式六大原则（6）：开闭原则</a><span>(85)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7278174" title="设计模式六大原则（1）：单一职责原则">设计模式六大原则（1）：单一职责原则</a><span>(83)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7331354" title="单例模式讨论篇：单例模式与垃圾回收">单例模式讨论篇：单例模式与垃圾回收</a><span>(79)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7289269" title="设计模式六大原则（3）：依赖倒置原则">设计模式六大原则（3）：依赖倒置原则</a><span>(75)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7331369" title="23种设计模式（1）：单例模式">23种设计模式（1）：单例模式</a><span>(70)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7247188" title="迈出从3K到1W的重要一步——掌握设计模式">迈出从3K到1W的重要一步——掌握设计模式</a><span>(59)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7281833" title="设计模式六大原则（2）：里氏替换原则">设计模式六大原则（2）：里氏替换原则</a><span>(51)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7359385" title="23种设计模式（3）：抽象工厂模式">23种设计模式（3）：抽象工厂模式</a><span>(44)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7517213" title="详解java类的生命周期">详解java类的生命周期</a><span>(42)</span>
+</li>
+<li>
+<a href="/zhengzhb/article/details/7187278" title="设计模式中类的关系">设计模式中类的关系</a><span>(39)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend"></ul>
+</div>
+<script type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/zhengzhb/article/details/7471978#comments">23种设计模式（8）：观察者模式</a>
+    <p style="margin:0px;"><a href="/u010741909" class="user_name">u010741909</a>:
+@u010741909:自学设计模式中，觉得楼主的blog写的很容易入门，Orz
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7471978#comments">23种设计模式（8）：观察者模式</a>
+    <p style="margin:0px;"><a href="/u010741909" class="user_name">u010741909</a>:
+向楼主学习中
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7291488#comments">为什么学C++比C#的长期风险低</a>
+    <p style="margin:0px;"><a href="/studentsky" class="user_name">studentsky</a>:
+作者还提到站在巨人肩膀上，那C++应该站到汇编肩膀上，汇编站在机器码肩膀上，按照作者逻辑，得出的结论...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7291488#comments">为什么学C++比C#的长期风险低</a>
+    <p style="margin:0px;"><a href="/studentsky" class="user_name">studentsky</a>:
+对于你的分析虽然没有完全看完，但是结论似乎过于片面由于目前行业细分较为清晰，不同细分领域中对开发语言...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7296921#comments">设计模式六大原则（4）：接口隔离原则</a>
+    <p style="margin:0px;"><a href="/josxhn" class="user_name">josxhn</a>:
+对接口而言遵守了单一职责，对实现接口的类而言违背了单一职责（多重继承）；
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7278174#comments">设计模式六大原则（1）：单一职责原则</a>
+    <p style="margin:0px;"><a href="/xhu_eternalcc" class="user_name">xhu_eternalcc</a>:
+学习了，写的简单易懂。
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7705682#comments">发一个displayTag的新样式</a>
+    <p style="margin:0px;"><a href="/dengjianbin" class="user_name">dengjianbin</a>:
+我的联系方式就发油箱吧564053479@qq.com，谢谢了
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7359385#comments">23种设计模式（3）：抽象工厂模式</a>
+    <p style="margin:0px;"><a href="/hadahuluwa" class="user_name">hadahuluwa</a>:
+感谢分享
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7359385#comments">23种设计模式（3）：抽象工厂模式</a>
+    <p style="margin:0px;"><a href="/hadahuluwa" class="user_name">hadahuluwa</a>:
+@sopk00:赞！
+    </p>
+    </li>
+    <li>
+   
+         <a href="/zhengzhb/article/details/7281833#comments">设计模式六大原则（2）：里氏替换原则</a>
+    <p style="margin:0px;"><a href="/Fanatic357" class="user_name">Fanatic357</a>:
+你好,能推荐一本设计模式的书籍吗,包含了你提到的6个设计原则.最好是基于C++的.谢谢.
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+
+            <div class="clear">
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="http://csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=1057407"></script>
+<script type="text/javascript">
+    document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date() / 120000).toString(36) + '="></' + 'script>');
+</script>
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript" src="http://zz.csdn.net/js/count.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://static.csdn.net/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+</body>
+</html>
